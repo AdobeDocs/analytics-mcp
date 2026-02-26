@@ -1,6 +1,5 @@
 - pathPrefix:
-    - /dev-docs-template/
-
+    - /mcp/docs/gateway/
 - pages:
     - [Analytics](index.md)
     - [Guides](guides/index.md)
