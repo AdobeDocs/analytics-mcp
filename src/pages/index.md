@@ -1,17 +1,17 @@
 ---
-title: Adobe MCP gateway servers
-description: Overview of available MCP servers using Adobe's MCP server gateway.
+title: Analytics MCP servers
+description: Overview of available MCP servers for Adobe Analytics and Customer Journey Analytics.
 ---
 
 <HeroSimple slots="image, heading, text, buttons" background="rgb(37, 37, 37)"/>
 
 ![Hero image](assets/platform-hero.png)
 
-# Adobe MCP gateway servers
+# Analytics MCP servers
 
-Adobe MCP gateway servers are Adobe-hosted MCP servers exposed through a common gateway. These servers allow MCP clients to access supported Adobe product capabilities.
+MCP servers for Adobe Analytics and Customer Journey Analytics.
 
-* [Get started](guides/index.md)
+[Get started](guides/index.md)
 
 <Resources slots="heading, links"/>
 
