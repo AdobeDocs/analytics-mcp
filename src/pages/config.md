@@ -1,5 +1,5 @@
 - pathPrefix:
-  - /mcp-gateway/docs/
+  - /analytics-mcp/docs/
 - pages:
   - [Adobe MCP gateway servers](index.md)
   - [Getting started](guides/index.md)
