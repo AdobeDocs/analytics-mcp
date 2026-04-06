@@ -13,6 +13,7 @@
     - [Connect to ChatGPT](guides/chatgpt.md)
     - [Connect to Claude](guides/claude.md)
     - [Connect to Cursor](guides/cursor.md)
+    - [Connect with an access token](guides/accesstoken.md)
   - [MCP servers](servers.md)
     - [Adobe Analytics](aa/index.md)
       - [Tool reference](aa/reference.md)

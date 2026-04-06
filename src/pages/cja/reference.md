@@ -8,87 +8,87 @@
 
 ### `createDateRange`
 
-asdf
+Creates a date range.
 
 ### `describeAudience`
 
-asdf
+Returns metadata for a given audience.
 
 ### `describeCalculatedMetric`
 
-asdf
+Shows metric formula and base metrics used for a calculated metric.
 
 ### `describeCja`
 
-asdf
+Starting point to learn how to use the CJA tools. Returns the guide for the specified type. The following guides are available: cjaGuide (How to use the CJA tools and describes the available data, dimensions, and metrics)
 
 ### `describeDimension`
 
-asdf
+Returns detailed metadata for a given dimension
 
 ### `describeMetric`
 
-asdf
+Returns metadata for a given metric
 
 ### `describeProject`
 
-asdf
+Shows details about a workspace project
 
 ### `describeSegment`
 
-asdf
+Returns metadata for a given segment
 
 ### `findAudiences`
 
-asdf
+Lists audiences available to the user
 
 ### `findDataViews`
 
-asdf
+Finds data views accessible to the user
 
 ### `findDateRanges`
 
-asdf
+Finds date ranges available to the user
 
 ### `findDimensions`
 
-asdf
+Finds dimensions available to the user for the given data view
 
 ### `findMetrics`
 
-asdf
+Finds available metrics and calculated metrics. Only return calculated metrics if the user mentions the keyword 'calculated' when asking for metrics. If the user wants 'any' metrics, return all metrics including calculated metrics.
 
 ### `findProjects`
 
-asdf
+Finds projects available to the user
 
 ### `findSegments`
 
-asdf
+Finds segments available to the user
 
 ### `listComponentUsage`
 
-asdf
+List components of the specified type most used in reports
 
 ### `listFrequentlyUsedWith`
 
-asdf
+List components frequently used in reports with specified component
 
 ### `listSimilarTo`
 
-asdf
+List components which are similar to the specified component
 
 ### `runReport`
 
-asdf
+Runs a ranked report with support for single or multiple dimensions and metrics. For multi-dimension/metric reports, all are reported together in a single request. Dimensions are assigned columnIds starting from '0' in the order provided. Metrics are also assigned columnIds starting from '0' in the order provided. By default, results are sorted by the first metric in descending order.
 
 ### `searchDimensionItems`
 
-asdf
+Runs a report that gets the top dimension items for the given dimension. Example dimension items: Dimension=Country, Items=US, UK, Canada, etc.
 
 ### `setDefaultSessionDataViewId`
 
-asdf
+Set the default session CJA Data View ID for this org/user. Other tools can omit dataViewId.
 
 ### `upsertAudience`
 
