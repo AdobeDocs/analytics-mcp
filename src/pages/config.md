@@ -4,8 +4,8 @@
   - [Adobe MCP gateway servers](index.md)
   - [Getting started](guides/index.md)
   - MCP servers
-    - [Adobe Analytics](servers/aa/index.md)
-    - [Customer Journey Analytics](servers/cja/index.md)
+    - [Adobe Analytics](aa/index.md)
+    - [Customer Journey Analytics](cja/index.md)
   - [Support](support.md)
 
 - subPages:
@@ -15,8 +15,7 @@
     - [Connect to Cursor](guides/cursor.md)
     - [Connect to Gemini](guides/gemini.md)
     - [Use OAuth to connect](guides/oauth.md)
-  - [MCP servers](servers/index.md)
-    - [Adobe Analytics](servers/aa/index.md)
-      - [Tool reference](servers/aa/reference.md)
-    - [Customer Journey Analytics](servers/cja/index.md)
-      - [Tool reference](servers/cja/reference.md)
+  - [Adobe Analytics](aa/index.md)
+    - [Tool reference](aa/reference.md)
+  - [Customer Journey Analytics](cja/index.md)
+    - [Tool reference](cja/reference.md)
