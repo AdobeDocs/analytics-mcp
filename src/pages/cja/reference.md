@@ -1,8 +1,11 @@
-* tool name
-* description
-* parameters
-* example prompts
+---
+title: Customer Journey Analytics MCP server tool reference
+description: A complete reference of all tools available in the Customer Journey Analytics MCP server, including descriptions and usage details.
+---
 
+# Customer Journey Analytics MCP server tool reference
+
+The following tools are available when connected to the Customer Journey Analytics MCP server. Each tool can be invoked by an LLM client to interact with your Customer Journey Analytics data, components, and workspace projects. Select a tool to view its description.
 
 <AccordionItem slots="heading, text" repeat="25"/>
 
@@ -100,7 +103,7 @@ Creates or updates a calculated metric. If the `calculatedMetricId` parameter is
 
 ### `upsertProject`
 
-Upsert a workspace project. The user is prompted to provide what type of chart they want to create (for example, freeform, line, etc). The expansions parameter is optionial and can be used to return additional data. The `projectBody` requires...
+Upsert a workspace project. Before calling this tool, call `describeProjectDefinition` to learn the required project definition structure, entity pattern, and date range setup. For specific visualization types, also call `describeProjectDefinition` with the appropriate guide type (e.g., `VIZ_COMBO`, `VIZ_FLOW`, `FREEFORM_TABLE`, `VISUALIZATIONS`). The `projectBody` must include `dataId` to set the CJA data view ID; omitting `dataId` commonly causes 'referenced component was not found in this data view'. Also required: `type` ('project'), `definition`; optional: `name`, `description`.
 
 ### `upsertSegment`
 

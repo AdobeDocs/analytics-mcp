@@ -1,12 +1,13 @@
 ---
-title:
-description:
+title: Adobe Analytics MCP server tool reference
+description: A complete reference of all tools available in the Adobe Analytics MCP server, including descriptions and usage details.
 ---
-# Adobe Analytics MCP server tools
 
+# Adobe Analytics MCP server tool reference
 
+The following tools are available when connected to the Adobe Analytics MCP server. Each tool can be invoked by an LLM client to interact with your Adobe Analytics data, components, and workspace projects. Select a tool to view its description.
 
-<AccordionItem slots="heading, text" repeat="25"/>
+<AccordionItem slots="heading, text" repeat="19"/>
 
 ### `clearDefaultSessionReportSuiteId`
 
