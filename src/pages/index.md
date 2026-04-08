@@ -20,7 +20,7 @@ MCP servers for Adobe Analytics and Customer Journey Analytics.
 * [Quick start guide](guides/index.md)
 * [Adobe Analytics MCP tool reference](aa/reference.md)
 * [Customer Journey Analytics MCP tool reference](cja/reference.md)
-* [Github repository](https://github.com/AdobeDocs/mcp-gateway)
+* [Github repository](https://github.com/AdobeDocs/analytics-mcp)
 
 ## Overview
 

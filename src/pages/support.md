@@ -1,11 +1,11 @@
 ---
-title: Adobe MCP gateway servers support
+title: Analytics MCP servers support
 description: Learn where to ask questions, report bugs, make feature requests, and spark discussions. 
 ---
 
 <HeroSimple slots="heading, text" background="rgb(37, 37, 37)"/>
 
-# Adobe MCP gateway servers support
+# Analytics MCP servers support
 
 Learn where to ask questions, report bugs, make feature requests, and spark discussions.
 
@@ -29,19 +29,19 @@ Ask/answer questions or participate in discussions around the Adobe Developer co
 
 ### GitHub
 
-[Contributing](https://github.com/AdobeDocs/mcp-gateway/blob/main/.github/CONTRIBUTING.md)
+[Contributing](https://github.com/AdobeDocs/analytics-mcp/blob/main/.github/CONTRIBUTING.md)
 
-Learn how you can contribute to the Adobe MCP gateway servers documentation.
+Learn how you can contribute to the Analytics MCP servers documentation.
 
 <DiscoverBlock slots="link, text" width="25%"/>
 
-[Issues](https://github.com/AdobeDocs/mcp-gateway/issues)
+[Issues](https://github.com/AdobeDocs/analytics-mcp/issues)
 
 Submit an issue to the repo for Adobe to address.
 
 <DiscoverBlock slots="link, text" width="25%"/>
 
-[Pull requests](https://github.com/AdobeDocs/mcp-gateway/pulls)
+[Pull requests](https://github.com/AdobeDocs/analytics-mcp/pulls)
 
 View open pull requests for the repository.
 
