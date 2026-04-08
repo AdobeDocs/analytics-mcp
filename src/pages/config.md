@@ -4,8 +4,6 @@
   - [Adobe MCP gateway servers](index.md)
   - [Getting started](guides/index.md)
   - [MCP servers](servers.md)
-    - [Adobe Analytics](aa/index.md)
-    - [Customer Journey Analytics](cja/index.md)
   - [Support](support.md)
 
 - subPages:
