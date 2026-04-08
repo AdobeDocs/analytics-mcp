@@ -22,9 +22,52 @@ Use the following URLs when configuring your MCP client:
 
 Each guide walks through the full setup for a specific client:
 
-* **[ChatGPT](chatgpt.md)**: Connect through Settings > Apps. Requires a Plus or Pro subscription.
-* **[Claude](claude.md)**: Connect through the Connectors menu in the Claude web app.
-* **[Cursor](cursor.md)**: Configure a `mcp.json` file in the Cursor IDE.
-* **[Gemini](gemini.md)**: CLI-only support; guide forthcoming.
+<Product-Card slots="icon, heading, text, buttons" repeat="5" />
 
-For programmatic or server-to-server connections without a UI client, see [Connect using OAuth](oauth.md).
+![ChatGPT icon](../assets/OpenAI-black-monoblossom.svg)
+
+### ChatGPT
+
+Connect through Settings > Apps. Requires a Plus or Pro subscription.
+
+* [Setup guide](chatgpt.md)
+
+![Claude icon](../assets/Claude_AI_symbol.svg)
+
+### Claude
+
+Connect through the Connectors menu in the Claude web app.
+
+* [Setup guide](claude.md)
+
+![Cursor icon](../assets/CUBE_25D.svg)
+
+### Cursor
+
+Configure a `mcp.json` file in the Cursor IDE.
+
+* [Setup guide](cursor.md)
+
+![Gemini icon](../assets/Google_Gemini_icon.svg)
+
+### Gemini
+
+CLI-only support; guide forthcoming.
+
+* [Setup guide](gemini.md)
+
+![OAuth icon](../assets/Oauth_logo.svg)
+
+### OAuth server-to-server
+
+Connect programmatically without a UI client using OAuth server-to-server credentials.
+
+* [Setup guide](oauth.md)
+
+## Switching IMS organizations
+
+If your Adobe ID belongs to multiple IMS organizations, IMS automatically logs you into the organization that you already have an active session with instead of showing the organization chooser. To switch to a different organization, follow these steps:
+
+1. Disconnect the MCP connector in your client. You do not need to remove it.
+1. Log out of your current Adobe session in your browser.
+1. Reconnect the MCP connector in your client. The login flow presents the organization chooser, allowing you to select the desired organization.
