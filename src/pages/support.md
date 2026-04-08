@@ -19,8 +19,6 @@ Adobe actively participates in several communities. You can use any of the follo
 
 ### Adobe Experience League
 
-<DiscoverBlock slots="link, text" width="25%"/>
-
 [Adobe Developer forum](https://experienceleaguecommunities.adobe.com/adobe-developer-19)
 
 Ask/answer questions or participate in discussions around the Adobe Developer console.

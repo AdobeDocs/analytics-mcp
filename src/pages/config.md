@@ -1,7 +1,7 @@
 - pathPrefix:
   - /analytics-mcp/docs/
 - pages:
-  - [Adobe MCP gateway servers](index.md)
+  - [Analytics MCP servers](index.md)
   - [Getting started](guides/index.md)
   - MCP servers
     - [Adobe Analytics](aa/index.md)
