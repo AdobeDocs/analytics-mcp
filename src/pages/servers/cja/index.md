@@ -25,4 +25,4 @@ See the [tool reference](reference.md) for a complete list of available tools an
 
 ## Get started
 
-See the [getting started guide](../guides/index.md) to connect the Customer Journey Analytics MCP server to a supported client.
+See the [getting started guide](../../guides/index.md) to connect the Customer Journey Analytics MCP server to a supported client.

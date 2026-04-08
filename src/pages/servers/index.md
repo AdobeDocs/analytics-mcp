@@ -8,7 +8,7 @@ Adobe provides the following MCP servers that you can connect to MCP clients:
 
 <Product-Card slots="icon, heading, text, buttons" repeat="2" />
 
-![Adobe Analytics icon](assets/platform_service.svg)
+![Adobe Analytics icon](../assets/platform_service.svg)
 
 ### Adobe Analytics
 
@@ -17,7 +17,7 @@ Run Adobe Analytics reporting queries through MCP and return results aligned wit
 * [Learn more](aa/index.md)
 * [View available tools](aa/reference.md)
 
-![Customer Journey Analytics icon](assets/platform_service.svg)
+![Customer Journey Analytics icon](../assets/platform_service.svg)
 
 ### Customer Journey Analytics
 
