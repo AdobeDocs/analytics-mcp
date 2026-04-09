@@ -1,110 +1,557 @@
 ---
 title: Customer Journey Analytics MCP server tool reference
-description: A complete reference of all tools available in the Customer Journey Analytics MCP server, including descriptions and usage details.
+description: A complete reference of all tools available in the Customer Journey Analytics MCP server, including descriptions, parameters, and usage details.
 ---
 
 # Customer Journey Analytics MCP server tool reference
 
-The following tools are available when connected to the Customer Journey Analytics MCP server. Each tool can be invoked by an LLM client to interact with your Customer Journey Analytics data, components, and workspace projects. Select a tool to view its description.
+The following tools are available when connected to the Customer Journey Analytics MCP server. Each tool can be invoked by an LLM client to interact with your Customer Journey Analytics data, components, and workspace projects.
 
-<AccordionItem slots="heading, text" repeat="25"/>
+## Setup and guides
 
-### `createDateRange`
+<AccordionItem slots="heading, text, table, text" repeat="3"/>
 
-Creates a date range.
+### Describe Customer Journey Analytics (`describeCja`)
 
-### `describeAudience`
+The starting point for learning how to use the Customer Journey Analytics MCP tools. Returns focused reference guides covering tool usage, available dimensions and metrics, segment definition syntax, calculated metric definition syntax, and the two-step breakdown report workflow. Call this tool before creating segments, calculated metrics, or breakdown reports to learn the required structures.
 
-Returns metadata for a given audience.
+**Parameters:**
 
-### `describeCalculatedMetric`
+| Name | Required | Type | Description |
+|------|----------|------|-------------|
+| `guideType` | Yes | String (enum) | The type of guide to return. Valid values include:<ul><li>`CJA_REFERENCE_GUIDE` (how to use the available tools, data, dimensions, and metrics)</li><li>`SEGMENT_DEFINITION_GUIDE` (segment definition and body structure)</li><li>`CALCULATED_METRIC_DEFINITION_GUIDE` (calculated metric definition and body structure)</li><li>`BREAKDOWN_GUIDE` (how to run breakdown reports and the required two-step workflow)</li><li>`IMS_ORG_CONTEXT_GUIDE` (IMS Org context)</li><li>`DATAVIEW_CONTEXT_GUIDE` (data view context)</li></ul> |
+| `dataViewId` | No | String | Override data view ID. Provide this parameter when calling with `DATAVIEW_CONTEXT_GUIDE`. |
 
-Shows metric formula and base metrics used for a calculated metric.
+**Example prompts:**
 
-### `describeCja`
+* "How do I use the Customer Journey Analytics tools?"
+* "Show me the segment definition guide."
+* "How do I create a calculated metric?"
+* "How do breakdown reports work?"
+* "What dimensions and metrics are available in my data view?"
 
-Starting point to learn how to use the CJA tools. Returns the guide for the specified type. The following guides are available: cjaGuide (How to use the CJA tools and describes the available data, dimensions, and metrics)
+### Describe Project Definition (`describeProjectDefinition`)
 
-### `describeDimension`
+Returns a guide for creating or modifying workspace project definitions. Call this tool with the `BASE` guide before calling `upsertProject` to learn the required project structure. This tool covers the entity pattern, date range setup, and the requirement that `projectBody` must set `dataId` to the data view ID. Additional guide types cover specific visualization types (bar charts, flow diagrams, cohort tables, etc.), freeform tables, panels, and advanced date ranges.
 
-Returns detailed metadata for a given dimension
+**Parameters:**
 
-### `describeMetric`
+| Name | Required | Type | Description |
+|------|----------|------|-------------|
+| `guideType` | Yes | String (enum) | The project guide type to return. Valid values include:<ul><li>`BASE` (required first; project structure, entities, date ranges, hierarchy, troubleshooting)</li><li>`DATE_RANGES` (advanced date formulas, day-of-week filters, date comparison columns)</li><li>`PANELS` (layout, dropdown filters, grid layouts, Quick Insights, Next/Previous Item)</li><li>`FREEFORM_TABLE` (tables, columns, breakdowns, static rows, multi-dimension)</li><li>`VISUALIZATIONS` (viz type index, linking charts to tables, lockedSelection)</li><li>`VIZ_BAR`</li><li>`VIZ_AREA`</li><li>`VIZ_SCATTER`</li><li>`VIZ_BULLET`</li><li>`VIZ_SUMMARY_CHANGE`</li><li>`VIZ_SECTION_HEADER`</li><li>`VIZ_TEXT`</li><li>`VIZ_FALLOUT`</li><li>`VIZ_FLOW`</li><li>`VIZ_COMBO`</li><li>`VIZ_COHORT`</li><li>`VIZ_HISTOGRAM`</li><li>`VIZ_JOURNEY_CANVAS`</li><li>`VIZ_KEY_METRIC_SUMMARY`</li><li>`VIZ_MAP`</li><li>`VIZ_VENN`</li></ul> |
 
-Returns metadata for a given metric
+**Example prompts:**
 
-### `describeProject`
+* "How do I structure a workspace project definition?"
+* "Show me how to create a flow visualization in a project."
+* "What's the JSON structure for a freeform table in a workspace project?"
+* "How do I add a bar chart to my project?"
+* "Show me the guide for cohort visualizations."
 
-Shows details about a workspace project
+### Set Default Data View (`setDefaultSessionDataViewId`)
 
-### `describeSegment`
+Sets the default data view ID for the current session. Once set, other tools that accept a `dataViewId` parameter can omit it and the server automatically uses this data view. This tool is useful when working within a single data view across multiple tool calls, or when switching the active data view for your session. The default persists for up to 8 hours.
 
-Returns metadata for a given segment
+**Parameters:**
 
-### `findAudiences`
+| Name | Required | Type | Description |
+|------|----------|------|-------------|
+| `dataViewId` | Yes | String | The data view ID to set as the session default (for example, `dv_62ba17d5a5d7845496f5fb4d`). |
 
-Lists audiences available to the user
+**Example prompts:**
 
-### `findDataViews`
+* "Set my default data view to dv_62ba17d5a5d7845496f5fb4d."
+* "Use the 'Production Web' data view for all my queries."
+* "Switch to a different data view."
 
-Finds data views accessible to the user
+## Discovery
 
-### `findDateRanges`
+<AccordionItem slots="heading, text, table, text" repeat="8"/>
 
-Finds date ranges available to the user
+### Find Dimensions (`findDimensions`)
 
-### `findDimensions`
+Finds dimensions available in a given data view. Use this tool to discover which dimensions exist before running a report, or to find dimensions related to a specific topic. Supports semantic search; pass a `searchQuery` with a topic or purpose (for example, "date time", "page", "user") to get relevance-ranked results. When `searchQuery` is omitted, returns a full paginated list. Hidden dimensions are excluded by default. The returned dimension IDs can be used directly in `runReport` and `searchDimensionItems`.
 
-Finds dimensions available to the user for the given data view
+**Parameters:**
 
-### `findMetrics`
+| Name | Required | Type | Description |
+|------|----------|------|-------------|
+| `dataViewId` | No | String | The data view ID. If omitted, uses the session default. |
+| `searchQuery` | No | String | Semantic search query (topic, name, or purpose). Returns relevance-ranked results when provided. Recommended for discovery. |
+| `page` | No | Integer | Page number for pagination (starts at 1). Only used when `searchQuery` is not provided. |
+| `limit` | No | Integer | Number of dimensions per page (default 500, max 1000). Only used when `searchQuery` is not provided. |
+| `includeHidden` | No | Boolean | Include dimensions marked as hidden. Defaults to `false`. |
 
-Finds available metrics and calculated metrics. Only return calculated metrics if the user mentions the keyword 'calculated' when asking for metrics. If the user wants 'any' metrics, return all metrics including calculated metrics.
+**Example prompts:**
 
-### `findProjects`
+* "What dimensions are available in my data view?"
+* "Find dimensions related to marketing channels."
+* "Search for date-related dimensions."
+* "Show me all page-related dimensions."
+* "List all dimensions in my data view."
 
-Finds projects available to the user
+### Find Metrics (`findMetrics`)
 
-### `findSegments`
+Finds available standard and custom metrics from the data view. Use this tool to discover which metrics exist before building a report, or to find metrics related to a specific topic (for example, "revenue", "engagement"). Does NOT include calculated metrics; use `findCalculatedMetrics` for those. Supports semantic search; pass a `searchQuery` to get relevance-ranked results. When `searchQuery` is omitted, the tool returns a full paginated list. Hidden metrics are excluded by default.
 
-Finds segments available to the user
+**Parameters:**
 
-### `listComponentUsage`
+| Name | Required | Type | Description |
+|------|----------|------|-------------|
+| `dataViewId` | No | String | The data view ID. If omitted, uses the session default. |
+| `searchQuery` | No | String | Semantic search query (topic, name, or purpose). Returns relevance-ranked results when provided. Recommended for discovery. |
+| `page` | No | Integer | Page number for pagination (starts at 1). Only used when `searchQuery` is not provided. |
+| `limit` | No | Integer | Number of metrics per page (default 100, max 1000). Only used when `searchQuery` is not provided. |
+| `expansions` | No | String | Additional data to return. Available expansions:<ul><li>`ownerFullName`: Includes the full name and login of the metric owner, expanding the `owner` object beyond just the user ID.</li><li>`modified`: Adds an ISO 8601 timestamp showing when the metric was last modified.</li><li>`componentType`: Adds a string field identifying the component type (for example, `metric`). Useful when working with mixed component lists.</li><li>`approved`: Adds a boolean indicating whether the metric has been approved or curated by an admin for organizational use.</li><li>`tags`: Includes an array of tag objects associated with the metric, each containing the tag ID, name, and other metadata for organizational categorization.</li><li>`hidden`: Adds a boolean indicating whether the metric is hidden from the default UI view. Hidden metrics are excluded from normal listings but can still be used in reports.</li><li>`dataName`: Includes the name of the data view that the metric belongs to. Useful for identifying the data source when working across multiple data views.</li><li>`categories`: Adds product category classification information, providing a higher-level organizational grouping for the metric.</li></ul> |
+| `includeHidden` | No | Boolean | Include metrics marked as hidden. Defaults to `false`. |
 
-List components of the specified type most used in reports
+**Example prompts:**
 
-### `listFrequentlyUsedWith`
+* "What metrics are available in my data view?"
+* "Find metrics related to revenue."
+* "Search for conversion-related metrics."
+* "Show me all session and visit metrics."
+* "List available metrics."
 
-List components frequently used in reports with specified component
+### Find Calculated Metrics (`findCalculatedMetrics`)
 
-### `listSimilarTo`
+Finds available calculated metrics. Use this tool when specifically looking for calculated metrics rather than standard metrics (use `findMetrics` for those). Useful for browsing or searching user-created and shared calculated metrics. Hidden calculated metrics are excluded by default. Pagination is applied by the downstream API before hidden filtering, so filtered pages can return fewer than `limit` results.
 
-List components which are similar to the specified component
+**Parameters:**
 
-### `runReport`
+| Name | Required | Type | Description |
+|------|----------|------|-------------|
+| `page` | No | Integer | Page number for pagination (starts at 0). |
+| `limit` | No | Integer | Number of results per page (max 1000). |
+| `expansions` | No | String | Additional data to return. Available expansions:<ul><li>`ownerFullName`: Includes the full name and login of the calculated metric owner, expanding the `owner` object beyond just the user ID.</li><li>`modified`: Adds an ISO 8601 timestamp showing when the calculated metric was last modified.</li><li>`componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.</li><li>`approved`: Adds a boolean indicating whether the calculated metric has been approved or curated by an admin for organizational use.</li><li>`tags`: Includes an array of tag objects associated with the calculated metric, each containing the tag ID, name, and other metadata for organizational categorization.</li><li>`warning`: Includes any warning messages about the calculated metric, such as issues with the definition or compatibility problems.</li><li>`hidden`: Adds a boolean indicating whether the calculated metric is hidden from the default UI view.</li><li>`dataName`: Includes the name of the data view associated with the calculated metric. Useful for identifying the data source when working across multiple data views.</li><li>`categories`: Adds product category classification information, providing a higher-level organizational grouping for the calculated metric.</li></ul> |
+| `includeType` | No | String | Include additional calculated metrics not owned by the current user. The `all` option takes precedence over `shared`. Available values:<ul><li>`all`: Returns all calculated metrics in the organization (requires product admin privileges).</li><li>`shared`: Includes calculated metrics that have been shared with the current user by other users.</li><li>`templates`: Includes template calculated metrics provided by the system.</li><li>`deleted`: Includes calculated metrics that have been deleted.</li><li>`internal`: Includes internal system calculated metrics not normally visible to users.</li><li>`curatedItem`: Includes curated calculated metrics.</li></ul>If omitted, returns only calculated metrics visible to the current user. |
+| `includeHidden` | No | Boolean | Include calculated metrics marked as hidden. Defaults to `false`. |
 
-Runs a ranked report with support for single or multiple dimensions and metrics. For multi-dimension/metric reports, all are reported together in a single request. Dimensions are assigned columnIds starting from '0' in the order provided. Metrics are also assigned columnIds starting from '0' in the order provided. By default, results are sorted by the first metric in descending order.
+**Example prompts:**
 
-### `searchDimensionItems`
+* "Show me the available calculated metrics."
+* "What calculated metrics exist in my organization?"
+* "List all calculated metrics, including hidden ones."
+* "Find calculated metrics with their tags."
 
-Runs a report that gets the top dimension items for the given dimension. Example dimension items: Dimension=Country, Items=US, UK, Canada, etc.
+### Find Segments (`findSegments`)
 
-### `setDefaultSessionDataViewId`
+Finds segments available to the user. Returns a paginated list of segments that the current user has access to. Useful for discovering segments to apply as filters in `runReport` or for retrieving a segment ID to pass to `describeSegment`.
 
-Set the default session CJA Data View ID for this org/user. Other tools can omit dataViewId.
+**Parameters:**
 
-### `upsertAudience`
+| Name | Required | Type | Description |
+|------|----------|------|-------------|
+| `page` | Yes | Integer | Page number for pagination (starts at 0). |
+| `limit` | Yes | Integer | Number of segments per page (max 1000). |
+| `expansions` | No | String | Additional data to return. Available expansions:<ul><li>`ownerFullName`: Includes the full name and login of the segment owner, expanding the `owner` object beyond just the user ID.</li><li>`modified`: Adds an ISO 8601 timestamp showing when the segment was last modified.</li><li>`componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.</li><li>`compatibility`: Adds information about which products the segment is compatible with.</li><li>`dataId`: Includes the associated data view ID that the segment is tied to.</li><li>`dataName`: Includes the name of the data view associated with the segment. Useful for identifying the data source when working across multiple data views.</li><li>`approved`: Adds a boolean indicating whether the segment has been approved or curated by an admin for organizational use.</li><li>`tags`: Includes an array of tag objects associated with the segment, each containing the tag ID, name, and other metadata for organizational categorization.</li></ul> |
+| `includeType` | No | String | Include additional segments not owned by the current user. Available values:<ul><li>`all`: Returns all components in the organization, including shared, templates, deleted, and internal (requires product admin privileges).</li><li>`shared`: Includes segments that have been shared with the current user by other users.</li><li>`templates`: Includes template segments provided by the system.</li><li>`deleted`: Includes segments that have been deleted. Deleted segments are only returned when explicitly requested.</li><li>`internal`: Includes internal system segments not normally visible to users.</li></ul>If omitted, returns only segments owned by the current user. |
 
-Upserts an audience.
+**Example prompts:**
 
-### `upsertCalculatedMetric`
+* "What segments are available?"
+* "Show me the list of segments."
+* "List all segments with their tags."
+* "Find segments in my organization."
 
-Creates or updates a calculated metric. If the `calculatedMetricId` parameter is provided, the tool updates the existing calculated metric with that ID. If the `calculatedMetricId` parameter is not provided, the tool creates a new calculated metric.
+### Find Date Ranges (`findDateRanges`)
 
-### `upsertProject`
+Finds saved date range components available to the user. Returns a paginated list, useful for discovering reusable date ranges or retrieving a date range ID for use in a project definition.
 
-Upsert a workspace project. Before calling this tool, call `describeProjectDefinition` to learn the required project definition structure, entity pattern, and date range setup. For specific visualization types, also call `describeProjectDefinition` with the appropriate guide type (e.g., `VIZ_COMBO`, `VIZ_FLOW`, `FREEFORM_TABLE`, `VISUALIZATIONS`). The `projectBody` must include `dataId` to set the CJA data view ID; omitting `dataId` commonly causes 'referenced component was not found in this data view'. Also required: `type` ('project'), `definition`; optional: `name`, `description`.
+**Parameters:**
 
-### `upsertSegment`
+| Name | Required | Type | Description |
+|------|----------|------|-------------|
+| `page` | Yes | Integer | Page number for pagination (starts at 0). |
+| `limit` | Yes | Integer | Number of date ranges per page (max 1000). |
+| `expansions` | No | String | Additional data to return. Available expansions:<ul><li>`ownerFullName`: Includes the full name and login of the date range owner, expanding the `owner` object beyond just the user ID.</li><li>`modified`: Adds an ISO 8601 timestamp showing when the date range was last modified.</li><li>`definition`: Includes the full date range definition as a JSON object, describing the start and end dates or relative date formula.</li><li>`tags`: Includes an array of tag objects associated with the date range, each containing the tag ID, name, and other metadata for organizational categorization.</li></ul> |
+| `includeType` | No | String | Include additional date ranges not owned by the current user. Available values:<ul><li>`all`: Returns all date ranges in the organization, including shared and templates (requires product admin privileges).</li><li>`shared`: Includes date ranges that have been shared with the current user by other users.</li><li>`templates`: Includes template date ranges provided by the system.</li></ul>If omitted, returns only date ranges owned by the current user. |
 
-Updates a segment.
+**Example prompts:**
+
+* "What date ranges are available?"
+* "Show me saved date ranges."
+* "List all date range components."
+
+### Find Data Views (`findDataViews`)
+
+Finds data views accessible to the user. Returns a paginated list, useful for discovering available data views or obtaining a data view ID to set as the session default with `setDefaultSessionDataViewId`.
+
+**Parameters:**
+
+| Name | Required | Type | Description |
+|------|----------|------|-------------|
+| `page` | Yes | Integer | Page number for pagination (starts at 0). |
+| `limit` | Yes | Integer | Number of data views per page (max 1000). |
+| `expansions` | No | String | Additional data to return. Available expansions:<ul><li>`name`: Includes the display name of the data view.</li><li>`description`: Includes the description of the data view.</li></ul> |
+| `includeType` | No | String | Include additional data views not owned by the current user. Available values:<ul><li>`all`: Returns all data views in the organization (requires product admin privileges).</li></ul>If omitted, returns only data views visible to the current user. |
+
+**Example prompts:**
+
+* "What data views are available?"
+* "List my data views."
+* "Show me all data views in my organization."
+* "Which data views do I have access to?"
+
+### Find Projects (`findProjects`)
+
+Finds workspace projects available to the user. Returns a paginated list, useful for discovering existing projects or obtaining a project ID for use with `describeProject` or `upsertProject`.
+
+**Parameters:**
+
+| Name | Required | Type | Description |
+|------|----------|------|-------------|
+| `page` | Yes | Integer | Page number for pagination (starts at 0). |
+| `limit` | Yes | Integer | Number of projects per page (max 1000). |
+| `expansions` | Yes | String | Additional data to return. Available expansions:<ul><li>`dataId`: Includes the associated data view ID that the project is tied to.</li><li>`dataName`: Includes the name of the data view associated with the project. Useful for identifying the data source when working across multiple data views.</li><li>`ownerFullName`: Includes the full name and login of the project owner, expanding the `owner` object beyond just the user ID.</li><li>`modified`: Adds an ISO 8601 timestamp showing when the project was last modified.</li><li>`componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.</li><li>`approved`: Adds a boolean indicating whether the project has been approved or curated by an admin for organizational use.</li><li>`tags`: Includes an array of tag objects associated with the project, each containing the tag ID, name, and other metadata for organizational categorization.</li><li>`folder`: Includes the folder location where the project is stored in the workspace.</li></ul> |
+| `includeType` | No | String | Include additional projects not owned by the current user. Available values:<ul><li>`all`: Returns all projects in the organization (requires product admin privileges).</li><li>`shared`: Includes projects that have been shared with the current user by other users.</li></ul>If omitted, returns only projects owned by the current user. |
+
+**Example prompts:**
+
+* "What workspace projects do I have?"
+* "List all projects."
+* "Show me my projects."
+* "Find projects in my organization."
+
+### Find Audiences (`findAudiences`)
+
+Lists audiences available to the user. Returns a paginated list of audience components, useful for discovering existing audiences or obtaining an audience ID for use with `describeAudience` or `upsertAudience`.
+
+**Parameters:**
+
+| Name | Required | Type | Description |
+|------|----------|------|-------------|
+| `page` | No | Integer | Page number for pagination (starts at 0). |
+| `limit` | No | Integer | Number of audiences per page (max 1000). |
+| `expansions` | Yes | String | Additional data to return. Available expansions:<ul><li>`name`: Includes the display name of the audience.</li><li>`description`: Includes the description of the audience.</li><li>`ownerFullName`: Includes the full name and login of the audience owner, expanding the `owner` object beyond just the user ID.</li><li>`frequency`: Includes the refresh frequency configuration for the audience, indicating how often the audience membership is recalculated.</li><li>`expirationDate`: Includes the expiration date after which the audience is no longer active or published.</li><li>`publishingStatus`: Includes the current publishing status of the audience (for example, whether it is actively being published to a destination).</li><li>`dataViewId`: Includes the data view ID that the audience is associated with.</li><li>`modifiedDate`: Adds an ISO 8601 timestamp showing when the audience was last modified.</li><li>`createdDate`: Adds an ISO 8601 timestamp showing when the audience was originally created.</li><li>`componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.</li><li>`approved`: Adds a boolean indicating whether the audience has been approved or curated by an admin for organizational use.</li><li>`tags`: Includes an array of tag objects associated with the audience, each containing the tag ID, name, and other metadata for organizational categorization.</li><li>`size`: Includes the current estimated size (member count) of the audience.</li></ul> |
+| `includeType` | No | String | Include additional audiences not owned by the current user. Available values:<ul><li>`all`: Returns all audiences in the organization (requires product admin privileges).</li></ul>If omitted, returns only audiences visible to the current user. |
+
+**Example prompts:**
+
+* "What audiences are available?"
+* "List my audiences."
+* "Show me all audiences in my organization."
+
+## Reporting and analysis
+
+<AccordionItem slots="heading, text, table, text" repeat="2"/>
+
+### Run Report (`runReport`)
+
+The primary tool for pulling analytics data from Customer Journey Analytics. Runs a ranked report with support for single or multiple dimensions and metrics over a specified date range. All dimensions and metrics are reported together in a single request. Dimensions are assigned column IDs starting from `0` in the order provided. Metrics are also assigned column IDs starting from `0`. Results are sorted by the first metric in descending order by default. Segments can be applied as global filters, and breakdown reports are supported via the optional `breakdowns` parameter — call `describeCja(BREAKDOWN_GUIDE)` for the full two-step workflow.
+
+**Parameters:**
+
+| Name | Required | Type | Description |
+|------|----------|------|-------------|
+| `dataViewId` | No | String | The data view ID. If omitted, uses the session default. |
+| `dimensionIds` | Yes | String | The ID(s) of the dimension(s). For a single dimension, provide one ID (for example, `variables/daterangeday`). For multiple, provide comma-separated IDs (for example, `variables/daterangeday,variables/page`). Each dimension is assigned a column ID starting from `0`. |
+| `metricIds` | Yes | String | The ID(s) of the metric(s). For a single metric, provide one ID (for example, `metrics/occurrences`). For multiple, provide comma-separated IDs (for example, `metrics/occurrences,metrics/visits,metrics/visitors`). Each metric is assigned a column ID starting from `0`. |
+| `startDate` | Yes | String | Start date for the report period in ISO 8601 format (`YYYY-MM-DDTHH:mm:ss`). |
+| `endDate` | Yes | String | End date for the report period in ISO 8601 format (`YYYY-MM-DDTHH:mm:ss`). |
+| `page` | Yes | Integer | Page number for pagination (starts at 0). |
+| `limit` | No | Integer | Number of dimension items per page (max 1000). Defaults to 100 if not specified. |
+| `segmentIds` | No | String | The ID(s) of segments to apply as global filters. For a single segment, provide one ID (for example, `s123`). For multiple, provide comma-separated IDs (for example, `s123,s456`). |
+| `adhocSegments` | No | List | One or more ad hoc segment definitions to apply as global filters. Provide a list of segment definition objects. Each definition is applied as a separate global filter (AND'd together). Cannot be used together with `segmentIds`. |
+| `sort` | No | List | Sort settings for the report. Each entry is an object with:<ul><li>`componentType` (`metric` or `dimension`)</li><li>`columnId` (optional — the column to sort by, for example, `0` for first, `1` for second. If omitted, the column ID is inferred from the order of sort entries.)</li><li>`ascending` (boolean)</li></ul>Defaults to first metric descending if not provided. |
+| `generateRequestOnly` | No | Boolean | When `true`, returns the API request payload without executing the report. Useful for debugging. Defaults to `false`. |
+| `breakdowns` | No | List | One or more breakdown filters to scope the report to specific dimension items. Each entry must have `dimensionId` (for example, `variables/daterangeyear`) and `itemId` (the numeric item ID from a prior `runReport` or `searchDimensionItems` call, not the plain text value). Multiple entries are AND'd together. Call `describeCja(BREAKDOWN_GUIDE)` for full workflow instructions. |
+
+**Example prompts:**
+
+* "Show me page views by day for the last 30 days."
+* "Run a report of the top pages by visits for March 2025."
+* "What are the top 10 marketing channels by revenue this quarter?"
+* "Break down page views by country for the US in January 2025."
+* "Run a report with sessions and visitors by device type for last week."
+
+### Search Dimension Items (`searchDimensionItems`)
+
+Retrieves the top dimension items for a given dimension. For example, if the dimension is "Country", this tool returns items like US, UK, Canada, etc. Also supports keyword search to find specific items. This tool is essential for obtaining the numeric `itemId` values needed for breakdown reports in `runReport`.
+
+**Parameters:**
+
+| Name | Required | Type | Description |
+|------|----------|------|-------------|
+| `dataViewId` | No | String | The data view ID. If omitted, uses the session default. |
+| `dimensionId` | Yes | String | The ID of the dimension to analyze (for example, `variables/daterangeday`). The `variables/` prefix is required. |
+| `startDate` | Yes | String | Start of the reporting period in ISO 8601 format (`YYYY-MM-DDTHH:mm:ss`). You can also provide only the date (`YYYY-MM-DD`), in which case use `00:00:00` as the time. |
+| `endDate` | Yes | String | End date in ISO 8601 format (`YYYY-MM-DDTHH:mm:ss`). You can also provide only the date (`YYYY-MM-DD`), in which case use `23:59:59` as the time to include the full day. |
+| `page` | Yes | Integer | Page number for pagination (starts at 0). |
+| `limit` | Yes | Integer | Number of dimension items per page (max 1000). |
+| `searchAnd` | No | String | Search terms that are AND'd together. Space delimited. |
+| `searchOr` | No | String | Search terms that are OR'd together. Space delimited. |
+
+**Example prompts:**
+
+* "What are the top countries by traffic this month?"
+* "Show me all the page names for last week."
+* "Search for dimension items containing 'checkout' in the page dimension."
+* "What values does the marketing channel dimension have?"
+* "Get the item IDs for the top browsers in the last 30 days."
+
+## Component details
+
+<AccordionItem slots="heading, text, table, text" repeat="6"/>
+
+### Describe Dimension (`describeDimension`)
+
+Returns detailed metadata for a given dimension, including its name, description, type, and other properties. Use this tool to understand what a specific dimension represents or to review its metadata before using it in a report.
+
+**Parameters:**
+
+| Name | Required | Type | Description |
+|------|----------|------|-------------|
+| `dataViewId` | No | String | The data view ID. If omitted, uses the session default. |
+| `dimensionId` | Yes | String | The dimension ID. Remove the `variables/` prefix for this parameter. |
+
+**Example prompts:**
+
+* "What does the 'page' dimension represent?"
+* "Describe the 'evar5' dimension."
+* "Tell me more about the 'daterangeday' dimension."
+
+### Describe Metric (`describeMetric`)
+
+Returns metadata for a given metric, including its name, description, type, and other properties. Use this tool to understand what a specific metric measures or to review its metadata before using it in a report.
+
+**Parameters:**
+
+| Name | Required | Type | Description |
+|------|----------|------|-------------|
+| `dataViewId` | No | String | The data view ID. If omitted, uses the session default. |
+| `metricId` | Yes | String | The metric ID. Remove the `metrics/` prefix for this parameter. |
+
+**Example prompts:**
+
+* "What does the 'occurrences' metric measure?"
+* "Describe the 'visits' metric."
+* "Tell me about the 'revenue' metric."
+
+### Describe Segment (`describeSegment`)
+
+Returns metadata for a given segment, including its name, description, definition, and compatibility. Use this tool to understand what a segment filters for, to inspect its definition before modifying it with `upsertSegment`, or to check its compatibility with a data view.
+
+**Parameters:**
+
+| Name | Required | Type | Description |
+|------|----------|------|-------------|
+| `segmentId` | Yes | String | The segment ID. |
+| `expansions` | Yes | String | Additional data to return. Available expansions:<ul><li>`ownerFullName`: Includes the full name and login of the segment owner, expanding the `owner` object beyond just the user ID.</li><li>`modified`: Adds an ISO 8601 timestamp showing when the segment was last modified.</li><li>`definition`: Includes the full segment definition as a JSON object, describing the container structure and predicates that define the segment logic.</li><li>`componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.</li><li>`compatibility`: Adds information about which products the segment is compatible with.</li><li>`dataId`: Includes the associated data view ID that the segment is tied to.</li><li>`dataName`: Includes the name of the data view associated with the segment. Useful for identifying the data source when working across multiple data views.</li><li>`approved`: Adds a boolean indicating whether the segment has been approved or curated by an admin for organizational use.</li><li>`tags`: Includes an array of tag objects associated with the segment, each containing the tag ID, name, and other metadata for organizational categorization.</li><li>`createdDate`: Adds an ISO 8601 timestamp showing when the segment was originally created.</li></ul> |
+
+**Example prompts:**
+
+* "Describe segment s12345."
+* "Show me the definition of the 'Mobile Users' segment."
+* "What does this segment filter for?"
+* "Get the details of my segment including its definition."
+
+### Describe Calculated Metric (`describeCalculatedMetric`)
+
+Shows the metric formula and base metrics used for a calculated metric. Use this tool to understand how a calculated metric is constructed, which base metrics it depends on, or to inspect it before modifying it with `upsertCalculatedMetric`.
+
+**Parameters:**
+
+| Name | Required | Type | Description |
+|------|----------|------|-------------|
+| `id` | Yes | String | The calculated metric ID. |
+| `expansions` | Yes | String | Additional data to return. Available expansions:<ul><li>`ownerFullName`: Includes the full name and login of the calculated metric owner, expanding the `owner` object beyond just the user ID.</li><li>`modified`: Adds an ISO 8601 timestamp showing when the calculated metric was last modified.</li><li>`definition`: Includes the full calculated metric definition as a JSON object, describing the formula structure and base metrics used.</li><li>`componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.</li><li>`approved`: Adds a boolean indicating whether the calculated metric has been approved or curated by an admin for organizational use.</li><li>`tags`: Includes an array of tag objects associated with the calculated metric, each containing the tag ID, name, and other metadata for organizational categorization.</li><li>`warning`: Includes any warning messages about the calculated metric, such as issues with the definition or compatibility problems.</li><li>`compatibility`: Adds information about which products the calculated metric is compatible with.</li><li>`hidden`: Adds a boolean indicating whether the calculated metric is hidden from the default UI view.</li><li>`dataName`: Includes the name of the data view associated with the calculated metric. Useful for identifying the data source when working across multiple data views.</li><li>`categories`: Adds product category classification information, providing a higher-level organizational grouping for the calculated metric.</li></ul> |
+
+**Example prompts:**
+
+* "Show me the formula for calculated metric cm12345."
+* "How is this calculated metric defined?"
+* "What base metrics does this calculated metric use?"
+* "Describe the 'Conversion Rate' calculated metric."
+
+### Describe Project (`describeProject`)
+
+Shows details about a workspace project, including its name, description, owner, and data view. Use this tool to inspect a project's configuration, retrieve its full definition before modifying it with `upsertProject`, or determine which data view it uses.
+
+**Parameters:**
+
+| Name | Required | Type | Description |
+|------|----------|------|-------------|
+| `id` | Yes | String | The project ID. |
+| `expansions` | Yes | String | Additional data to return. Available expansions:<ul><li>`dataId`: Includes the associated data view ID that the project is tied to.</li><li>`dataName`: Includes the name of the data view associated with the project. Useful for identifying the data source when working across multiple data views.</li><li>`ownerFullName`: Includes the full name and login of the project owner, expanding the `owner` object beyond just the user ID.</li><li>`modified`: Adds an ISO 8601 timestamp showing when the project was last modified.</li><li>`definition`: Includes the full project definition as a JSON object, describing the panels, visualizations, freeform tables, and other components that make up the workspace project.</li><li>`componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.</li><li>`approved`: Adds a boolean indicating whether the project has been approved or curated by an admin for organizational use.</li><li>`tags`: Includes an array of tag objects associated with the project, each containing the tag ID, name, and other metadata for organizational categorization.</li><li>`folder`: Includes the folder location where the project is stored in the workspace.</li></ul> |
+
+**Example prompts:**
+
+* "Describe project proj12345."
+* "Show me the details of the 'Marketing Dashboard' project."
+* "What data view does this project use?"
+* "Get the full definition of my workspace project."
+
+### Describe Audience (`describeAudience`)
+
+Returns metadata for a given audience, including its name, description, definition, publishing status, and other properties. Use this tool to understand what an audience targets or to inspect its definition and status.
+
+**Parameters:**
+
+| Name | Required | Type | Description |
+|------|----------|------|-------------|
+| `audienceId` | Yes | String | The audience ID. |
+| `expansions` | Yes | String | Additional data to return. Available expansions:<ul><li>`name`: Includes the display name of the audience.</li><li>`description`: Includes the description of the audience.</li><li>`definition`: Includes the full audience definition as a JSON object, describing the segment logic and criteria that determine audience membership.</li><li>`ownerFullName`: Includes the full name and login of the audience owner, expanding the `owner` object beyond just the user ID.</li><li>`frequency`: Includes the refresh frequency configuration for the audience, indicating how often the audience membership is recalculated.</li><li>`expirationDate`: Includes the expiration date after which the audience is no longer active or published.</li><li>`publishingStatus`: Includes the current publishing status of the audience (for example, whether it is actively being published to a destination).</li><li>`dataViewId`: Includes the data view ID that the audience is associated with.</li><li>`modifiedDate`: Adds an ISO 8601 timestamp showing when the audience was last modified.</li><li>`createdDate`: Adds an ISO 8601 timestamp showing when the audience was originally created.</li><li>`componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.</li><li>`approved`: Adds a boolean indicating whether the audience has been approved or curated by an admin for organizational use.</li><li>`tags`: Includes an array of tag objects associated with the audience, each containing the tag ID, name, and other metadata for organizational categorization.</li><li>`size`: Includes the current estimated size (member count) of the audience.</li></ul> |
+
+**Example prompts:**
+
+* "Describe audience aud12345."
+* "What is the definition of this audience?"
+* "Show me the publishing status of my audience."
+
+## Usage analytics
+
+<AccordionItem slots="heading, text, table, text" repeat="3"/>
+
+### List Component Usage (`listComponentUsage`)
+
+Lists the components of a specified type that are most used in reports, ranked by usage frequency. Use this tool to discover which dimensions, metrics, segments, or other components are most popular in your organization. Helpful when deciding what to include in a new report or project.
+
+**Parameters:**
+
+| Name | Required | Type | Description |
+|------|----------|------|-------------|
+| `dataViewId` | No | String | The data view ID. If omitted, uses the session default. |
+| `componentType` | Yes | String | The type of component to check. Available types include:<ul><li>`dimension`</li><li>`metric`</li><li>`segment`</li><li>`dateRange`</li><li>`project`</li><li>`calculatedMetric`</li></ul> |
+
+**Example prompts:**
+
+* "What are the most used dimensions in reports?"
+* "Show me the most popular metrics."
+* "Which segments are used the most?"
+* "What are the top components by usage?"
+
+### List Frequently Used With (`listFrequentlyUsedWith`)
+
+Lists components that are frequently used together in reports with a specified component. Use this tool to discover natural pairings to inform report building. A good use case for this tool includes the ability to determine which metrics are commonly used alongside a specific dimension.
+
+**Parameters:**
+
+| Name | Required | Type | Description |
+|------|----------|------|-------------|
+| `dataViewId` | No | String | The data view ID. If omitted, uses the session default. |
+| `componentId` | Yes | String | The ID of the component to check. |
+| `componentType` | Yes | String | The type of the component. Available types include:<ul><li>`dimension`</li><li>`metric`</li><li>`segment`</li><li>`dateRange`</li><li>`project`</li><li>`calculatedMetric`</li></ul> |
+
+**Example prompts:**
+
+* "What components are frequently used with the 'page' dimension?"
+* "What metrics are commonly paired with the 'marketing channel' dimension?"
+* "Show me what's frequently used alongside the 'visits' metric."
+* "What else is typically used with this segment?"
+
+### List Similar Components (`listSimilarTo`)
+
+Lists components that are similar to a specified component. Use this tool to find alternatives or related dimensions, metrics, or segments that serve a similar purpose.
+
+**Parameters:**
+
+| Name | Required | Type | Description |
+|------|----------|------|-------------|
+| `dataViewId` | No | String | The data view ID. If omitted, uses the session default. |
+| `componentId` | Yes | String | The ID of the component to check. |
+| `componentType` | Yes | String | The type of the component. Available types include:<ul><li>`dimension`</li><li>`metric`</li><li>`segment`</li><li>`dateRange`</li><li>`project`</li><li>`calculatedMetric`</li></ul> |
+
+**Example prompts:**
+
+* "What dimensions are similar to 'page'?"
+* "Find metrics similar to 'visits'."
+* "Show me segments similar to this one."
+* "What alternatives exist for this dimension?"
+
+## Create and update
+
+<AccordionItem slots="heading, text, table, text" repeat="5"/>
+
+### Create or Update Segment (`upsertSegment`)
+
+Creates a new segment or updates an existing one. If a `segmentId` is provided, updates the existing segment; if omitted, creates a new one. Before calling this tool, call `describeCja(SEGMENT_DEFINITION_GUIDE)` to learn the required segment body structure.
+
+**Parameters:**
+
+| Name | Required | Type | Description |
+|------|----------|------|-------------|
+| `segmentId` | No | String | The ID of the segment to update. If not provided, creates a new segment instead. |
+| `segmentBody` | Yes | Object | The segment metadata and definition object. Includes fields such as `name`, `description`, `definition` (container structure with predicates), and `compatibility`. Call `describeCja(SEGMENT_DEFINITION_GUIDE)` for the full structure. |
+| `expansions` | Yes | String | Additional data to return on the created or updated segment. Available expansions:<ul><li>`ownerFullName`: Includes the full name and login of the segment owner, expanding the `owner` object beyond just the user ID.</li><li>`modified`: Adds an ISO 8601 timestamp showing when the segment was last modified.</li><li>`definition`: Includes the full segment definition as a JSON object, describing the container structure and predicates that define the segment logic.</li><li>`componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.</li><li>`compatibility`: Adds information about which products the segment is compatible with.</li><li>`dataId`: Includes the associated data view ID that the segment is tied to.</li><li>`dataName`: Includes the name of the data view associated with the segment. Useful for identifying the data source when working across multiple data views.</li><li>`approved`: Adds a boolean indicating whether the segment has been approved or curated by an admin for organizational use.</li><li>`tags`: Includes an array of tag objects associated with the segment, each containing the tag ID, name, and other metadata for organizational categorization.</li></ul> |
+
+**Example prompts:**
+
+* "Create a segment for mobile users."
+* "Create a segment that filters for visitors from the United States."
+* "Update the definition of segment s12345."
+* "Build a segment for users who visited the checkout page."
+
+### Create or Update Calculated Metric (`upsertCalculatedMetric`)
+
+Creates a new calculated metric or updates an existing one. If a `calculatedMetricId` is provided, updates the existing calculated metric; if omitted, creates a new one. Before calling this tool, call `describeCja(CALCULATED_METRIC_DEFINITION_GUIDE)` to learn the required metric body structure.
+
+**Parameters:**
+
+| Name | Required | Type | Description |
+|------|----------|------|-------------|
+| `calculatedMetricId` | No | String | The ID of the calculated metric to update. If not provided, creates a new calculated metric instead. |
+| `metricBody` | Yes | Object | The metric metadata and definition object. Includes fields such as `name`, `description`, `dataId` (the data view ID), and `definition` (formula structure). Call `describeCja(CALCULATED_METRIC_DEFINITION_GUIDE)` for the full structure. |
+| `expansions` | Yes | String | Additional data to return on the created or updated calculated metric. Available expansions:<ul><li>`ownerFullName`: Includes the full name and login of the calculated metric owner, expanding the `owner` object beyond just the user ID.</li><li>`modified`: Adds an ISO 8601 timestamp showing when the calculated metric was last modified.</li><li>`definition`: Includes the full calculated metric definition as a JSON object, describing the formula structure and base metrics used.</li><li>`componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.</li><li>`approved`: Adds a boolean indicating whether the calculated metric has been approved or curated by an admin for organizational use.</li><li>`tags`: Includes an array of tag objects associated with the calculated metric, each containing the tag ID, name, and other metadata for organizational categorization.</li><li>`warning`: Includes any warning messages about the calculated metric, such as issues with the definition or compatibility problems.</li><li>`compatibility`: Adds information about which products the calculated metric is compatible with.</li><li>`hidden`: Adds a boolean indicating whether the calculated metric is hidden from the default UI view.</li><li>`dataName`: Includes the name of the data view associated with the calculated metric. Useful for identifying the data source when working across multiple data views.</li></ul> |
+
+**Example prompts:**
+
+* "Create a calculated metric for conversion rate (orders divided by visits)."
+* "Build a calculated metric that divides revenue by visitors."
+* "Update calculated metric cm12345 with a new formula."
+* "Create a bounce rate calculated metric."
+
+### Create Date Range (`createDateRange`)
+
+Creates a new reusable date range component that can be shared and used across projects.
+
+**Parameters:**
+
+| Name | Required | Type | Description |
+|------|----------|------|-------------|
+| `dateRangeBody` | Yes | Object | The date range definition as a map. See the API documentation for the required structure. |
+| `expansions` | Yes | String | Additional data to return on the created date range. Available expansions:<ul><li>`definition`: Includes the full date range definition as a JSON object, describing the start and end dates or relative date formula.</li><li>`ownerFullName`: Includes the full name and login of the date range owner, expanding the `owner` object beyond just the user ID.</li><li>`modified`: Adds an ISO 8601 timestamp showing when the date range was last modified.</li><li>`approved`: Adds a boolean indicating whether the date range has been approved or curated by an admin for organizational use.</li><li>`tags`: Includes an array of tag objects associated with the date range, each containing the tag ID, name, and other metadata for organizational categorization.</li></ul> |
+
+**Example prompts:**
+
+* "Create a date range for Q1 2025."
+* "Build a date range component for the last 90 days."
+* "Create a custom date range from January 1 to March 31."
+
+### Create or Update Project (`upsertProject`)
+
+Creates a new workspace project or updates an existing one. If a `projectId` is provided, updates the existing project; if omitted, creates a new one. Before calling this tool, call `describeProjectDefinition(BASE)` to learn the required project structure. For specific visualization types, also call `describeProjectDefinition` with the appropriate guide type (for example, `VIZ_COMBO`, `VIZ_FLOW`, `FREEFORM_TABLE`). The `projectBody` must include `dataId` set to the data view ID; omitting `dataId` commonly causes "referenced component was not found in this data view" errors.
+
+**Parameters:**
+
+| Name | Required | Type | Description |
+|------|----------|------|-------------|
+| `projectId` | No | String | The ID of the project to update. If not provided, creates a new project instead. |
+| `projectBody` | Yes | Object | The project payload including `definition`, `dataId` (must be set to the data view ID), `type` (must be `project`), and optionally `name` and `description`. Call `describeProjectDefinition(BASE)` for the full structure. |
+| `expansions` | Yes | String | Additional data to return on the created or updated project. Available expansions:<ul><li>`dataId`: Includes the associated data view ID that the project is tied to.</li><li>`dataName`: Includes the name of the data view associated with the project. Useful for identifying the data source when working across multiple data views.</li><li>`ownerFullName`: Includes the full name and login of the project owner, expanding the `owner` object beyond just the user ID.</li><li>`modified`: Adds an ISO 8601 timestamp showing when the project was last modified.</li><li>`definition`: Includes the full project definition as a JSON object, describing the panels, visualizations, freeform tables, and other components that make up the workspace project.</li><li>`componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.</li><li>`approved`: Adds a boolean indicating whether the project has been approved or curated by an admin for organizational use.</li><li>`tags`: Includes an array of tag objects associated with the project, each containing the tag ID, name, and other metadata for organizational categorization.</li><li>`folder`: Includes the folder location where the project is stored in the workspace.</li></ul> |
+
+**Example prompts:**
+
+* "Create a new workspace project with a freeform table showing page views by day."
+* "Build a project with a bar chart of top pages by visits."
+* "Update project proj12345 to add a new panel."
+* "Create a workspace project with a flow visualization."
+* "Build a marketing dashboard project."
+
+### Create or Update Audience (`upsertAudience`)
+
+Creates a new audience or updates an existing one. If an `audienceId` is provided, updates the existing audience; if omitted, creates a new one.
+
+**Parameters:**
+
+| Name | Required | Type | Description |
+|------|----------|------|-------------|
+| `audienceId` | No | String | The audience ID. |
+| `audienceBody` | Yes | Object | The audience metadata and definition object. Includes fields such as `name`, `description`, and `definition`. |
+| `expansions` | Yes | String | Additional data to return on the created or updated audience. Available expansions:<ul><li>`ownerFullName`: Includes the full name and login of the audience owner, expanding the `owner` object beyond just the user ID.</li><li>`modified`: Adds an ISO 8601 timestamp showing when the audience was last modified.</li><li>`definition`: Includes the full audience definition as a JSON object, describing the segment logic and criteria that determine audience membership.</li><li>`componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.</li><li>`compatibility`: Adds information about which products the audience is compatible with.</li><li>`dataId`: Includes the associated data view ID that the audience is tied to.</li><li>`dataName`: Includes the name of the data view associated with the audience. Useful for identifying the data source when working across multiple data views.</li><li>`approved`: Adds a boolean indicating whether the audience has been approved or curated by an admin for organizational use.</li><li>`tags`: Includes an array of tag objects associated with the audience, each containing the tag ID, name, and other metadata for organizational categorization.</li></ul> |
+
+**Example prompts:**
+
+* "Create an audience called 'High-value Customers'."
+* "Update audience aud12345 with a new name."
+* "Build an audience for users who completed a purchase."
