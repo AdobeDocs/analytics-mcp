@@ -9,7 +9,7 @@ The following tools are available when connected to the Adobe Analytics MCP serv
 
 ## Setup and guides
 
-<AccordionItem slots="heading, text, table, text" repeat="3"/>
+<AccordionItem slots="heading, text, text, table, text, text" repeat="3"/>
 
 ### Describe Adobe Analytics (`describeAa`)
 
@@ -65,7 +65,7 @@ Sets the default report suite ID and global company ID for the current session. 
 * "Use report suite 'myrsid' and company 'mycompany' for all my queries."
 * "Switch to a different report suite."
 
-<AccordionItem slots="heading, text" repeat="2"/>
+<AccordionItem slots="heading, text, text, text, text, text" repeat="2"/>
 
 ### Get Default Report Suite (`getDefaultSessionReportSuiteId`)
 
@@ -97,7 +97,7 @@ This tool does not require any parameters.
 
 ## Discovery
 
-<AccordionItem slots="heading, text"/>
+<AccordionItem slots="heading, text, text, text, text, text"/>
 
 ### Find Companies (`findCompanies`)
 
@@ -114,7 +114,7 @@ This tool does not require any parameters.
 * "Show me my login companies."
 * "What is my global company ID?"
 
-<AccordionItem slots="heading, text, table, text" repeat="6"/>
+<AccordionItem slots="heading, text, text, table, text, text" repeat="6"/>
 
 ### Find Report Suites (`findReportSuites`)
 
@@ -252,7 +252,7 @@ Finds workspace projects available to the user. Returns a paginated list, useful
 
 ## Reporting and analysis
 
-<AccordionItem slots="heading, text, table, text" repeat="2"/>
+<AccordionItem slots="heading, text, text, table, text, text" repeat="2"/>
 
 ### Run Report (`runReport`)
 
@@ -308,7 +308,7 @@ Retrieves the top dimension items for a given dimension. For example, if the dim
 
 ## Component details
 
-<AccordionItem slots="heading, text, table, text" repeat="3"/>
+<AccordionItem slots="heading, text, text, table, text, text" repeat="3"/>
 
 ### Describe Segment (`describeSegment`)
 
@@ -372,7 +372,7 @@ Shows details about a workspace project, including its name, description, owner,
 
 ## Usage analytics
 
-<AccordionItem slots="heading, text, table, text" repeat="3"/>
+<AccordionItem slots="heading, text, text, table, text, text" repeat="3"/>
 
 ### List Component Usage (`listComponentUsage`)
 
@@ -435,7 +435,7 @@ Lists components that are similar to a specified component. Use this tool to fin
 
 ## Create and update
 
-<AccordionItem slots="heading, text, table, text" repeat="4"/>
+<AccordionItem slots="heading, text, text, table, text, text" repeat="4"/>
 
 ### Create or Update Segment (`upsertSegment`)
 

@@ -9,7 +9,7 @@ The following tools are available when connected to the Customer Journey Analyti
 
 ## Setup and guides
 
-<AccordionItem slots="heading, text, table, text" repeat="3"/>
+<AccordionItem slots="heading, text, text, table, text, text" repeat="3"/>
 
 ### Describe Customer Journey Analytics (`describeCja`)
 
@@ -66,7 +66,7 @@ Sets the default data view ID for the current session. Once set, other tools tha
 
 ## Discovery
 
-<AccordionItem slots="heading, text, table, text" repeat="8"/>
+<AccordionItem slots="heading, text, text, table, text, text" repeat="8"/>
 
 ### Find Dimensions (`findDimensions`)
 
@@ -234,7 +234,7 @@ Lists audiences available to the user. Returns a paginated list of audience comp
 
 ## Reporting and analysis
 
-<AccordionItem slots="heading, text, table, text" repeat="2"/>
+<AccordionItem slots="heading, text, text, table, text, text" repeat="2"/>
 
 ### Run Report (`runReport`)
 
@@ -292,7 +292,7 @@ Retrieves the top dimension items for a given dimension. For example, if the dim
 
 ## Component details
 
-<AccordionItem slots="heading, text, table, text" repeat="6"/>
+<AccordionItem slots="heading, text, text, table, text, text" repeat="6"/>
 
 ### Describe Dimension (`describeDimension`)
 
@@ -401,7 +401,7 @@ Returns metadata for a given audience, including its name, description, definiti
 
 ## Usage analytics
 
-<AccordionItem slots="heading, text, table, text" repeat="3"/>
+<AccordionItem slots="heading, text, text, table, text, text" repeat="3"/>
 
 ### List Component Usage (`listComponentUsage`)
 
@@ -461,7 +461,7 @@ Lists components that are similar to a specified component. Use this tool to fin
 
 ## Create and update
 
-<AccordionItem slots="heading, text, table, text" repeat="5"/>
+<AccordionItem slots="heading, text, text, table, text, text" repeat="5"/>
 
 ### Create or Update Segment (`upsertSegment`)
 
