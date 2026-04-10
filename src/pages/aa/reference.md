@@ -392,7 +392,7 @@ Shows details about a workspace project, including its name, description, owner,
 * "What report suite does this project use?"
 * "Get the full definition of my workspace project."
 
-## Usage analytics
+## Component usage
 
 <AccordionItem slots="heading, text, text, table, text, text"/>
 
