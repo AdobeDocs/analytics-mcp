@@ -7,21 +7,17 @@ description: Learn where to ask questions, report bugs, make feature requests, a
 
 # Analytics MCP servers support
 
-Learn where to ask questions, report bugs, make feature requests, and spark discussions.
-
-## Communities
-
-Adobe actively participates in several communities. You can use any of the following communities for their designated purpose.
+Learn where to ask questions, report bugs, and make feature requests.
 
 <DiscoverBlock slots="image, heading, link, text" width="25%"/>
 
 ![Adobe Experience Cloud](./assets/experience_cloud.svg)
 
-### Adobe Experience League
+### Direct Support
 
-[Adobe Developer forum](https://experienceleaguecommunities.adobe.com/adobe-developer-19)
+[mcp-support@adobe.com](mailto:mcp-support@adobe.com)
 
-Ask/answer questions or participate in discussions around the Adobe Developer console.
+Email Adobe's MCP support team directly with questions, issues, or feedback about the Analytics MCP servers.
 
 <DiscoverBlock slots="image, heading, link, text" width="25%"/>
 
