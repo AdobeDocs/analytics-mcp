@@ -13,11 +13,11 @@ Learn where to ask questions, report bugs, and make feature requests.
 
 ![Adobe Experience Cloud](./assets/experience_cloud.svg)
 
-### Direct Support
+### Direct support
 
-[mcp-support@adobe.com](mailto:mcp-support@adobe.com)
+[Email](mailto:mcp-support@adobe.com)
 
-Email Adobe's MCP support team directly with questions, issues, or feedback about the Analytics MCP servers.
+Send an email to Adobe's MCP support team directly with questions, issues, or feedback about the Analytics MCP servers.
 
 <DiscoverBlock slots="image, heading, link, text" width="25%"/>
 
@@ -33,13 +33,13 @@ Learn how you can contribute to the Analytics MCP servers documentation.
 
 [Issues](https://github.com/AdobeDocs/analytics-mcp/issues)
 
-Submit an issue to the repo for Adobe to address.
+Submit an issue to the documentation repository for Adobe to address.
 
 <DiscoverBlock slots="link, text" width="25%"/>
 
 [Pull requests](https://github.com/AdobeDocs/analytics-mcp/pulls)
 
-View open pull requests for the repository.
+View open pull requests for the documentation repository.
 
 <DiscoverBlock slots="image, heading, link, text" width="25%"/>
 
@@ -49,4 +49,4 @@ View open pull requests for the repository.
 
 [Request an invite](https://join.measure.chat)
 
-Submission form to request joining #Measure, an industry-wide slack channel for multiple analytics platforms.
+Submission form to request joining #Measure, an industry-wide Slack channel for multiple analytics platforms.
