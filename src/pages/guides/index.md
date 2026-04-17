@@ -7,7 +7,10 @@ description: Connect Adobe Analytics and Customer Journey Analytics MCP servers 
 
 Connect an Adobe Analytics or Customer Journey Analytics MCP server to a supported LLM client. Once connected, you can query your analytics data conversationally, letting the LLM retrieve reports, components, and more, on your behalf.
 
-Before using these MCP tools, ensure that you have an Adobe ID with access to the desired IMS org and correct product permissions to access Adobe Analytics or Customer Journey Analytics.
+Before using these MCP tools, ensure that you have the correct permissions:
+
+* Your account must belong to a product profile containing the **MCP Access** permission item. *This requirement applies to all users, including product administrators.*
+* Your account must have the Adobe Analytics or Customer Journey Analytics permissions required for the actions that you want to take. MCP servers enforce the same permissions as the UI.
 
 ## MCP server URLs
 

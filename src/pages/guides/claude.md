@@ -6,6 +6,7 @@ description: Connect to Adobe Analytics and Customer Journey Analytics MCP serve
 
 You can request Adobe Analytics and Customer Journey Analytics data using the Claude standalone application.
 
+1. Ensure that your account has the [necessary permissions](index.md) to access the desired Analytics MCP server.
 1. Log in to [Claude](https://claude.ai) using your credentials.
 1. In the left menu, select the **Customize** icon.
 1. Select **Connectors**, then select the **+** icon to add a connector.

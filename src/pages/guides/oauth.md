@@ -4,11 +4,11 @@ description: Connect to Adobe Analytics and Customer Journey Analytics MCP serve
 ---
 # Use OAuth to connect
 
-Use an OAuth server-to-server access token to connect programmatically to the Adobe Analytics or Customer Journey Analytics MCP servers. This guide outlines the requirements and walks through the connection workflow.
+Use an OAuth server-to-server access token to connect programmatically to the Adobe Analytics or Customer Journey Analytics MCP servers. This page outlines the requirements and walks through the connection workflow.
 
 ## Requirements
 
-Before connecting, you need an Adobe Developer Console project with [OAuth server-to-server credentials](https://developer.adobe.com/developer-console/docs/guides/authentication/ServerToServerAuthentication/) and an [IMS access token](https://developer.adobe.com/developer-console/docs/guides/authentication/ServerToServerAuthentication/implementation/) generated using the `client_credentials` grant type.
+Before connecting, you need an Adobe Developer Console project with [OAuth server-to-server credentials](https://developer.adobe.com/developer-console/docs/guides/authentication/ServerToServerAuthentication/) and an [IMS access token](https://developer.adobe.com/developer-console/docs/guides/authentication/ServerToServerAuthentication/implementation/) generated using the `client_credentials` grant type. Ensure that the technical account is assigned to a product profile containing the **MCP Access** permission item.
 
 Each request to the MCP server requires the following headers:
 

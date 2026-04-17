@@ -10,6 +10,7 @@ You can request Adobe Analytics and Customer Journey Analytics data using ChatGP
 
 You must be on the "Plus" or "Pro" subscription to ChatGPT. OpenAI does not allow connecting to MCP servers using their "Free" tier.
 
+1. Ensure that your account has the [necessary permissions](index.md) to access the desired Analytics MCP server.
 1. Log in to [ChatGPT](https://chatgpt.com) using your credentials.
 1. In the lower left, select **your name** &rarr; **Settings**.
 1. Select **Apps**, then enable **Developer mode**.
