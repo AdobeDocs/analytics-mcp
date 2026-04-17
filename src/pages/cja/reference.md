@@ -13,13 +13,13 @@ The following tools are available when connected to the Customer Journey Analyti
 
 ### Describe Customer Journey Analytics (`describeCja`)
 
-The starting point for learning how to use the Customer Journey Analytics MCP tools. Returns focused reference guides covering tool usage, available dimensions and metrics, segment definition syntax, calculated metric definition syntax, and the two-step breakdown report workflow. Call this tool before creating segments, calculated metrics, or breakdown reports to learn the required structures.
+The starting point for learning how to use the Customer Journey Analytics MCP tools. Returns focused reference guides covering tool usage, available dimensions and metrics, segment definition syntax, calculated metric definition syntax, the two-step breakdown report workflow, and workspace project definitions. Call this tool before creating segments, calculated metrics, breakdown reports, or workspace projects to learn the required structures.
 
 **Parameters:**
 
 | Name | Required | Type | Description |
 |------|----------|------|-------------|
-| `guideType` | Yes | String (enum) | The type of guide to return. Valid values include:\<br/>• `CJA_REFERENCE_GUIDE` (how to use the available tools, data, dimensions, and metrics)\<br/>• `SEGMENT_DEFINITION_GUIDE` (segment definition and body structure)\<br/>• `CALCULATED_METRIC_DEFINITION_GUIDE` (calculated metric definition and body structure)\<br/>• `BREAKDOWN_GUIDE` (how to run breakdown reports and the required two-step workflow)\<br/>• `IMS_ORG_CONTEXT_GUIDE` (IMS Org context)\<br/>• `DATAVIEW_CONTEXT_GUIDE` (data view context) |
+| `guideType` | No | String (enum) | The type of guide to return. Defaults to `CJA_REFERENCE_GUIDE` if omitted. Valid values include:\<br/>• `CJA_REFERENCE_GUIDE` (how to use the available tools, data, dimensions, and metrics)\<br/>• `SEGMENT_DEFINITION_GUIDE` (segment definition and body structure)\<br/>• `CALCULATED_METRIC_DEFINITION_GUIDE` (calculated metric definition and body structure)\<br/>• `BREAKDOWN_GUIDE` (how to run breakdown reports and the required two-step workflow)\<br/>• `IMS_ORG_CONTEXT_GUIDE` (IMS Org context)\<br/>• `DATAVIEW_CONTEXT_GUIDE` (data view context)\<br/>• `PROJECT_BASE` (required first for project work; project structure, entities, date ranges, hierarchy, troubleshooting)\<br/>• `PROJECT_DATE_RANGES` (advanced date formulas, day-of-week filters, date comparison columns)\<br/>• `PROJECT_PANELS` (layout, dropdown filters, grid layouts, Quick Insights, Next/Previous Item)\<br/>• `PROJECT_FREEFORM_TABLE` (tables, columns, breakdowns, static rows, multi-dimension)\<br/>• `PROJECT_VISUALIZATIONS` (viz type index, linking charts to tables, lockedSelection)\<br/>• `PROJECT_VIZ_BAR`\<br/>• `PROJECT_VIZ_AREA`\<br/>• `PROJECT_VIZ_SCATTER`\<br/>• `PROJECT_VIZ_BULLET`\<br/>• `PROJECT_VIZ_SUMMARY_CHANGE`\<br/>• `PROJECT_VIZ_SECTION_HEADER`\<br/>• `PROJECT_VIZ_TEXT`\<br/>• `PROJECT_VIZ_FALLOUT`\<br/>• `PROJECT_VIZ_FLOW`\<br/>• `PROJECT_VIZ_COMBO`\<br/>• `PROJECT_VIZ_COHORT`\<br/>• `PROJECT_VIZ_HISTOGRAM`\<br/>• `PROJECT_VIZ_JOURNEY_CANVAS`\<br/>• `PROJECT_VIZ_KEY_METRIC_SUMMARY`\<br/>• `PROJECT_VIZ_MAP`\<br/>• `PROJECT_VIZ_VENN` |
 | `dataViewId` | No | String | Override data view ID. Provide this parameter when calling with `DATAVIEW_CONTEXT_GUIDE`. |
 
 **Example prompts:**
@@ -29,25 +29,9 @@ The starting point for learning how to use the Customer Journey Analytics MCP to
 * "How do I create a calculated metric?"
 * "How do breakdown reports work?"
 * "What dimensions and metrics are available in my data view?"
-
-<AccordionItem slots="heading, text, text, table, text, text"/>
-
-### Describe Project Definition (`describeProjectDefinition`)
-
-Returns a guide for creating or modifying workspace project definitions. Call this tool with the `BASE` guide before calling `upsertProject` to learn the required project structure. This tool covers the entity pattern, date range setup, and the requirement that `projectBody` must set `dataId` to the data view ID. Additional guide types cover specific visualization types (bar charts, flow diagrams, cohort tables, etc.), freeform tables, panels, and advanced date ranges.
-
-**Parameters:**
-
-| Name | Required | Type | Description |
-|------|----------|------|-------------|
-| `guideType` | Yes | String (enum) | The project guide type to return. Valid values include:\<br/>• `BASE` (required first; project structure, entities, date ranges, hierarchy, troubleshooting)\<br/>• `DATE_RANGES` (advanced date formulas, day-of-week filters, date comparison columns)\<br/>• `PANELS` (layout, dropdown filters, grid layouts, Quick Insights, Next/Previous Item)\<br/>• `FREEFORM_TABLE` (tables, columns, breakdowns, static rows, multi-dimension)\<br/>• `VISUALIZATIONS` (viz type index, linking charts to tables, lockedSelection)\<br/>• `VIZ_BAR`\<br/>• `VIZ_AREA`\<br/>• `VIZ_SCATTER`\<br/>• `VIZ_BULLET`\<br/>• `VIZ_SUMMARY_CHANGE`\<br/>• `VIZ_SECTION_HEADER`\<br/>• `VIZ_TEXT`\<br/>• `VIZ_FALLOUT`\<br/>• `VIZ_FLOW`\<br/>• `VIZ_COMBO`\<br/>• `VIZ_COHORT`\<br/>• `VIZ_HISTOGRAM`\<br/>• `VIZ_JOURNEY_CANVAS`\<br/>• `VIZ_KEY_METRIC_SUMMARY`\<br/>• `VIZ_MAP`\<br/>• `VIZ_VENN` |
-
-**Example prompts:**
-
 * "How do I structure a workspace project definition?"
 * "Show me how to create a flow visualization in a project."
 * "What's the JSON structure for a freeform table in a workspace project?"
-* "How do I add a bar chart to my project?"
 * "Show me the guide for cohort visualizations."
 
 <AccordionItem slots="heading, text, text, table, text, text"/>
@@ -560,14 +544,14 @@ Creates a new reusable date range component that can be shared and used across p
 
 ### Create or Update Project (`upsertProject`)
 
-Creates a new workspace project or updates an existing one. If a `projectId` is provided, updates the existing project; if omitted, creates a new one. Before calling this tool, call `describeProjectDefinition(BASE)` to learn the required project structure. For specific visualization types, also call `describeProjectDefinition` with the appropriate guide type (for example, `VIZ_COMBO`, `VIZ_FLOW`, `FREEFORM_TABLE`). The `projectBody` must include `dataId` set to the data view ID; omitting `dataId` commonly causes "referenced component was not found in this data view" errors. The response automatically includes a `workspaceLink` field with a direct URL to open the project in Analysis Workspace.
+Creates a new workspace project or updates an existing one. If a `projectId` is provided, updates the existing project; if omitted, creates a new one. Before calling this tool, call `describeCja(PROJECT_BASE)` to learn the required project structure. For specific visualization types, also call `describeCja` with the appropriate guide type (for example, `PROJECT_VIZ_COMBO`, `PROJECT_VIZ_FLOW`, `PROJECT_FREEFORM_TABLE`). The `projectBody` must include `dataId` set to the data view ID; omitting `dataId` commonly causes "referenced component was not found in this data view" errors. The response automatically includes a `workspaceLink` field with a direct URL to open the project in Analysis Workspace.
 
 **Parameters:**
 
 | Name | Required | Type | Description |
 |------|----------|------|-------------|
 | `projectId` | No | String | The ID of the project to update. If not provided, creates a new project instead. |
-| `projectBody` | Yes | Object | The project payload including `definition`, `dataId` (must be set to the data view ID), `type` (must be `project`), and optionally `name` and `description`. Call `describeProjectDefinition(BASE)` for the full structure. |
+| `projectBody` | Yes | Object | The project payload including `definition`, `dataId` (must be set to the data view ID), `type` (must be `project`), and optionally `name` and `description`. Call `describeCja(PROJECT_BASE)` for the full structure. |
 | `expansions` | Yes | String | Additional data to return on the created or updated project. Available expansions:\<br/>• `dataId`: Includes the associated data view ID that the project is tied to.\<br/>• `dataName`: Includes the name of the data view associated with the project. Useful for identifying the data source when working across multiple data views.\<br/>• `ownerFullName`: Includes the full name and login of the project owner, expanding the `owner` object beyond just the user ID.\<br/>• `modified`: Adds an ISO 8601 timestamp showing when the project was last modified.\<br/>• `definition`: Includes the full project definition as a JSON object, describing the panels, visualizations, freeform tables, and other components that make up the workspace project.\<br/>• `componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.\<br/>• `approved`: Adds a boolean indicating whether the project has been approved or curated by an admin for organizational use.\<br/>• `tags`: Includes an array of tag objects associated with the project, each containing the tag ID, name, and other metadata for organizational categorization.\<br/>• `folder`: Includes the folder location where the project is stored in the workspace. |
 
 **Example prompts:**
