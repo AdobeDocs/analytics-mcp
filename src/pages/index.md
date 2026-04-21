@@ -24,7 +24,7 @@ MCP servers for Adobe Analytics and Customer Journey Analytics.
 
 ## Overview
 
-This documentation covers each Adobe-hosted MCP server for Adobe Analytics and Customer Journey Analytics through `mcp-gateway.adobe.io`. Each server shares a standardized connection model, using similar endpoints and the same onboarding flow to establish connections between Adobe's MCP servers and supported MCP clients. Once connected, your MCP client can invoke product-specific tools to retrieve data, run queries, or perform supported operations as part of an LLM or agentic workflow.
+This documentation covers each Adobe-hosted MCP server for Adobe Analytics and Customer Journey Analytics. Each server shares a standardized connection model, using similar endpoints and the same onboarding flow to establish connections between Adobe's MCP servers and supported MCP clients. Once connected, your MCP client can invoke product-specific tools to retrieve data, run queries, or perform supported operations as part of an LLM or agentic workflow.
 
 ## Additional Information
 
