@@ -17,9 +17,9 @@ Before using these MCP tools, ensure that you have the correct permissions:
 Use the following URLs when configuring your MCP client:
 
 * **Adobe Analytics (Beta)**: `https://mcp-gateway.adobe.io/aa/mcp`
-* **Adobe Analytics (Production)**: URL forthcoming
+* **Adobe Analytics (Production)**: `https://aa-mcp.adobe.io/mcp`
 * **Customer Journey Analytics (Beta)**: `https://mcp-gateway.adobe.io/cja/mcp`
-* **Customer Journey Analytics (Production)**: URL forthcoming
+* **Customer Journey Analytics (Production)**: `https://cja-mcp.adobe.io/mcp`
 
 ## Choose your client
 
