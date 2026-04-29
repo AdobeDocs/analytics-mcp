@@ -10,7 +10,7 @@ The Adobe Analytics MCP server lets LLM clients interact with your components an
 ## Endpoint
 
 * **Beta**: `https://mcp-gateway.adobe.io/aa/mcp`
-* **Production**: `https://aa-mcp.adobe.io/mcp`
+* **Production**: URL forthcoming
 
 ## Capabilities
 
