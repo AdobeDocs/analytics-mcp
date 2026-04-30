@@ -24,7 +24,9 @@ MCP servers for Adobe Analytics and Customer Journey Analytics.
 
 ## Overview
 
-This documentation covers each Adobe-hosted MCP server for Adobe Analytics and Customer Journey Analytics. Each server shares a standardized connection model, using similar endpoints and the same onboarding flow to establish connections between Adobe's MCP servers and supported MCP clients. Once connected, your MCP client can invoke product-specific tools to retrieve data, run queries, or perform supported operations as part of an LLM or agentic workflow.
+This documentation covers the Adobe-hosted MCP servers for Adobe Analytics and Customer Journey Analytics. These servers connect MCP-compatible clients (like Claude, ChatGPT, or Cursor) directly to your analytics environment. Once connected, your client can invoke product-specific tools to query data, explore trends, build segments, and manage components using natural language as part of an LLM or agent-driven workflow.
+
+Both servers share a standardized connection model with consistent endpoints and a common onboarding flow. See [Getting started](guides/index.md) to learn how to connect the desired MCP server to your agent of choice, or the [Adobe Analytics](aa/reference.md) or [Customer Journey Analytics](cja/reference.md) tool references to explore each server's capabilities.
 
 ## Additional Information
 

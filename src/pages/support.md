@@ -15,7 +15,7 @@ Learn where to ask questions, report bugs, and make feature requests.
 
 ### Direct support
 
-[Email](mailto:mcp-support@adobe.com)
+[Email](mailto:analytics-mcps@adobe.com)
 
 Send an email to Adobe's MCP support team directly with questions, issues, or feedback about the Analytics MCP servers.
 
