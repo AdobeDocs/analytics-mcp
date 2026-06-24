@@ -5,6 +5,11 @@ description: Changelog for Customer Journey Analytics MCP
 
 # Changelog
 
+### June 24, 2026
+- Expanded semantic component search to additional production orgs.
+- Improved semantic search relevance in find component tools.
+- Resolved an issue affecting anomaly detection results.
+
 ### June 16, 2026
 - Added Warm Start question suggestions.
 - Enabled in-session feedback for select IMS orgs.
