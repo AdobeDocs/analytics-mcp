@@ -57,13 +57,13 @@ CLI-only support; guide forthcoming.
 
 * [Coming soon](#)
 
-![Copilot icon](../assets/Microsoft_Copilot_Icon.svg)
+![Copilot icon](../assets/CopilotStudio.png)
 
-### Copilot
+### Copilot Studio
 
-Not yet available. Support is planned.
+Create a tool and agent within Copilot Studio.
 
-* [Coming soon](#)
+* [Setup guide](copilot.md)
 
 ![OAuth icon](../assets/Oauth_logo.svg)
 

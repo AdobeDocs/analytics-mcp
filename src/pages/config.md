@@ -12,6 +12,7 @@
   - [Getting Started](guides/index.md)
     - [Connect to ChatGPT](guides/chatgpt.md)
     - [Connect to Claude](guides/claude.md)
+    - [Connect to Copilot Studio](guides/copilot.md)
     - [Connect to Cursor](guides/cursor.md)
     - [Use OAuth to connect](guides/oauth.md)
   - [Adobe Analytics](aa/index.md)

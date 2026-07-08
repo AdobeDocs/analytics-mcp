@@ -18,11 +18,11 @@ You can request Adobe Analytics and Customer Journey Analytics data using Cursor
       "mcpServers": {
         "Customer Journey Analytics": {
           "type": "streamable-http",
-          "url": "https://mcp-gateway.adobe.io/cja/mcp"
+          "url": "https://cja-mcp.adobe.io/mcp"
         },
         "Adobe Analytics": {
           "type": "streamable-http",
-          "url": "https://mcp-gateway.adobe.io/aa/mcp"
+          "url": "https://aa-mcp.adobe.io/mcp"
         }
       }
     }
