@@ -1,7 +1,7 @@
 {
-  "total": 19,
+  "total": 20,
   "offset": 0,
-  "limit": 19,
+  "limit": 20,
   "data": [
     {
       "page": "/",
@@ -76,7 +76,7 @@
         "https://avatars.githubusercontent.com/u/255243852?v=4",
         "https://avatars.githubusercontent.com/u/41382203?v=4"
       ],
-      "lastUpdated": "7/7/2026"
+      "lastUpdated": "7/8/2026"
     },
     {
       "page": "/guides/",
@@ -84,7 +84,7 @@
         "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/41382203?v=4"
       ],
-      "lastUpdated": "5/18/2026"
+      "lastUpdated": "7/8/2026"
     },
     {
       "page": "/guides/chatgpt",
@@ -101,11 +101,18 @@
       "lastUpdated": "5/18/2026"
     },
     {
+      "page": "/guides/copilot",
+      "avatars": [
+        "https://avatars.githubusercontent.com/u/33764851?v=4"
+      ],
+      "lastUpdated": "7/8/2026"
+    },
+    {
       "page": "/guides/cursor",
       "avatars": [
         "https://avatars.githubusercontent.com/u/33764851?v=4"
       ],
-      "lastUpdated": "4/17/2026"
+      "lastUpdated": "7/8/2026"
     },
     {
       "page": "/guides/gemini",
