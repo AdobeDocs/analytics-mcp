@@ -7,6 +7,11 @@ description: Updates and improvements to the Adobe Analytics MCP server and skil
 
 Recent updates, improvements, and new capabilities for the Adobe Analytics MCP server and its skills. For Customer Journey Analytics updates, see the [Customer Journey Analytics changelog](../cja/changelog.md).
 
+### July 15, 2026
+
+* Added real-time reporting parameters to the runReport tool.
+* Expanded in-session feedback to additional MCP callers.
+
 ### July 7, 2026
 
 * Added OpenAI Apps Directory verification endpoint and completed tool annotation updates for submission readiness.
