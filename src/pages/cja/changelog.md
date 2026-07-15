@@ -7,6 +7,13 @@ description: Updates and improvements to the Adobe Analytics MCP server and skil
 
 Recent updates, improvements, and new capabilities for the Adobe Analytics MCP server and its skills. For Customer Journey Analytics updates, see the [Customer Journey Analytics changelog](../cja/changelog.md).
 
+### July 7, 2026
+
+* Added OpenAI Apps Directory verification endpoint and completed tool annotation updates for submission readiness.
+* Expanded semantic component search to additional production orgs.
+* Added support for shared component types in semantic search across find component tools.
+* Resolved an issue affecting anomaly detection payloads in reporting.
+
 ### June 16, 2026
 
 * Added Warm Start question suggestions.
