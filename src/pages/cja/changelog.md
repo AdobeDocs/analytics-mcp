@@ -7,6 +7,16 @@ description: Updates and improvements to the Adobe Analytics MCP server and skil
 
 Recent updates, improvements, and new capabilities for the Adobe Analytics MCP server and its skills. For Customer Journey Analytics updates, see the [Customer Journey Analytics changelog](../cja/changelog.md).
 
+### July 28, 2026
+
+* Opened in-session feedback to all IMS orgs.
+* Expanded semantic component search to additional coworker-enabled orgs.
+* Added CJA B2B Edition segment container contexts to segment guidance and the describeCja reference guide.
+* Surfaced clearer error messages for segment and reporting failures.
+* Improved workspace project guidance to reduce invalid project JSON errors.
+* Tightened CJA entitlement and permission checks on incoming requests.
+* Renamed Warm Start question suggestions to Starter questions.
+
 ### July 15, 2026
 
 * Added real-time reporting parameters to the runReport tool.

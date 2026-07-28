@@ -7,6 +7,13 @@ description: Updates and improvements to the Adobe Analytics MCP server and skil
 
 Recent updates, improvements, and new capabilities for the Adobe Analytics MCP server and its skills. For Customer Journey Analytics updates, see the [Customer Journey Analytics changelog](../cja/changelog.md).
 
+### July 28, 2026
+
+* Opened in-session feedback to all IMS orgs.
+* Renamed Warm Start question suggestions to Starter questions.
+* Improved reliability of component listing with default pagination.
+* Added clearer detail to tool error responses.
+
 ### July 15, 2026
 
 * Expanded in-session feedback to additional MCP callers.
