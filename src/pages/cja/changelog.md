@@ -7,6 +7,16 @@ description: Updates and improvements to the Adobe Analytics MCP server and skil
 
 Recent updates, improvements, and new capabilities for the Adobe Analytics MCP server and its skills. For Customer Journey Analytics updates, see the [Customer Journey Analytics changelog](../cja/changelog.md).
 
+### August 11, 2026
+
+* Added the describeDataview tool for retrieving data view details.
+* Improved the runReport tool description and input validation to reduce report errors.
+* Improved tool error responses with clearer, more actionable detail for agents.
+* Enhanced the CJA reference guide with detailed tool descriptions and error handling guidance.
+* Preserved existing panels when updating a workspace project.
+* Resolved a data view calendar context issue that mixed up first day of week and first month of year values.
+* Trimmed response payloads for data suites and dates lookups.
+
 ### July 28, 2026
 
 * Opened in-session feedback to all IMS orgs.
