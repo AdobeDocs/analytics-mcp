@@ -14,7 +14,7 @@ You must be on the "Plus" or "Pro" subscription to ChatGPT. OpenAI does not allo
 1. Log in to [ChatGPT](https://chatgpt.com) using your credentials.
 1. In the lower left, select **your name** &rarr; **Settings**.
 1. Select **Apps**, then enable **Developer mode**.
-1. Select the **Create app** button.
+1. Select the **Create app** button
 1. Give the app a desired name (such as "Adobe Analytics" or "Customer Journey Analytics") and enter the desired MCP Server URL:
    * **Adobe Analytics**: `https://aa-mcp.adobe.io/mcp`
    * **Customer Journey Analytices**: `https://cja-mcp.adobe.io/mcp`
