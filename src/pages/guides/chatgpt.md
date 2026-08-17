@@ -21,7 +21,7 @@ You must be on the "Plus" or "Pro" subscription to ChatGPT. OpenAI does not allo
 1. Ensure that Authentication is set to **OAuth** (set by default), and select the acceptance check box to continue.
 1. Once the app is created, a login window pops up. Authenticate using your Adobe ID credentials. Ensure that you select the desired IMS org if your Adobe ID belongs to more than one.
 
-The tool is ready for use. You can converse with ChatGPT in context of your Analytics environment by invoking the tool:
+The tool is ready for use. You can converse with ChatGPT in the context of your Analytics environment by invoking the tool:
 
 ```text
 "Use the Adobe Analytics tool to show me what report suites are available."
