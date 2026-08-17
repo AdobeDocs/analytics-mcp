@@ -10,14 +10,35 @@ You can request Adobe Analytics and Customer Journey Analytics data using ChatGP
 
 You must be on the "Plus" or "Pro" subscription to ChatGPT. OpenAI does not allow connecting to MCP servers using their "Free" tier.
 
-1. Ensure that your account has the [necessary permissions](index.md) to access the desired Analytics MCP server.
+The connection steps differ by product. Use [Customer Journey Analytics](#customer-journey-analytics) to add the CJA plugin, or [Adobe Analytics](#adobe-analytics) to add the Adobe Analytics MCP server manually.
+
+## Customer Journey Analytics
+
+Adobe publishes Customer Journey Analytics as a plugin in ChatGPT, so you can add it directly without enabling Developer mode or entering a server URL.
+
+1. Ensure that your account has the [necessary permissions](index.md) to access the Customer Journey Analytics MCP server.
+1. Log in to [ChatGPT](https://chatgpt.com) using your credentials.
+1. Open the **Plugins** section.
+1. In the search box, type `CJA`.
+1. Select **Install plugin**.
+1. When prompted, authenticate using your Adobe ID credentials. Ensure that you select the desired IMS org if your Adobe ID belongs to more than one.
+
+The Customer Journey Analytics plugin home lists several options for analyzing data in your organization. You can also open chat within the context of the plugin by selecting "Try in chat." Once installed, you can invoke the plugin by mentioning it with `@Customer Journey Analytics` in any prompt, as shown below:
+
+```text
+"@Customer Journey Analytics Show me visits and revenue by marketing channel for the last 30 days in my main data view"
+```
+
+## Adobe Analytics
+
+Add the Adobe Analytics MCP server manually using Developer mode.
+
+1. Ensure that your account has the [necessary permissions](index.md) to access the Adobe Analytics MCP server.
 1. Log in to [ChatGPT](https://chatgpt.com) using your credentials.
 1. In the lower left, select **your name** &rarr; **Settings**.
 1. Select **Apps**, then enable **Developer mode**.
 1. Select the **Create app** button.
-1. Give the app a desired name (such as "Adobe Analytics" or "Customer Journey Analytics") and enter the desired MCP Server URL:
-   * **Adobe Analytics**: `https://aa-mcp.adobe.io/mcp`
-   * **Customer Journey Analytices**: `https://cja-mcp.adobe.io/mcp`
+1. Give the app a desired name (such as "Adobe Analytics") and enter the MCP Server URL: `https://aa-mcp.adobe.io/mcp`
 1. Ensure that Authentication is set to **OAuth** (set by default), and select the acceptance check box to continue.
 1. Once the app is created, a login window pops up. Authenticate using your Adobe ID credentials. Ensure that you select the desired IMS org if your Adobe ID belongs to more than one.
 
@@ -25,5 +46,4 @@ The tool is ready for use. You can converse with ChatGPT in the context of your 
 
 ```text
 "Use the Adobe Analytics tool to show me what report suites are available."
-"Use the Customer Journey Analytics tool to show me what data views are available."
 ```
