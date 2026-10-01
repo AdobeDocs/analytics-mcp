@@ -3,9 +3,9 @@ title: Adobe Analytics MCP server changelog
 description: Updates and improvements to the Adobe Analytics MCP server and skills.
 ---
 
-# Adobe Analytics MCP server changelog
+# Customer Journey Analytics MCP server changelog
 
-Recent updates, improvements, and new capabilities for the Adobe Analytics MCP server and its skills. For Customer Journey Analytics updates, see the [Customer Journey Analytics changelog](../cja/changelog.md).
+Recent updates, improvements, and new capabilities for the Customer Journey Analytics MCP server and its skills. For Customer Journey Analytics updates, see the [Customer Journey Analytics changelog](../cja/changelog.md).
 
 ### August 11, 2026
 
