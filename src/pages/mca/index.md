@@ -5,7 +5,7 @@ description: Overview of the Marketing Campaign Analytics MCP server, including 
 
 # Marketing Campaign Analytics MCP server
 
-The Marketing Campaign Analytics (formerly known as Mix Modeler) MCP server lets Adobe Coworker interact with your components and data in Marketing Campaign Analytics. Once connected, the Marketing Campaign Analytics MCP server provides unified marketing measurement combining marketing mix modeling with multitouch attribution.
+The Marketing Campaign Analytics (formerly known as Adobe Mix Modeler) MCP server lets Adobe Coworker interact with your components and data in Marketing Campaign Analytics. Once connected, the Marketing Campaign Analytics MCP server provides unified marketing measurement combining marketing mix modeling with multitouch attribution.
 
 
 ## Endpoint

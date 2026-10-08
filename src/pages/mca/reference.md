@@ -1,31 +1,31 @@
 ---
-title: Marketing Campaign Analytics Mix Modeler tool reference
-description: Reference for Mix Modeler and MTA MCP tools, including purpose, inputs, outputs, and required pre-conditions.
+title: Marketing Campaign Analytics tool reference
+description: Reference for Marketing Campaign Analytics MCP tools, including purpose, inputs, outputs, and required pre-conditions.
 ---
 
-# Marketing Campaign Analytics Mix Modeler tool reference
+# Marketing Campaign Analytics tool reference
 
-This page summarizes the Mix Modeler and MTA tools available in the Marketing Campaign Analytics MCP server. Each section includes a plain-text summary and a compact table covering what the tool does, the expected inputs, when to use it, what it returns, and any pre-conditions.
+This page summarizes the MMM (Marketing mix modeling) and MTA (Multi-touch attribution) tools available in the Marketing Campaign Analytics MCP server. Each section includes a plain-text summary and a compact table covering what the tool does, the expected inputs, when to use it, what it returns, and any pre-conditions.
 
-## Apps and models
+## Models (apps)
 
 <AccordionItem slots="heading, text, text, table, text, text"/>
 
 ### List apps (`list_apps`)
 
-List all Adobe Mix Modeler applications in the current sandbox.
+List all Marketing Campaign Analytics (apps) in the current sandbox.
 
 | Field | Details |
 |---|---|
-| What it does | Returns apps configured in the current sandbox, paginated by `limit` and `offset`. Apps are ordered by descending creation time, so `offset` `0` returns the newest apps. |
+| What it does | Returns models configured in the current sandbox, paginated by `limit` and `offset`. Models are ordered by descending creation time, so `offset` `0` returns the newest models. |
 | Inputs | Optional `limit` and `offset` values. |
-| When to use | As the first step to discover valid `app_id` values before calling any app-scoped action. Increase `offset` by `limit` to page through results beyond the default page. |
-| Returns | A JSON array of apps with metadata such as `total_count`, `limit`, `offset`, and `has_more`. |
+| When to use | As the first step to discover valid `app_id` values before calling any model-scoped action. Increase `offset` by `limit` to page through results beyond the default page. |
+| Returns | A JSON array of models with metadata such as `total_count`, `limit`, `offset`, and `has_more`. |
 | Pre-conditions | A valid authenticated session. |
 
 ### Get app (`get_app`)
 
-Retrieve the detailed configuration of a Mix Modeler app.
+Retrieve the detailed configuration of a marketing mix modeling (MMM) model.
 
 | Field | Details |
 |---|---|
@@ -42,14 +42,14 @@ Retrieve the detailed configuration of a Mix Modeler app.
 
 ### Get model quality (`get_model_quality`)
 
-Get Mix Modeler model quality metrics for one app, either for the full modeled period or for a specific date range.
+Get marketing mix modeling (MMM) model quality metrics for one model, either for the full modeled period or for a specific date range.
 
 | Field | Details |
 |---|---|
 | What it does | Retrieves fit metrics for a model. With no dates, returns `training_r2`, `training_rmse`, `training_mape`, `prediction_rmse`, and `prediction_mape` for the full modeled period. With both `start_date` and `end_date`, returns `r2`, `rmse`, `mape`, and `smape` scoped to that window instead. |
-| Inputs | An app identifier, plus optional `start_date` and `end_date` values when you want a specific window. |
+| Inputs | An model identifier, plus optional `start_date` and `end_date` values when you want a specific window. |
 | When to use | To judge whether a model is trustworthy before relying on factor contributions, response curves, or scenarios. Use the date-range variant to check performance during a specific period. |
-| Returns | Model quality metrics for the app, either the training/prediction split or the date-window metrics. |
+| Returns | Model quality metrics for the model, either the training/prediction split or the date-window metrics. |
 | Pre-conditions | The app must exist and the caller must be allowed to read it. |
 | Notes | The date-range variant does not return the training/prediction split. |
 
@@ -252,15 +252,15 @@ Retrieve detailed evaluation output for a scenario.
 
 ### Create scenario (`create_scenario`)
 
-Create a new Mix Modeler scenario plan for budget optimization or forecasting.
+Create a new Marketing Campaign Analytics scenario plan for budget optimization or forecasting.
 
 | Field | Details |
 |---|---|
 | What it does | Creates a new scenario plan that must be followed by `trigger_scenario_evaluation` to produce results. |
-| Inputs | An app identifier and the scenario definition or plan payload. |
+| Inputs | A model identifier (`app_id`) and the scenario definition or plan payload. |
 | When to use | To plan a new budget or forecast scenario after calling `get_app` to obtain valid channel names and conversion identifiers. |
 | Returns | A newly created scenario. |
-| Pre-conditions | The app context must be valid, and the scenario must be new because scenarios are immutable once created. |
+| Pre-conditions | The model context must be valid, and the scenario must be new because scenarios are immutable once created. |
 
 ### Trigger scenario evaluation (`trigger_scenario_evaluation`)
 
@@ -289,7 +289,7 @@ Poll a scenario's evaluation job status.
 
 ### Delete scenario plan (`delete_scenario_plan`)
 
-Permanently delete a Mix Modeler scenario.
+Permanently delete a Marketing Campaign Analytics scenario.
 
 | Field | Details |
 |---|---|
