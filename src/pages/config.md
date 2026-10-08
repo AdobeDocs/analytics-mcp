@@ -6,6 +6,7 @@
   - MCP servers
     - [Adobe Analytics](aa/index.md)
     - [Customer Journey Analytics](cja/index.md)
+    - [Marketing Campaign Analytics](mca/index.md)
   - [Support](support/index.md)
 
 - subPages:

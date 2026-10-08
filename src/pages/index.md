@@ -9,7 +9,7 @@ description: Overview of available MCP servers for Adobe Analytics and Customer 
 
 # Analytics MCP servers
 
-MCP servers for Adobe Analytics and Customer Journey Analytics.
+MCP servers for Adobe Analytics, Customer Journey Analytics and Marketing Campaign Analytics (formerly known as Mix Modeler)
 
 [Get started](guides/index.md)
 
@@ -20,13 +20,18 @@ MCP servers for Adobe Analytics and Customer Journey Analytics.
 * [Quick start guide](guides/index.md)
 * [Adobe Analytics MCP tool reference](aa/reference.md)
 * [Customer Journey Analytics MCP tool reference](cja/reference.md)
+* [Marketing Campaign Analytics MCP tool reference](mca/reference.md)
 * [Github repository](https://github.com/AdobeDocs/analytics-mcp)
 
 ## Overview
 
-This documentation covers the Adobe-hosted MCP servers for Adobe Analytics and Customer Journey Analytics. These servers connect MCP-compatible clients (like Claude, ChatGPT, or Cursor) directly to your analytics environment. Once connected, your client can invoke product-specific tools to query data, explore trends, build segments, and manage components using natural language as part of an LLM or agent-driven workflow.
+This documentation covers the Adobe-hosted MCP servers for Adobe Analytics,  Customer Journey Analytics, and Marketing Campaign Analytics. These servers connect MCP-compatible clients (like Claude, ChatGPT, or Cursor) directly to your analytics environment. Once connected, your client can invoke product-specific tools to query data, explore trends, build segments, and manage components using natural language as part of an LLM or agent-driven workflow.
 
-Both servers share a standardized connection model with consistent endpoints and a common onboarding flow. See [Getting started](guides/index.md) to learn how to connect the desired MCP server to your agent of choice, or the [Adobe Analytics](aa/reference.md) or [Customer Journey Analytics](cja/reference.md) tool references to explore each server's capabilities.
+The MCP servers share a standardized connection model with consistent endpoints and a common onboarding flow. See [Getting started](guides/index.md) to learn how to connect the desired MCP server to your agent of choice, or the [Adobe Analytics](aa/reference.md) or [Customer Journey Analytics](cja/reference.md) tool references to explore each server's capabilities.
+
+<InlineAlert slots="text" variant="info" />
+
+Currently, the Marketing Campaign Analytics MCP server is only available through Adobe CX Enterprise Coworker.
 
 ## Additional Information
 
