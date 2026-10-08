@@ -7,6 +7,16 @@ description: Updates and improvements to the Adobe Analytics MCP server and skil
 
 Recent updates, improvements, and new capabilities for the Adobe Analytics MCP server and its skills. For Customer Journey Analytics updates, see the [Customer Journey Analytics changelog](../cja/changelog.md).
 
+### October 8, 2026
+
+* Added read-only access support, so users with MCP Read-only Access can use read tools while write tools are hidden and clearly denied.
+* Added locale support to component, reporting, and context tools so results match the caller's locale.
+* Exposed attribution model parameters on the runReport tool.
+* Improved findProjects with server-side filtering for faster, more accurate project lookups.
+* Enabled IMS JWT signature validation on incoming requests.
+* Resolved an issue where describeAa failed when no report suite was set.
+* Returned a clear 400 response for unsupported MCP protocol versions.
+
 ### August 11, 2026
 
 * Improved tool error responses with clearer, more actionable detail for agents.

@@ -7,6 +7,23 @@ description: Updates and improvements to the Adobe Analytics MCP server and skil
 
 Recent updates, improvements, and new capabilities for the Adobe Analytics MCP server and its skills. For Customer Journey Analytics updates, see the [Customer Journey Analytics changelog](../cja/changelog.md).
 
+### October 8, 2026
+
+* Added experimentation report tools for running experimentation and variant reports.
+* Launched Freeform Insights tools, including getFreeformInsights, getFreeformInsightsFeed, and createFreeformInsight, with approval and reaction details included by default.
+* Added getUserContext for retrieving user context and getCurrentDataView for retrieving the active session data view.
+* Added read-only access support, so users with MCP Read-only Access can use read tools while write tools are hidden and clearly denied.
+* Made semantic component search generally available, and expanded findCalculatedMetric and findSegment results to include shared components by default.
+* Added filterByName to findDataViews for name-based lookups across large orgs.
+* Enabled saved and ad hoc segments to be combined on the same report, and exposed attribution model parameters on the runReport tool.
+* Added locale support to component, reporting, and context tools so results match the caller's locale.
+* Improved segment creation and validation, and improved parent connection error handling for workspace projects.
+* Enabled IMS JWT signature validation on incoming requests.
+* Resolved a reporting failure for identityOverrides on data views whose dimension IDs differ from their schema paths.
+* Resolved an issue where describeCja failed when no data view was set.
+* Returned a clear 400 response for unsupported MCP protocol versions.
+* Expanded automated evaluation datasets.
+
 ### August 11, 2026
 
 * Added the describeDataview tool for retrieving data view details.
