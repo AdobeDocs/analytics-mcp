@@ -28,3 +28,4 @@ See the [tool reference](reference.md) for a complete list of available tools, h
 ## Get started
 
 Currently, the Marketing Campaign Analytics MCP server is only available through Adobe CX Enterprise Coworker.
+
