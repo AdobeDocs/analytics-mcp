@@ -63,6 +63,26 @@ Sets the default data view ID for the current session. Once set, other tools tha
 * "Use the 'Production Web' data view for all my queries."
 * "Switch to a different data view."
 
+<AccordionItem slots="heading, text, text, text, table, text, text"/>
+
+### Get Current Data View (`getCurrentDataView`)
+
+Returns the data view ID set as the session default with `setDefaultSessionDataViewId`. Use this tool to confirm which data view is active before running queries. Returns an error if no default data view is set for the session.
+
+**Required permission:** [MCP Read-only Access](../guides/permissions.md#permission-items) or [MCP Full Access](../guides/permissions.md#permission-items)
+
+**Parameters:**
+
+| Name | Required | Type | Description |
+|------|----------|------|-------------|
+| `expansions` | No | String | Additional data to return. Available expansions:\<ul>\<li>`name`: Includes the display name of the data view.\</li>\<li>`description`: Includes the description of the data view.\</li>\</ul> |
+
+**Example prompts:**
+
+* "What is my current data view?"
+* "Which data view am I using?"
+* "Show me the name and description of my current data view."
+
 ## Discovery
 
 <AccordionItem slots="heading, text, text, text, table, text, text"/>
