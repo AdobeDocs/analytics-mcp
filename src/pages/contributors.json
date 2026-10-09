@@ -1,7 +1,7 @@
 {
-  "total": 20,
+  "total": 21,
   "offset": 0,
-  "limit": 20,
+  "limit": 21,
   "data": [
     {
       "page": "/",
@@ -16,25 +16,25 @@
       "avatars": [
         "https://avatars.githubusercontent.com/u/33764851?v=4"
       ],
-      "lastUpdated": "5/18/2026"
+      "lastUpdated": "10/9/2026"
     },
     {
       "page": "/aa/changelog",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/in/15368?v=4",
         "https://avatars.githubusercontent.com/u/12974007?v=4",
         "https://avatars.githubusercontent.com/u/18370882?v=4",
-        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/255243852?v=4"
       ],
-      "lastUpdated": "8/11/2026"
+      "lastUpdated": "10/9/2026"
     },
     {
       "page": "/aa/reference",
       "avatars": [
         "https://avatars.githubusercontent.com/u/33764851?v=4"
       ],
-      "lastUpdated": "5/18/2026"
+      "lastUpdated": "10/9/2026"
     },
     {
       "page": "/aa/skills",
@@ -48,25 +48,25 @@
       "avatars": [
         "https://avatars.githubusercontent.com/u/33764851?v=4"
       ],
-      "lastUpdated": "5/18/2026"
+      "lastUpdated": "10/9/2026"
     },
     {
       "page": "/cja/changelog",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/in/15368?v=4",
         "https://avatars.githubusercontent.com/u/12974007?v=4",
         "https://avatars.githubusercontent.com/u/18370882?v=4",
-        "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/255243852?v=4"
       ],
-      "lastUpdated": "8/11/2026"
+      "lastUpdated": "10/9/2026"
     },
     {
       "page": "/cja/reference",
       "avatars": [
         "https://avatars.githubusercontent.com/u/33764851?v=4"
       ],
-      "lastUpdated": "5/18/2026"
+      "lastUpdated": "10/9/2026"
     },
     {
       "page": "/cja/skills",
@@ -82,7 +82,7 @@
         "https://avatars.githubusercontent.com/u/255243852?v=4",
         "https://avatars.githubusercontent.com/u/41382203?v=4"
       ],
-      "lastUpdated": "7/8/2026"
+      "lastUpdated": "10/9/2026"
     },
     {
       "page": "/guides/",
@@ -90,37 +90,37 @@
         "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/41382203?v=4"
       ],
-      "lastUpdated": "7/8/2026"
+      "lastUpdated": "10/9/2026"
     },
     {
       "page": "/guides/chatgpt",
       "avatars": [
-        "https://avatars.githubusercontent.com/u/29133525?v=4",
-        "https://avatars.githubusercontent.com/u/33764851?v=4"
+        "https://avatars.githubusercontent.com/u/33764851?v=4",
+        "https://avatars.githubusercontent.com/u/29133525?v=4"
       ],
-      "lastUpdated": "8/17/2026"
+      "lastUpdated": "10/9/2026"
     },
     {
       "page": "/guides/claude",
       "avatars": [
-        "https://avatars.githubusercontent.com/u/29133525?v=4",
-        "https://avatars.githubusercontent.com/u/33764851?v=4"
+        "https://avatars.githubusercontent.com/u/33764851?v=4",
+        "https://avatars.githubusercontent.com/u/29133525?v=4"
       ],
-      "lastUpdated": "8/17/2026"
+      "lastUpdated": "10/9/2026"
     },
     {
       "page": "/guides/copilot",
       "avatars": [
         "https://avatars.githubusercontent.com/u/33764851?v=4"
       ],
-      "lastUpdated": "7/8/2026"
+      "lastUpdated": "10/9/2026"
     },
     {
       "page": "/guides/cursor",
       "avatars": [
         "https://avatars.githubusercontent.com/u/33764851?v=4"
       ],
-      "lastUpdated": "7/8/2026"
+      "lastUpdated": "10/9/2026"
     },
     {
       "page": "/guides/gemini",
@@ -134,7 +134,14 @@
       "avatars": [
         "https://avatars.githubusercontent.com/u/33764851?v=4"
       ],
-      "lastUpdated": "5/18/2026"
+      "lastUpdated": "10/9/2026"
+    },
+    {
+      "page": "/guides/permissions",
+      "avatars": [
+        "https://avatars.githubusercontent.com/u/33764851?v=4"
+      ],
+      "lastUpdated": "10/9/2026"
     },
     {
       "page": "/support/",
@@ -149,14 +156,14 @@
       "avatars": [
         "https://avatars.githubusercontent.com/u/33764851?v=4"
       ],
-      "lastUpdated": "5/29/2026"
+      "lastUpdated": "10/9/2026"
     },
     {
       "page": "/support/troubleshooting",
       "avatars": [
         "https://avatars.githubusercontent.com/u/33764851?v=4"
       ],
-      "lastUpdated": "5/18/2026"
+      "lastUpdated": "10/9/2026"
     }
   ],
   ":type": "sheet"
