@@ -10,6 +10,7 @@
 
 - subPages:
   - [Getting Started](guides/index.md)
+    - [Set up permissions](guides/permissions.md)
     - [Connect to ChatGPT](guides/chatgpt.md)
     - [Connect to Claude](guides/claude.md)
     - [Connect to Copilot Studio](guides/copilot.md)

@@ -25,4 +25,6 @@ See the [tool reference](reference.md) for a complete list of available tools an
 
 ## Get started
 
+Your account needs the [MCP Read-only Access](../guides/permissions.md#permission-items) or [MCP Full Access](../guides/permissions.md#permission-items) permission item in Adobe Analytics. See [Set up permissions](../guides/permissions.md) for details.
+
 See the [getting started guide](../guides/index.md) to connect the Adobe Analytics MCP server to a supported client.

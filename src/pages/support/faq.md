@@ -13,7 +13,13 @@ Common questions about setting up and using the Analytics MCP servers.
 
 ### What permissions are required to use the MCP servers?
 
-Users must be added to an [Adobe Admin Console](https://adminconsole.adobe.com) product profile that includes the **MCP Access** permission item. *This requirement applies to all users, including product administrators.*
+Users must be added to an [Adobe Admin Console](https://adminconsole.adobe.com) product profile that includes the [MCP Read-only Access](../guides/permissions.md#permission-items) or [MCP Full Access](../guides/permissions.md#permission-items) permission item. *This requirement applies to all users, including product administrators.* See [Set up permissions](../guides/permissions.md) for step-by-step instructions.
+
+<AccordionItem slots="heading, text"/>
+
+### What's the difference between MCP Read-only Access and MCP Full Access?
+
+[MCP Read-only Access](../guides/permissions.md#permission-items) lets you find and describe components and run reports. [MCP Full Access](../guides/permissions.md#permission-items) also lets you create and update segments, calculated metrics, date ranges, workspace projects, and audiences (Customer Journey Analytics only). The [Adobe Analytics](../aa/reference.md) and [Customer Journey Analytics](../cja/reference.md) tool references list the permission that each tool requires.
 
 <AccordionItem slots="heading, text"/>
 
@@ -99,4 +105,4 @@ The answer to this question depends on your agreement with the LLM provider, not
 
 ### Who controls data access when using the MCP?
 
-System administrators and product administrators determine which users can access the Analytics MCP servers. These administrators control access using the [Adobe Admin Console](https://adminconsole.adobe.com), specifically by adding or removing users to product profiles containing the **MCP Access** permission item. When a user connects an external LLM to the MCP server, that LLM can access the same data that the user is authorized to see. Adobe recommends that organizations review their LLM provider's data handling policies before granting users MCP access.
+System administrators and product administrators determine which users can access the Analytics MCP servers. These administrators control access using the [Adobe Admin Console](https://adminconsole.adobe.com), specifically by adding or removing users to product profiles containing the [MCP Read-only Access](../guides/permissions.md#permission-items) or [MCP Full Access](../guides/permissions.md#permission-items) permission item. When a user connects an external LLM to the MCP server, that LLM can access the same data that the user is authorized to see. Adobe recommends that organizations review their LLM provider's data handling policies before granting users MCP access.

@@ -6,7 +6,7 @@ description: Connect to Adobe Analytics and Customer Journey Analytics MCP serve
 
 You can request Adobe Analytics and Customer Journey Analytics data using Cursor.
 
-1. Ensure that your account has the [necessary permissions](index.md) to access the desired Analytics MCP server.
+1. Ensure that your account has the [MCP Read-only Access](permissions.md#permission-items) or [MCP Full Access](permissions.md#permission-items) permission item for the desired product.
 1. Launch the [Cursor IDE](https://cursor.com) and authenticate using your credentials.
 1. Navigate to **File** &rarr; **Preferences** &rarr; **Cursor settings**.
 1. Select the **Tools & MCPs** section.
