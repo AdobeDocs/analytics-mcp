@@ -16,7 +16,7 @@ The connection steps differ by product. Use [Customer Journey Analytics](#custom
 
 Adobe publishes Customer Journey Analytics as a plugin in ChatGPT, so you can add it directly without enabling Developer mode or entering a server URL.
 
-1. Ensure that your account has the [necessary permissions](index.md) to access the Customer Journey Analytics MCP server.
+1. Ensure that your account has the [MCP Read-only Access](permissions.md#permission-items) or [MCP Full Access](permissions.md#permission-items) permission item for Customer Journey Analytics.
 1. Log in to [ChatGPT](https://chatgpt.com) using your credentials.
 1. Open the **Plugins** section.
 1. In the search box, type `CJA`.
@@ -33,7 +33,7 @@ The Customer Journey Analytics plugin home lists several options for analyzing d
 
 Add the Adobe Analytics MCP server manually using Developer mode.
 
-1. Ensure that your account has the [necessary permissions](index.md) to access the Adobe Analytics MCP server.
+1. Ensure that your account has the [MCP Read-only Access](permissions.md#permission-items) or [MCP Full Access](permissions.md#permission-items) permission item for Adobe Analytics.
 1. Log in to [ChatGPT](https://chatgpt.com) using your credentials.
 1. In the lower left, select **your name** &rarr; **Settings**.
 1. Select **Apps**, then enable **Developer mode**.

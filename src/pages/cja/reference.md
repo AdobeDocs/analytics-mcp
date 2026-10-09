@@ -7,19 +7,28 @@ description: A complete reference of all tools available in the Customer Journey
 
 The following tools are available when connected to the Customer Journey Analytics MCP server. Each tool can be invoked by an LLM client to interact with your Customer Journey Analytics data, components, and workspace projects.
 
+Each tool requires one of the following permission items:
+
+* [MCP Read-only Access](../guides/permissions.md#permission-items): All tools except those that create or update components.
+* [MCP Full Access](../guides/permissions.md#permission-items): All tools, including those that create or update components.
+
+Your account also needs the Customer Journey Analytics permissions for each action that a tool takes.
+
 ## Setup and guides
 
-<AccordionItem slots="heading, text, text, table, text, text"/>
+<AccordionItem slots="heading, text, text, text, table, text, text"/>
 
 ### Describe Customer Journey Analytics (`describeCja`)
 
 The starting point for learning how to use the Customer Journey Analytics MCP tools. Returns focused reference guides covering tool usage, available dimensions and metrics, segment definition syntax, calculated metric definition syntax, the two-step breakdown report workflow, and workspace project definitions. Call this tool before creating segments, calculated metrics, breakdown reports, or workspace projects to learn the required structures.
 
+**Required permission:** [MCP Read-only Access](../guides/permissions.md#permission-items) or [MCP Full Access](../guides/permissions.md#permission-items)
+
 **Parameters:**
 
 | Name | Required | Type | Description |
 |------|----------|------|-------------|
-| `guideType` | No | String (enum) | The type of guide to return. Defaults to `CJA_REFERENCE_GUIDE` if omitted. Valid values include:\<br/>• `CJA_REFERENCE_GUIDE` (how to use the available tools, data, dimensions, and metrics)\<br/>• `SEGMENT_DEFINITION_GUIDE` (segment definition and body structure)\<br/>• `CALCULATED_METRIC_DEFINITION_GUIDE` (calculated metric definition and body structure)\<br/>• `BREAKDOWN_GUIDE` (how to run breakdown reports and the required two-step workflow)\<br/>• `IMS_ORG_CONTEXT_GUIDE` (IMS Org context)\<br/>• `DATAVIEW_CONTEXT_GUIDE` (data view context)\<br/>• `PROJECT_BASE` (required first for project work; project structure, entities, date ranges, hierarchy, troubleshooting)\<br/>• `PROJECT_DATE_RANGES` (advanced date formulas, day-of-week filters, date comparison columns)\<br/>• `PROJECT_PANELS` (layout, dropdown filters, grid layouts, Quick Insights, Next/Previous Item)\<br/>• `PROJECT_FREEFORM_TABLE` (tables, columns, breakdowns, static rows, multi-dimension)\<br/>• `PROJECT_VISUALIZATIONS` (viz type index, linking charts to tables, lockedSelection)\<br/>• `PROJECT_VIZ_BAR`\<br/>• `PROJECT_VIZ_AREA`\<br/>• `PROJECT_VIZ_SCATTER`\<br/>• `PROJECT_VIZ_BULLET`\<br/>• `PROJECT_VIZ_SUMMARY_CHANGE`\<br/>• `PROJECT_VIZ_SECTION_HEADER`\<br/>• `PROJECT_VIZ_TEXT`\<br/>• `PROJECT_VIZ_FALLOUT`\<br/>• `PROJECT_VIZ_FLOW`\<br/>• `PROJECT_VIZ_COMBO`\<br/>• `PROJECT_VIZ_COHORT`\<br/>• `PROJECT_VIZ_HISTOGRAM`\<br/>• `PROJECT_VIZ_JOURNEY_CANVAS`\<br/>• `PROJECT_VIZ_KEY_METRIC_SUMMARY`\<br/>• `PROJECT_VIZ_MAP`\<br/>• `PROJECT_VIZ_VENN` |
+| `guideType` | No | String (enum) | The type of guide to return. Defaults to `CJA_REFERENCE_GUIDE` if omitted. Valid values include:\<ul>\<li>`CJA_REFERENCE_GUIDE` (how to use the available tools, data, dimensions, and metrics)\</li>\<li>`SEGMENT_DEFINITION_GUIDE` (segment definition and body structure)\</li>\<li>`CALCULATED_METRIC_DEFINITION_GUIDE` (calculated metric definition and body structure)\</li>\<li>`BREAKDOWN_GUIDE` (how to run breakdown reports and the required two-step workflow)\</li>\<li>`IMS_ORG_CONTEXT_GUIDE` (IMS Org context)\</li>\<li>`DATAVIEW_CONTEXT_GUIDE` (data view context)\</li>\<li>`PROJECT_BASE` (required first for project work; project structure, entities, date ranges, hierarchy, troubleshooting)\</li>\<li>`PROJECT_DATE_RANGES` (advanced date formulas, day-of-week filters, date comparison columns)\</li>\<li>`PROJECT_PANELS` (layout, dropdown filters, grid layouts, Quick Insights, Next/Previous Item)\</li>\<li>`PROJECT_FREEFORM_TABLE` (tables, columns, breakdowns, static rows, multi-dimension)\</li>\<li>`PROJECT_VISUALIZATIONS` (viz type index, linking charts to tables, lockedSelection)\</li>\<li>`PROJECT_VIZ_BAR`\</li>\<li>`PROJECT_VIZ_AREA`\</li>\<li>`PROJECT_VIZ_SCATTER`\</li>\<li>`PROJECT_VIZ_BULLET`\</li>\<li>`PROJECT_VIZ_SUMMARY_CHANGE`\</li>\<li>`PROJECT_VIZ_SECTION_HEADER`\</li>\<li>`PROJECT_VIZ_TEXT`\</li>\<li>`PROJECT_VIZ_FALLOUT`\</li>\<li>`PROJECT_VIZ_FLOW`\</li>\<li>`PROJECT_VIZ_COMBO`\</li>\<li>`PROJECT_VIZ_COHORT`\</li>\<li>`PROJECT_VIZ_HISTOGRAM`\</li>\<li>`PROJECT_VIZ_JOURNEY_CANVAS`\</li>\<li>`PROJECT_VIZ_KEY_METRIC_SUMMARY`\</li>\<li>`PROJECT_VIZ_MAP`\</li>\<li>`PROJECT_VIZ_VENN`\</li>\</ul> |
 | `dataViewId` | No | String | Override data view ID. Provide this parameter when calling with `DATAVIEW_CONTEXT_GUIDE`. |
 
 **Example prompts:**
@@ -34,11 +43,13 @@ The starting point for learning how to use the Customer Journey Analytics MCP to
 * "What's the JSON structure for a freeform table in a workspace project?"
 * "Show me the guide for cohort visualizations."
 
-<AccordionItem slots="heading, text, text, table, text, text"/>
+<AccordionItem slots="heading, text, text, text, table, text, text"/>
 
 ### Set Default Data View (`setDefaultSessionDataViewId`)
 
 Sets the default data view ID for the current session. Once set, other tools that accept a `dataViewId` parameter can omit it and the server automatically uses this data view. This tool is useful when working within a single data view across multiple tool calls, or when switching the active data view for your session. The default persists for up to 8 hours.
+
+**Required permission:** [MCP Read-only Access](../guides/permissions.md#permission-items) or [MCP Full Access](../guides/permissions.md#permission-items)
 
 **Parameters:**
 
@@ -54,11 +65,13 @@ Sets the default data view ID for the current session. Once set, other tools tha
 
 ## Discovery
 
-<AccordionItem slots="heading, text, text, table, text, text"/>
+<AccordionItem slots="heading, text, text, text, table, text, text"/>
 
 ### Find Dimensions (`findDimensions`)
 
 Finds dimensions available in a given data view. Use this tool to discover which dimensions exist before running a report, or to find dimensions related to a specific topic. Supports semantic search; pass a `searchQuery` with a topic or purpose (for example, "date time", "page", "user") to get relevance-ranked results. When `searchQuery` is omitted, returns a full paginated list sorted by relevancy based on your personal and organization usage history. Hidden dimensions are excluded by default. The returned dimension IDs can be used directly in `runReport` and `searchDimensionItems`.
+
+**Required permission:** [MCP Read-only Access](../guides/permissions.md#permission-items) or [MCP Full Access](../guides/permissions.md#permission-items)
 
 **Parameters:**
 
@@ -78,11 +91,13 @@ Finds dimensions available in a given data view. Use this tool to discover which
 * "Show me all page-related dimensions."
 * "List all dimensions in my data view."
 
-<AccordionItem slots="heading, text, text, table, text, text"/>
+<AccordionItem slots="heading, text, text, text, table, text, text"/>
 
 ### Find Metrics (`findMetrics`)
 
 Finds available standard and custom metrics from the data view. Use this tool to discover which metrics exist before building a report, or to find metrics related to a specific topic (for example, "revenue", "engagement"). Does NOT include calculated metrics; use `findCalculatedMetrics` for those. Supports semantic search; pass a `searchQuery` to get relevance-ranked results. When `searchQuery` is omitted, the tool returns a full paginated list sorted by relevancy based on your personal and organization usage history. Hidden metrics are excluded by default.
+
+**Required permission:** [MCP Read-only Access](../guides/permissions.md#permission-items) or [MCP Full Access](../guides/permissions.md#permission-items)
 
 **Parameters:**
 
@@ -92,7 +107,7 @@ Finds available standard and custom metrics from the data view. Use this tool to
 | `searchQuery` | No | String | Semantic search query (topic, name, or purpose). Returns relevance-ranked results when provided. Recommended for discovery. |
 | `page` | No | Integer | Page number for pagination (starts at 1). Only used when `searchQuery` is not provided. |
 | `limit` | No | Integer | Number of metrics per page (default 100, max 1000). Only used when `searchQuery` is not provided. |
-| `expansions` | No | String | Additional data to return. Available expansions:\<br/>• `ownerFullName`: Includes the full name and login of the metric owner, expanding the `owner` object beyond just the user ID.\<br/>• `modified`: Adds an ISO 8601 timestamp showing when the metric was last modified.\<br/>• `componentType`: Adds a string field identifying the component type (for example, `metric`). Useful when working with mixed component lists.\<br/>• `approved`: Adds a boolean indicating whether the metric has been approved or curated by an admin for organizational use.\<br/>• `tags`: Includes an array of tag objects associated with the metric, each containing the tag ID, name, and other metadata for organizational categorization.\<br/>• `hidden`: Adds a boolean indicating whether the metric is hidden from the default UI view. Hidden metrics are excluded from normal listings but can still be used in reports.\<br/>• `dataName`: Includes the name of the data view that the metric belongs to. Useful for identifying the data source when working across multiple data views.\<br/>• `categories`: Adds product category classification information, providing a higher-level organizational grouping for the metric. |
+| `expansions` | No | String | Additional data to return. Available expansions:\<ul>\<li>`ownerFullName`: Includes the full name and login of the metric owner, expanding the `owner` object beyond just the user ID.\</li>\<li>`modified`: Adds an ISO 8601 timestamp showing when the metric was last modified.\</li>\<li>`componentType`: Adds a string field identifying the component type (for example, `metric`). Useful when working with mixed component lists.\</li>\<li>`approved`: Adds a boolean indicating whether the metric has been approved or curated by an admin for organizational use.\</li>\<li>`tags`: Includes an array of tag objects associated with the metric, each containing the tag ID, name, and other metadata for organizational categorization.\</li>\<li>`hidden`: Adds a boolean indicating whether the metric is hidden from the default UI view. Hidden metrics are excluded from normal listings but can still be used in reports.\</li>\<li>`dataName`: Includes the name of the data view that the metric belongs to. Useful for identifying the data source when working across multiple data views.\</li>\<li>`categories`: Adds product category classification information, providing a higher-level organizational grouping for the metric.\</li>\</ul> |
 | `includeHidden` | No | Boolean | Include metrics marked as hidden. Defaults to `false`. |
 
 **Example prompts:**
@@ -103,11 +118,13 @@ Finds available standard and custom metrics from the data view. Use this tool to
 * "Show me all session and visit metrics."
 * "List available metrics."
 
-<AccordionItem slots="heading, text, text, table, text, text"/>
+<AccordionItem slots="heading, text, text, text, table, text, text"/>
 
 ### Find Calculated Metrics (`findCalculatedMetrics`)
 
 Finds available calculated metrics. Use this tool when specifically looking for calculated metrics rather than standard metrics (use `findMetrics` for those). Useful for browsing or searching user-created and shared calculated metrics. Hidden calculated metrics are excluded by default. Pagination is applied by the downstream API before hidden filtering, so filtered pages can return fewer than `limit` results.
+
+**Required permission:** [MCP Read-only Access](../guides/permissions.md#permission-items) or [MCP Full Access](../guides/permissions.md#permission-items)
 
 **Parameters:**
 
@@ -115,8 +132,8 @@ Finds available calculated metrics. Use this tool when specifically looking for 
 |------|----------|------|-------------|
 | `page` | No | Integer | Page number for pagination (starts at 0). |
 | `limit` | No | Integer | Number of results per page (max 1000). |
-| `expansions` | No | String | Additional data to return. Available expansions:\<br/>• `ownerFullName`: Includes the full name and login of the calculated metric owner, expanding the `owner` object beyond just the user ID.\<br/>• `modified`: Adds an ISO 8601 timestamp showing when the calculated metric was last modified.\<br/>• `componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.\<br/>• `approved`: Adds a boolean indicating whether the calculated metric has been approved or curated by an admin for organizational use.\<br/>• `tags`: Includes an array of tag objects associated with the calculated metric, each containing the tag ID, name, and other metadata for organizational categorization.\<br/>• `warning`: Includes any warning messages about the calculated metric, such as issues with the definition or compatibility problems.\<br/>• `hidden`: Adds a boolean indicating whether the calculated metric is hidden from the default UI view.\<br/>• `dataName`: Includes the name of the data view associated with the calculated metric. Useful for identifying the data source when working across multiple data views.\<br/>• `categories`: Adds product category classification information, providing a higher-level organizational grouping for the calculated metric. |
-| `includeType` | No | String | Include additional calculated metrics not owned by the current user. The `all` option takes precedence over `shared`. Available values:\<br/>• `all`: Returns all calculated metrics in the organization (requires product admin privileges).\<br/>• `shared`: Includes calculated metrics that have been shared with the current user by other users.\<br/>• `templates`: Includes template calculated metrics provided by the system.\<br/>• `deleted`: Includes calculated metrics that have been deleted.\<br/>• `internal`: Includes internal system calculated metrics not normally visible to users.\<br/>• `curatedItem`: Includes curated calculated metrics.\<br/>If omitted, returns only calculated metrics visible to the current user. |
+| `expansions` | No | String | Additional data to return. Available expansions:\<ul>\<li>`ownerFullName`: Includes the full name and login of the calculated metric owner, expanding the `owner` object beyond just the user ID.\</li>\<li>`modified`: Adds an ISO 8601 timestamp showing when the calculated metric was last modified.\</li>\<li>`componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.\</li>\<li>`approved`: Adds a boolean indicating whether the calculated metric has been approved or curated by an admin for organizational use.\</li>\<li>`tags`: Includes an array of tag objects associated with the calculated metric, each containing the tag ID, name, and other metadata for organizational categorization.\</li>\<li>`warning`: Includes any warning messages about the calculated metric, such as issues with the definition or compatibility problems.\</li>\<li>`hidden`: Adds a boolean indicating whether the calculated metric is hidden from the default UI view.\</li>\<li>`dataName`: Includes the name of the data view associated with the calculated metric. Useful for identifying the data source when working across multiple data views.\</li>\<li>`categories`: Adds product category classification information, providing a higher-level organizational grouping for the calculated metric.\</li>\</ul> |
+| `includeType` | No | String | Include additional calculated metrics not owned by the current user. The `all` option takes precedence over `shared`. Available values:\<ul>\<li>`all`: Returns all calculated metrics in the organization (requires product admin privileges).\</li>\<li>`shared`: Includes calculated metrics that have been shared with the current user by other users.\</li>\<li>`templates`: Includes template calculated metrics provided by the system.\</li>\<li>`deleted`: Includes calculated metrics that have been deleted.\</li>\<li>`internal`: Includes internal system calculated metrics not normally visible to users.\</li>\<li>`curatedItem`: Includes curated calculated metrics.\</li>\</ul>If omitted, returns only calculated metrics visible to the current user. |
 | `includeHidden` | No | Boolean | Include calculated metrics marked as hidden. Defaults to `false`. |
 
 **Example prompts:**
@@ -126,11 +143,13 @@ Finds available calculated metrics. Use this tool when specifically looking for 
 * "List all calculated metrics, including hidden ones."
 * "Find calculated metrics with their tags."
 
-<AccordionItem slots="heading, text, text, table, text, text"/>
+<AccordionItem slots="heading, text, text, text, table, text, text"/>
 
 ### Find Segments (`findSegments`)
 
 Finds segments available to the user. Returns a paginated list of segments that the current user has access to. Useful for discovering segments to apply as filters in `runReport` or for retrieving a segment ID to pass to `describeSegment`.
+
+**Required permission:** [MCP Read-only Access](../guides/permissions.md#permission-items) or [MCP Full Access](../guides/permissions.md#permission-items)
 
 **Parameters:**
 
@@ -138,8 +157,8 @@ Finds segments available to the user. Returns a paginated list of segments that 
 |------|----------|------|-------------|
 | `page` | Yes | Integer | Page number for pagination (starts at 0). |
 | `limit` | Yes | Integer | Number of segments per page (max 1000). |
-| `expansions` | No | String | Additional data to return. Available expansions:\<br/>• `ownerFullName`: Includes the full name and login of the segment owner, expanding the `owner` object beyond just the user ID.\<br/>• `modified`: Adds an ISO 8601 timestamp showing when the segment was last modified.\<br/>• `componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.\<br/>• `compatibility`: Adds information about which products the segment is compatible with.\<br/>• `dataId`: Includes the associated data view ID that the segment is tied to.\<br/>• `dataName`: Includes the name of the data view associated with the segment. Useful for identifying the data source when working across multiple data views.\<br/>• `approved`: Adds a boolean indicating whether the segment has been approved or curated by an admin for organizational use.\<br/>• `tags`: Includes an array of tag objects associated with the segment, each containing the tag ID, name, and other metadata for organizational categorization. |
-| `includeType` | No | String | Include additional segments not owned by the current user. Available values:\<br/>• `all`: Returns all components in the organization, including shared, templates, deleted, and internal (requires product admin privileges).\<br/>• `shared`: Includes segments that have been shared with the current user by other users.\<br/>• `templates`: Includes template segments provided by the system.\<br/>• `deleted`: Includes segments that have been deleted. Deleted segments are only returned when explicitly requested.\<br/>• `internal`: Includes internal system segments not normally visible to users.\<br/>If omitted, returns only segments owned by the current user. |
+| `expansions` | No | String | Additional data to return. Available expansions:\<ul>\<li>`ownerFullName`: Includes the full name and login of the segment owner, expanding the `owner` object beyond just the user ID.\</li>\<li>`modified`: Adds an ISO 8601 timestamp showing when the segment was last modified.\</li>\<li>`componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.\</li>\<li>`compatibility`: Adds information about which products the segment is compatible with.\</li>\<li>`dataId`: Includes the associated data view ID that the segment is tied to.\</li>\<li>`dataName`: Includes the name of the data view associated with the segment. Useful for identifying the data source when working across multiple data views.\</li>\<li>`approved`: Adds a boolean indicating whether the segment has been approved or curated by an admin for organizational use.\</li>\<li>`tags`: Includes an array of tag objects associated with the segment, each containing the tag ID, name, and other metadata for organizational categorization.\</li>\</ul> |
+| `includeType` | No | String | Include additional segments not owned by the current user. Available values:\<ul>\<li>`all`: Returns all components in the organization, including shared, templates, deleted, and internal (requires product admin privileges).\</li>\<li>`shared`: Includes segments that have been shared with the current user by other users.\</li>\<li>`templates`: Includes template segments provided by the system.\</li>\<li>`deleted`: Includes segments that have been deleted. Deleted segments are only returned when explicitly requested.\</li>\<li>`internal`: Includes internal system segments not normally visible to users.\</li>\</ul>If omitted, returns only segments owned by the current user. |
 
 **Example prompts:**
 
@@ -148,11 +167,13 @@ Finds segments available to the user. Returns a paginated list of segments that 
 * "List all segments with their tags."
 * "Find segments in my organization."
 
-<AccordionItem slots="heading, text, text, table, text, text"/>
+<AccordionItem slots="heading, text, text, text, table, text, text"/>
 
 ### Find Date Ranges (`findDateRanges`)
 
 Finds saved date range components available to the user. Returns a paginated list, useful for discovering reusable date ranges or retrieving a date range ID for use in a project definition.
+
+**Required permission:** [MCP Read-only Access](../guides/permissions.md#permission-items) or [MCP Full Access](../guides/permissions.md#permission-items)
 
 **Parameters:**
 
@@ -160,8 +181,8 @@ Finds saved date range components available to the user. Returns a paginated lis
 |------|----------|------|-------------|
 | `page` | Yes | Integer | Page number for pagination (starts at 0). |
 | `limit` | Yes | Integer | Number of date ranges per page (max 1000). |
-| `expansions` | No | String | Additional data to return. Available expansions:\<br/>• `ownerFullName`: Includes the full name and login of the date range owner, expanding the `owner` object beyond just the user ID.\<br/>• `modified`: Adds an ISO 8601 timestamp showing when the date range was last modified.\<br/>• `definition`: Includes the full date range definition as a JSON object, describing the start and end dates or relative date formula.\<br/>• `tags`: Includes an array of tag objects associated with the date range, each containing the tag ID, name, and other metadata for organizational categorization. |
-| `includeType` | No | String | Include additional date ranges not owned by the current user. Available values:\<br/>• `all`: Returns all date ranges in the organization, including shared and templates (requires product admin privileges).\<br/>• `shared`: Includes date ranges that have been shared with the current user by other users.\<br/>• `templates`: Includes template date ranges provided by the system.\<br/>If omitted, returns only date ranges owned by the current user. |
+| `expansions` | No | String | Additional data to return. Available expansions:\<ul>\<li>`ownerFullName`: Includes the full name and login of the date range owner, expanding the `owner` object beyond just the user ID.\</li>\<li>`modified`: Adds an ISO 8601 timestamp showing when the date range was last modified.\</li>\<li>`definition`: Includes the full date range definition as a JSON object, describing the start and end dates or relative date formula.\</li>\<li>`tags`: Includes an array of tag objects associated with the date range, each containing the tag ID, name, and other metadata for organizational categorization.\</li>\</ul> |
+| `includeType` | No | String | Include additional date ranges not owned by the current user. Available values:\<ul>\<li>`all`: Returns all date ranges in the organization, including shared and templates (requires product admin privileges).\</li>\<li>`shared`: Includes date ranges that have been shared with the current user by other users.\</li>\<li>`templates`: Includes template date ranges provided by the system.\</li>\</ul>If omitted, returns only date ranges owned by the current user. |
 
 **Example prompts:**
 
@@ -169,11 +190,13 @@ Finds saved date range components available to the user. Returns a paginated lis
 * "Show me saved date ranges."
 * "List all date range components."
 
-<AccordionItem slots="heading, text, text, table, text, text"/>
+<AccordionItem slots="heading, text, text, text, table, text, text"/>
 
 ### Find Data Views (`findDataViews`)
 
 Finds data views accessible to the user. Returns a paginated list, useful for discovering available data views or obtaining a data view ID to set as the session default with `setDefaultSessionDataViewId`.
+
+**Required permission:** [MCP Read-only Access](../guides/permissions.md#permission-items) or [MCP Full Access](../guides/permissions.md#permission-items)
 
 **Parameters:**
 
@@ -181,8 +204,8 @@ Finds data views accessible to the user. Returns a paginated list, useful for di
 |------|----------|------|-------------|
 | `page` | Yes | Integer | Page number for pagination (starts at 0). |
 | `limit` | Yes | Integer | Number of data views per page (max 1000). |
-| `expansions` | No | String | Additional data to return. Available expansions:\<br/>• `name`: Includes the display name of the data view.\<br/>• `description`: Includes the description of the data view. |
-| `includeType` | No | String | Include additional data views not owned by the current user. Available values:\<br/>• `all`: Returns all data views in the organization (requires product admin privileges).\<br/>If omitted, returns only data views visible to the current user. |
+| `expansions` | No | String | Additional data to return. Available expansions:\<ul>\<li>`name`: Includes the display name of the data view.\</li>\<li>`description`: Includes the description of the data view.\</li>\</ul> |
+| `includeType` | No | String | Include additional data views not owned by the current user. Available values:\<ul>\<li>`all`: Returns all data views in the organization (requires product admin privileges).\</li>\</ul>If omitted, returns only data views visible to the current user. |
 
 **Example prompts:**
 
@@ -191,11 +214,13 @@ Finds data views accessible to the user. Returns a paginated list, useful for di
 * "Show me all data views in my organization."
 * "Which data views do I have access to?"
 
-<AccordionItem slots="heading, text, text, table, text, text"/>
+<AccordionItem slots="heading, text, text, text, table, text, text"/>
 
 ### Find Projects (`findProjects`)
 
 Finds workspace projects available to the user. Returns a paginated list, useful for discovering existing projects or obtaining a project ID for use with `describeProject` or `upsertProject`.
+
+**Required permission:** [MCP Read-only Access](../guides/permissions.md#permission-items) or [MCP Full Access](../guides/permissions.md#permission-items)
 
 **Parameters:**
 
@@ -203,8 +228,8 @@ Finds workspace projects available to the user. Returns a paginated list, useful
 |------|----------|------|-------------|
 | `page` | Yes | Integer | Page number for pagination (starts at 0). |
 | `limit` | Yes | Integer | Number of projects per page (max 1000). |
-| `expansions` | Yes | String | Additional data to return. Available expansions:\<br/>• `dataId`: Includes the associated data view ID that the project is tied to.\<br/>• `dataName`: Includes the name of the data view associated with the project. Useful for identifying the data source when working across multiple data views.\<br/>• `ownerFullName`: Includes the full name and login of the project owner, expanding the `owner` object beyond just the user ID.\<br/>• `modified`: Adds an ISO 8601 timestamp showing when the project was last modified.\<br/>• `componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.\<br/>• `approved`: Adds a boolean indicating whether the project has been approved or curated by an admin for organizational use.\<br/>• `tags`: Includes an array of tag objects associated with the project, each containing the tag ID, name, and other metadata for organizational categorization.\<br/>• `folder`: Includes the folder location where the project is stored in the workspace. |
-| `includeType` | No | String | Include additional projects not owned by the current user. Available values:\<br/>• `all`: Returns all projects in the organization (requires product admin privileges).\<br/>• `shared`: Includes projects that have been shared with the current user by other users.\<br/>If omitted, returns only projects owned by the current user. |
+| `expansions` | Yes | String | Additional data to return. Available expansions:\<ul>\<li>`dataId`: Includes the associated data view ID that the project is tied to.\</li>\<li>`dataName`: Includes the name of the data view associated with the project. Useful for identifying the data source when working across multiple data views.\</li>\<li>`ownerFullName`: Includes the full name and login of the project owner, expanding the `owner` object beyond just the user ID.\</li>\<li>`modified`: Adds an ISO 8601 timestamp showing when the project was last modified.\</li>\<li>`componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.\</li>\<li>`approved`: Adds a boolean indicating whether the project has been approved or curated by an admin for organizational use.\</li>\<li>`tags`: Includes an array of tag objects associated with the project, each containing the tag ID, name, and other metadata for organizational categorization.\</li>\<li>`folder`: Includes the folder location where the project is stored in the workspace.\</li>\</ul> |
+| `includeType` | No | String | Include additional projects not owned by the current user. Available values:\<ul>\<li>`all`: Returns all projects in the organization (requires product admin privileges).\</li>\<li>`shared`: Includes projects that have been shared with the current user by other users.\</li>\</ul>If omitted, returns only projects owned by the current user. |
 
 **Example prompts:**
 
@@ -213,11 +238,13 @@ Finds workspace projects available to the user. Returns a paginated list, useful
 * "Show me my projects."
 * "Find projects in my organization."
 
-<AccordionItem slots="heading, text, text, table, text, text"/>
+<AccordionItem slots="heading, text, text, text, table, text, text"/>
 
 ### Find Audiences (`findAudiences`)
 
 Lists audiences available to the user. Returns a paginated list of audience components, useful for discovering existing audiences or obtaining an audience ID for use with `describeAudience` or `upsertAudience`.
+
+**Required permission:** [MCP Read-only Access](../guides/permissions.md#permission-items) or [MCP Full Access](../guides/permissions.md#permission-items)
 
 **Parameters:**
 
@@ -225,8 +252,8 @@ Lists audiences available to the user. Returns a paginated list of audience comp
 |------|----------|------|-------------|
 | `page` | No | Integer | Page number for pagination (starts at 0). |
 | `limit` | No | Integer | Number of audiences per page (max 1000). |
-| `expansions` | Yes | String | Additional data to return. Available expansions:\<br/>• `name`: Includes the display name of the audience.\<br/>• `description`: Includes the description of the audience.\<br/>• `ownerFullName`: Includes the full name and login of the audience owner, expanding the `owner` object beyond just the user ID.\<br/>• `frequency`: Includes the refresh frequency configuration for the audience, indicating how often the audience membership is recalculated.\<br/>• `expirationDate`: Includes the expiration date after which the audience is no longer active or published.\<br/>• `publishingStatus`: Includes the current publishing status of the audience (for example, whether it is actively being published to a destination).\<br/>• `dataViewId`: Includes the data view ID that the audience is associated with.\<br/>• `modifiedDate`: Adds an ISO 8601 timestamp showing when the audience was last modified.\<br/>• `createdDate`: Adds an ISO 8601 timestamp showing when the audience was originally created.\<br/>• `componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.\<br/>• `approved`: Adds a boolean indicating whether the audience has been approved or curated by an admin for organizational use.\<br/>• `tags`: Includes an array of tag objects associated with the audience, each containing the tag ID, name, and other metadata for organizational categorization.\<br/>• `size`: Includes the current estimated size (member count) of the audience. |
-| `includeType` | No | String | Include additional audiences not owned by the current user. Available values:\<br/>• `all`: Returns all audiences in the organization (requires product admin privileges).\<br/>If omitted, returns only audiences visible to the current user. |
+| `expansions` | Yes | String | Additional data to return. Available expansions:\<ul>\<li>`name`: Includes the display name of the audience.\</li>\<li>`description`: Includes the description of the audience.\</li>\<li>`ownerFullName`: Includes the full name and login of the audience owner, expanding the `owner` object beyond just the user ID.\</li>\<li>`frequency`: Includes the refresh frequency configuration for the audience, indicating how often the audience membership is recalculated.\</li>\<li>`expirationDate`: Includes the expiration date after which the audience is no longer active or published.\</li>\<li>`publishingStatus`: Includes the current publishing status of the audience (for example, whether it is actively being published to a destination).\</li>\<li>`dataViewId`: Includes the data view ID that the audience is associated with.\</li>\<li>`modifiedDate`: Adds an ISO 8601 timestamp showing when the audience was last modified.\</li>\<li>`createdDate`: Adds an ISO 8601 timestamp showing when the audience was originally created.\</li>\<li>`componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.\</li>\<li>`approved`: Adds a boolean indicating whether the audience has been approved or curated by an admin for organizational use.\</li>\<li>`tags`: Includes an array of tag objects associated with the audience, each containing the tag ID, name, and other metadata for organizational categorization.\</li>\<li>`size`: Includes the current estimated size (member count) of the audience.\</li>\</ul> |
+| `includeType` | No | String | Include additional audiences not owned by the current user. Available values:\<ul>\<li>`all`: Returns all audiences in the organization (requires product admin privileges).\</li>\</ul>If omitted, returns only audiences visible to the current user. |
 
 **Example prompts:**
 
@@ -236,11 +263,13 @@ Lists audiences available to the user. Returns a paginated list of audience comp
 
 ## Reporting and analysis
 
-<AccordionItem slots="heading, text, text, table, text, text"/>
+<AccordionItem slots="heading, text, text, text, table, text, text"/>
 
 ### Run Report (`runReport`)
 
 The primary tool for pulling analytics data from Customer Journey Analytics. Runs a ranked report with support for single or multiple dimensions and metrics over a specified date range. All dimensions and metrics are reported together in a single request. Dimensions are assigned column IDs starting from `0` in the order provided. Metrics are also assigned column IDs starting from `0`. Results are sorted by the first metric in descending order by default. Segments can be applied as global filters, and breakdown reports are supported via the optional `breakdowns` parameter — call `describeCja(BREAKDOWN_GUIDE)` for the full two-step workflow.
+
+**Required permission:** [MCP Read-only Access](../guides/permissions.md#permission-items) or [MCP Full Access](../guides/permissions.md#permission-items)
 
 **Parameters:**
 
@@ -255,7 +284,7 @@ The primary tool for pulling analytics data from Customer Journey Analytics. Run
 | `limit` | No | Integer | Number of dimension items per page (max 1000). Defaults to 100 if not specified. |
 | `segmentIds` | No | String | The ID(s) of segments to apply as global filters. For a single segment, provide one ID (for example, `s123`). For multiple, provide comma-separated IDs (for example, `s123,s456`). |
 | `adhocSegments` | No | List | One or more ad hoc segment definitions to apply as global filters. Provide a list of segment definition objects. Each definition is applied as a separate global filter (AND'd together). Cannot be used together with `segmentIds`. |
-| `sort` | No | List | Sort settings for the report. Each entry is an object with\<br/>• `componentType` (`metric` or `dimension`)\<br/>• `columnId` (optional — the column to sort by, for example, `0` for first, `1` for second. If omitted, the column ID is inferred from the order of sort entries.)\<br/>• `ascending` (boolean)\<br/>Defaults to first metric descending if not provided. |
+| `sort` | No | List | Sort settings for the report. Each entry is an object with\<ul>\<li>`componentType` (`metric` or `dimension`)\</li>\<li>`columnId` (optional — the column to sort by, for example, `0` for first, `1` for second. If omitted, the column ID is inferred from the order of sort entries.)\</li>\<li>`ascending` (boolean)\</li>\</ul>Defaults to first metric descending if not provided. |
 | `generateRequestOnly` | No | Boolean | When `true`, returns the API request payload without executing the report. Useful for debugging. Defaults to `false`. |
 | `breakdowns` | No | List | One or more breakdown filters to scope the report to specific dimension items. Each entry must have `dimensionId` (for example, `variables/daterangeyear`) and `itemId` (the numeric item ID from a prior `runReport` or `searchDimensionItems` call, not the plain text value). Multiple entries are AND'd together. Call `describeCja(BREAKDOWN_GUIDE)` for full workflow instructions. |
 
@@ -267,11 +296,13 @@ The primary tool for pulling analytics data from Customer Journey Analytics. Run
 * "Break down page views by country for the US in January 2025."
 * "Run a report with sessions and visitors by device type for last week."
 
-<AccordionItem slots="heading, text, text, table, text, text"/>
+<AccordionItem slots="heading, text, text, text, table, text, text"/>
 
 ### Search Dimension Items (`searchDimensionItems`)
 
 Retrieves the top dimension items for a given dimension. For example, if the dimension is "Country", this tool returns items like US, UK, Canada, etc. Also supports keyword search to find specific items. This tool is essential for obtaining the numeric `itemId` values needed for breakdown reports in `runReport`.
+
+**Required permission:** [MCP Read-only Access](../guides/permissions.md#permission-items) or [MCP Full Access](../guides/permissions.md#permission-items)
 
 **Parameters:**
 
@@ -296,11 +327,13 @@ Retrieves the top dimension items for a given dimension. For example, if the dim
 
 ## Component details
 
-<AccordionItem slots="heading, text, text, table, text, text"/>
+<AccordionItem slots="heading, text, text, text, table, text, text"/>
 
 ### Describe Dimension (`describeDimension`)
 
 Returns detailed metadata for a given dimension, including its name, description, type, and other properties. Use this tool to understand what a specific dimension represents or to review its metadata before using it in a report.
+
+**Required permission:** [MCP Read-only Access](../guides/permissions.md#permission-items) or [MCP Full Access](../guides/permissions.md#permission-items)
 
 **Parameters:**
 
@@ -315,11 +348,13 @@ Returns detailed metadata for a given dimension, including its name, description
 * "Describe the 'evar5' dimension."
 * "Tell me more about the 'daterangeday' dimension."
 
-<AccordionItem slots="heading, text, text, table, text, text"/>
+<AccordionItem slots="heading, text, text, text, table, text, text"/>
 
 ### Describe Metric (`describeMetric`)
 
 Returns metadata for a given metric, including its name, description, type, and other properties. Use this tool to understand what a specific metric measures or to review its metadata before using it in a report.
+
+**Required permission:** [MCP Read-only Access](../guides/permissions.md#permission-items) or [MCP Full Access](../guides/permissions.md#permission-items)
 
 **Parameters:**
 
@@ -334,18 +369,20 @@ Returns metadata for a given metric, including its name, description, type, and 
 * "Describe the 'visits' metric."
 * "Tell me about the 'revenue' metric."
 
-<AccordionItem slots="heading, text, text, table, text, text"/>
+<AccordionItem slots="heading, text, text, text, table, text, text"/>
 
 ### Describe Segment (`describeSegment`)
 
 Returns metadata for a given segment, including its name, description, definition, and compatibility. Use this tool to understand what a segment filters for, to inspect its definition before modifying it with `upsertSegment`, or to check its compatibility with a data view.
+
+**Required permission:** [MCP Read-only Access](../guides/permissions.md#permission-items) or [MCP Full Access](../guides/permissions.md#permission-items)
 
 **Parameters:**
 
 | Name | Required | Type | Description |
 |------|----------|------|-------------|
 | `segmentId` | Yes | String | The segment ID. |
-| `expansions` | Yes | String | Additional data to return. Available expansions:\<br/>• `ownerFullName`: Includes the full name and login of the segment owner, expanding the `owner` object beyond just the user ID.\<br/>• `modified`: Adds an ISO 8601 timestamp showing when the segment was last modified.\<br/>• `definition`: Includes the full segment definition as a JSON object, describing the container structure and predicates that define the segment logic.\<br/>• `componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.\<br/>• `compatibility`: Adds information about which products the segment is compatible with.\<br/>• `dataId`: Includes the associated data view ID that the segment is tied to.\<br/>• `dataName`: Includes the name of the data view associated with the segment. Useful for identifying the data source when working across multiple data views.\<br/>• `approved`: Adds a boolean indicating whether the segment has been approved or curated by an admin for organizational use.\<br/>• `tags`: Includes an array of tag objects associated with the segment, each containing the tag ID, name, and other metadata for organizational categorization.\<br/>• `createdDate`: Adds an ISO 8601 timestamp showing when the segment was originally created. |
+| `expansions` | Yes | String | Additional data to return. Available expansions:\<ul>\<li>`ownerFullName`: Includes the full name and login of the segment owner, expanding the `owner` object beyond just the user ID.\</li>\<li>`modified`: Adds an ISO 8601 timestamp showing when the segment was last modified.\</li>\<li>`definition`: Includes the full segment definition as a JSON object, describing the container structure and predicates that define the segment logic.\</li>\<li>`componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.\</li>\<li>`compatibility`: Adds information about which products the segment is compatible with.\</li>\<li>`dataId`: Includes the associated data view ID that the segment is tied to.\</li>\<li>`dataName`: Includes the name of the data view associated with the segment. Useful for identifying the data source when working across multiple data views.\</li>\<li>`approved`: Adds a boolean indicating whether the segment has been approved or curated by an admin for organizational use.\</li>\<li>`tags`: Includes an array of tag objects associated with the segment, each containing the tag ID, name, and other metadata for organizational categorization.\</li>\<li>`createdDate`: Adds an ISO 8601 timestamp showing when the segment was originally created.\</li>\</ul> |
 
 **Example prompts:**
 
@@ -354,18 +391,20 @@ Returns metadata for a given segment, including its name, description, definitio
 * "What does this segment filter for?"
 * "Get the details of my segment including its definition."
 
-<AccordionItem slots="heading, text, text, table, text, text"/>
+<AccordionItem slots="heading, text, text, text, table, text, text"/>
 
 ### Describe Calculated Metric (`describeCalculatedMetric`)
 
 Shows the metric formula and base metrics used for a calculated metric. Use this tool to understand how a calculated metric is constructed, which base metrics it depends on, or to inspect it before modifying it with `upsertCalculatedMetric`.
+
+**Required permission:** [MCP Read-only Access](../guides/permissions.md#permission-items) or [MCP Full Access](../guides/permissions.md#permission-items)
 
 **Parameters:**
 
 | Name | Required | Type | Description |
 |------|----------|------|-------------|
 | `id` | Yes | String | The calculated metric ID. |
-| `expansions` | Yes | String | Additional data to return. Available expansions:\<br/>• `ownerFullName`: Includes the full name and login of the calculated metric owner, expanding the `owner` object beyond just the user ID.\<br/>• `modified`: Adds an ISO 8601 timestamp showing when the calculated metric was last modified.\<br/>• `definition`: Includes the full calculated metric definition as a JSON object, describing the formula structure and base metrics used.\<br/>• `componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.\<br/>• `approved`: Adds a boolean indicating whether the calculated metric has been approved or curated by an admin for organizational use.\<br/>• `tags`: Includes an array of tag objects associated with the calculated metric, each containing the tag ID, name, and other metadata for organizational categorization.\<br/>• `warning`: Includes any warning messages about the calculated metric, such as issues with the definition or compatibility problems.\<br/>• `compatibility`: Adds information about which products the calculated metric is compatible with.\<br/>• `hidden`: Adds a boolean indicating whether the calculated metric is hidden from the default UI view.\<br/>• `dataName`: Includes the name of the data view associated with the calculated metric. Useful for identifying the data source when working across multiple data views.\<br/>• `categories`: Adds product category classification information, providing a higher-level organizational grouping for the calculated metric. |
+| `expansions` | Yes | String | Additional data to return. Available expansions:\<ul>\<li>`ownerFullName`: Includes the full name and login of the calculated metric owner, expanding the `owner` object beyond just the user ID.\</li>\<li>`modified`: Adds an ISO 8601 timestamp showing when the calculated metric was last modified.\</li>\<li>`definition`: Includes the full calculated metric definition as a JSON object, describing the formula structure and base metrics used.\</li>\<li>`componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.\</li>\<li>`approved`: Adds a boolean indicating whether the calculated metric has been approved or curated by an admin for organizational use.\</li>\<li>`tags`: Includes an array of tag objects associated with the calculated metric, each containing the tag ID, name, and other metadata for organizational categorization.\</li>\<li>`warning`: Includes any warning messages about the calculated metric, such as issues with the definition or compatibility problems.\</li>\<li>`compatibility`: Adds information about which products the calculated metric is compatible with.\</li>\<li>`hidden`: Adds a boolean indicating whether the calculated metric is hidden from the default UI view.\</li>\<li>`dataName`: Includes the name of the data view associated with the calculated metric. Useful for identifying the data source when working across multiple data views.\</li>\<li>`categories`: Adds product category classification information, providing a higher-level organizational grouping for the calculated metric.\</li>\</ul> |
 
 **Example prompts:**
 
@@ -374,18 +413,20 @@ Shows the metric formula and base metrics used for a calculated metric. Use this
 * "What base metrics does this calculated metric use?"
 * "Describe the 'Conversion Rate' calculated metric."
 
-<AccordionItem slots="heading, text, text, table, text, text"/>
+<AccordionItem slots="heading, text, text, text, table, text, text"/>
 
 ### Describe Project (`describeProject`)
 
 Shows details about a workspace project, including its name, description, owner, and data view. The response automatically includes a `workspaceLink` field with a direct URL to open the project in Analysis Workspace. Use this tool to inspect a project's configuration, retrieve its full definition before modifying it with `upsertProject`, or determine which data view it uses.
+
+**Required permission:** [MCP Read-only Access](../guides/permissions.md#permission-items) or [MCP Full Access](../guides/permissions.md#permission-items)
 
 **Parameters:**
 
 | Name | Required | Type | Description |
 |------|----------|------|-------------|
 | `id` | Yes | String | The project ID. |
-| `expansions` | Yes | String | Additional data to return. Available expansions:\<br/>• `dataId`: Includes the associated data view ID that the project is tied to.\<br/>• `dataName`: Includes the name of the data view associated with the project. Useful for identifying the data source when working across multiple data views.\<br/>• `ownerFullName`: Includes the full name and login of the project owner, expanding the `owner` object beyond just the user ID.\<br/>• `modified`: Adds an ISO 8601 timestamp showing when the project was last modified.\<br/>• `definition`: Includes the full project definition as a JSON object, describing the panels, visualizations, freeform tables, and other components that make up the workspace project.\<br/>• `componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.\<br/>• `approved`: Adds a boolean indicating whether the project has been approved or curated by an admin for organizational use.\<br/>• `tags`: Includes an array of tag objects associated with the project, each containing the tag ID, name, and other metadata for organizational categorization.\<br/>• `folder`: Includes the folder location where the project is stored in the workspace. |
+| `expansions` | Yes | String | Additional data to return. Available expansions:\<ul>\<li>`dataId`: Includes the associated data view ID that the project is tied to.\</li>\<li>`dataName`: Includes the name of the data view associated with the project. Useful for identifying the data source when working across multiple data views.\</li>\<li>`ownerFullName`: Includes the full name and login of the project owner, expanding the `owner` object beyond just the user ID.\</li>\<li>`modified`: Adds an ISO 8601 timestamp showing when the project was last modified.\</li>\<li>`definition`: Includes the full project definition as a JSON object, describing the panels, visualizations, freeform tables, and other components that make up the workspace project.\</li>\<li>`componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.\</li>\<li>`approved`: Adds a boolean indicating whether the project has been approved or curated by an admin for organizational use.\</li>\<li>`tags`: Includes an array of tag objects associated with the project, each containing the tag ID, name, and other metadata for organizational categorization.\</li>\<li>`folder`: Includes the folder location where the project is stored in the workspace.\</li>\</ul> |
 
 **Example prompts:**
 
@@ -394,18 +435,20 @@ Shows details about a workspace project, including its name, description, owner,
 * "What data view does this project use?"
 * "Get the full definition of my workspace project."
 
-<AccordionItem slots="heading, text, text, table, text, text"/>
+<AccordionItem slots="heading, text, text, text, table, text, text"/>
 
 ### Describe Audience (`describeAudience`)
 
 Returns metadata for a given audience, including its name, description, definition, publishing status, and other properties. Use this tool to understand what an audience targets or to inspect its definition and status.
+
+**Required permission:** [MCP Read-only Access](../guides/permissions.md#permission-items) or [MCP Full Access](../guides/permissions.md#permission-items)
 
 **Parameters:**
 
 | Name | Required | Type | Description |
 |------|----------|------|-------------|
 | `audienceId` | Yes | String | The audience ID. |
-| `expansions` | Yes | String | Additional data to return. Available expansions:\<br/>• `name`: Includes the display name of the audience.\<br/>• `description`: Includes the description of the audience.\<br/>• `definition`: Includes the full audience definition as a JSON object, describing the segment logic and criteria that determine audience membership.\<br/>• `ownerFullName`: Includes the full name and login of the audience owner, expanding the `owner` object beyond just the user ID.\<br/>• `frequency`: Includes the refresh frequency configuration for the audience, indicating how often the audience membership is recalculated.\<br/>• `expirationDate`: Includes the expiration date after which the audience is no longer active or published.\<br/>• `publishingStatus`: Includes the current publishing status of the audience (for example, whether it is actively being published to a destination).\<br/>• `dataViewId`: Includes the data view ID that the audience is associated with.\<br/>• `modifiedDate`: Adds an ISO 8601 timestamp showing when the audience was last modified.\<br/>• `createdDate`: Adds an ISO 8601 timestamp showing when the audience was originally created.\<br/>• `componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.\<br/>• `approved`: Adds a boolean indicating whether the audience has been approved or curated by an admin for organizational use.\<br/>• `tags`: Includes an array of tag objects associated with the audience, each containing the tag ID, name, and other metadata for organizational categorization.\<br/>• `size`: Includes the current estimated size (member count) of the audience. |
+| `expansions` | Yes | String | Additional data to return. Available expansions:\<ul>\<li>`name`: Includes the display name of the audience.\</li>\<li>`description`: Includes the description of the audience.\</li>\<li>`definition`: Includes the full audience definition as a JSON object, describing the segment logic and criteria that determine audience membership.\</li>\<li>`ownerFullName`: Includes the full name and login of the audience owner, expanding the `owner` object beyond just the user ID.\</li>\<li>`frequency`: Includes the refresh frequency configuration for the audience, indicating how often the audience membership is recalculated.\</li>\<li>`expirationDate`: Includes the expiration date after which the audience is no longer active or published.\</li>\<li>`publishingStatus`: Includes the current publishing status of the audience (for example, whether it is actively being published to a destination).\</li>\<li>`dataViewId`: Includes the data view ID that the audience is associated with.\</li>\<li>`modifiedDate`: Adds an ISO 8601 timestamp showing when the audience was last modified.\</li>\<li>`createdDate`: Adds an ISO 8601 timestamp showing when the audience was originally created.\</li>\<li>`componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.\</li>\<li>`approved`: Adds a boolean indicating whether the audience has been approved or curated by an admin for organizational use.\</li>\<li>`tags`: Includes an array of tag objects associated with the audience, each containing the tag ID, name, and other metadata for organizational categorization.\</li>\<li>`size`: Includes the current estimated size (member count) of the audience.\</li>\</ul> |
 
 **Example prompts:**
 
@@ -415,18 +458,20 @@ Returns metadata for a given audience, including its name, description, definiti
 
 ## Component usage
 
-<AccordionItem slots="heading, text, text, table, text, text"/>
+<AccordionItem slots="heading, text, text, text, table, text, text"/>
 
 ### List Component Usage (`listComponentUsage`)
 
 Lists the components of a specified type that are most used in reports, ranked by usage frequency. Use this tool to discover which dimensions, metrics, segments, or other components are most popular in your organization. Helpful when deciding what to include in a new report or project.
+
+**Required permission:** [MCP Read-only Access](../guides/permissions.md#permission-items) or [MCP Full Access](../guides/permissions.md#permission-items)
 
 **Parameters:**
 
 | Name | Required | Type | Description |
 |------|----------|------|-------------|
 | `dataViewId` | No | String | The data view ID. If omitted, uses the session default. |
-| `componentType` | Yes | String | The type of component to check. Available types include:\<br/>• `dimension`\<br/>• `metric`\<br/>• `segment`\<br/>• `dateRange`\<br/>• `project`\<br/>• `calculatedMetric` |
+| `componentType` | Yes | String | The type of component to check. Available types include:\<ul>\<li>`dimension`\</li>\<li>`metric`\</li>\<li>`segment`\</li>\<li>`dateRange`\</li>\<li>`project`\</li>\<li>`calculatedMetric`\</li>\</ul> |
 
 **Example prompts:**
 
@@ -435,11 +480,13 @@ Lists the components of a specified type that are most used in reports, ranked b
 * "Which segments are used the most?"
 * "What are the top components by usage?"
 
-<AccordionItem slots="heading, text, text, table, text, text"/>
+<AccordionItem slots="heading, text, text, text, table, text, text"/>
 
 ### List Frequently Used With (`listFrequentlyUsedWith`)
 
 Lists components that are frequently used together in reports with a specified component. Use this tool to discover natural pairings to inform report building. For example, use this tool to determine which metrics are commonly used alongside a specific dimension.
+
+**Required permission:** [MCP Read-only Access](../guides/permissions.md#permission-items) or [MCP Full Access](../guides/permissions.md#permission-items)
 
 **Parameters:**
 
@@ -447,7 +494,7 @@ Lists components that are frequently used together in reports with a specified c
 |------|----------|------|-------------|
 | `dataViewId` | No | String | The data view ID. If omitted, uses the session default. |
 | `componentId` | Yes | String | The ID of the component to check. |
-| `componentType` | Yes | String | The type of the component. Available types include:\<br/>• `dimension`\<br/>• `metric`\<br/>• `segment`\<br/>• `dateRange`\<br/>• `project`\<br/>• `calculatedMetric` |
+| `componentType` | Yes | String | The type of the component. Available types include:\<ul>\<li>`dimension`\</li>\<li>`metric`\</li>\<li>`segment`\</li>\<li>`dateRange`\</li>\<li>`project`\</li>\<li>`calculatedMetric`\</li>\</ul> |
 
 **Example prompts:**
 
@@ -456,11 +503,13 @@ Lists components that are frequently used together in reports with a specified c
 * "Show me what's frequently used alongside the 'visits' metric."
 * "What else is typically used with this segment?"
 
-<AccordionItem slots="heading, text, text, table, text, text"/>
+<AccordionItem slots="heading, text, text, text, table, text, text"/>
 
 ### List Similar Components (`listSimilarTo`)
 
 Lists components that are similar to a specified component. Use this tool to find alternatives or related dimensions, metrics, or segments that serve a similar purpose.
+
+**Required permission:** [MCP Read-only Access](../guides/permissions.md#permission-items) or [MCP Full Access](../guides/permissions.md#permission-items)
 
 **Parameters:**
 
@@ -468,7 +517,7 @@ Lists components that are similar to a specified component. Use this tool to fin
 |------|----------|------|-------------|
 | `dataViewId` | No | String | The data view ID. If omitted, uses the session default. |
 | `componentId` | Yes | String | The ID of the component to check. |
-| `componentType` | Yes | String | The type of the component. Available types include:\<br/>• `dimension`\<br/>• `metric`\<br/>• `segment`\<br/>• `dateRange`\<br/>• `project`\<br/>• `calculatedMetric` |
+| `componentType` | Yes | String | The type of the component. Available types include:\<ul>\<li>`dimension`\</li>\<li>`metric`\</li>\<li>`segment`\</li>\<li>`dateRange`\</li>\<li>`project`\</li>\<li>`calculatedMetric`\</li>\</ul> |
 
 **Example prompts:**
 
@@ -479,11 +528,13 @@ Lists components that are similar to a specified component. Use this tool to fin
 
 ## Create and update
 
-<AccordionItem slots="heading, text, text, table, text, text"/>
+<AccordionItem slots="heading, text, text, text, table, text, text"/>
 
 ### Create or Update Segment (`upsertSegment`)
 
 Creates a new segment or updates an existing one. If a `segmentId` is provided, updates the existing segment; if omitted, creates a new one. Before calling this tool, call `describeCja(SEGMENT_DEFINITION_GUIDE)` to learn the required segment body structure.
+
+**Required permission:** [MCP Full Access](../guides/permissions.md#permission-items)
 
 **Parameters:**
 
@@ -491,7 +542,7 @@ Creates a new segment or updates an existing one. If a `segmentId` is provided, 
 |------|----------|------|-------------|
 | `segmentId` | No | String | The ID of the segment to update. If not provided, creates a new segment instead. |
 | `segmentBody` | Yes | Object | The segment metadata and definition object. Includes fields such as `name`, `description`, `definition` (container structure with predicates), and `compatibility`. Call `describeCja(SEGMENT_DEFINITION_GUIDE)` for the full structure. |
-| `expansions` | Yes | String | Additional data to return on the created or updated segment. Available expansions:\<br/>• `ownerFullName`: Includes the full name and login of the segment owner, expanding the `owner` object beyond just the user ID.\<br/>• `modified`: Adds an ISO 8601 timestamp showing when the segment was last modified.\<br/>• `definition`: Includes the full segment definition as a JSON object, describing the container structure and predicates that define the segment logic.\<br/>• `componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.\<br/>• `compatibility`: Adds information about which products the segment is compatible with.\<br/>• `dataId`: Includes the associated data view ID that the segment is tied to.\<br/>• `dataName`: Includes the name of the data view associated with the segment. Useful for identifying the data source when working across multiple data views.\<br/>• `approved`: Adds a boolean indicating whether the segment has been approved or curated by an admin for organizational use.\<br/>• `tags`: Includes an array of tag objects associated with the segment, each containing the tag ID, name, and other metadata for organizational categorization. |
+| `expansions` | Yes | String | Additional data to return on the created or updated segment. Available expansions:\<ul>\<li>`ownerFullName`: Includes the full name and login of the segment owner, expanding the `owner` object beyond just the user ID.\</li>\<li>`modified`: Adds an ISO 8601 timestamp showing when the segment was last modified.\</li>\<li>`definition`: Includes the full segment definition as a JSON object, describing the container structure and predicates that define the segment logic.\</li>\<li>`componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.\</li>\<li>`compatibility`: Adds information about which products the segment is compatible with.\</li>\<li>`dataId`: Includes the associated data view ID that the segment is tied to.\</li>\<li>`dataName`: Includes the name of the data view associated with the segment. Useful for identifying the data source when working across multiple data views.\</li>\<li>`approved`: Adds a boolean indicating whether the segment has been approved or curated by an admin for organizational use.\</li>\<li>`tags`: Includes an array of tag objects associated with the segment, each containing the tag ID, name, and other metadata for organizational categorization.\</li>\</ul> |
 
 **Example prompts:**
 
@@ -500,11 +551,13 @@ Creates a new segment or updates an existing one. If a `segmentId` is provided, 
 * "Update the definition of segment s12345."
 * "Build a segment for users who visited the checkout page."
 
-<AccordionItem slots="heading, text, text, table, text, text"/>
+<AccordionItem slots="heading, text, text, text, table, text, text"/>
 
 ### Create or Update Calculated Metric (`upsertCalculatedMetric`)
 
 Creates a new calculated metric or updates an existing one. If a `calculatedMetricId` is provided, updates the existing calculated metric; if omitted, creates a new one. Before calling this tool, call `describeCja(CALCULATED_METRIC_DEFINITION_GUIDE)` to learn the required metric body structure.
+
+**Required permission:** [MCP Full Access](../guides/permissions.md#permission-items)
 
 **Parameters:**
 
@@ -512,7 +565,7 @@ Creates a new calculated metric or updates an existing one. If a `calculatedMetr
 |------|----------|------|-------------|
 | `calculatedMetricId` | No | String | The ID of the calculated metric to update. If not provided, creates a new calculated metric instead. |
 | `metricBody` | Yes | Object | The metric metadata and definition object. Includes fields such as `name`, `description`, `dataId` (the data view ID), and `definition` (formula structure). Call `describeCja(CALCULATED_METRIC_DEFINITION_GUIDE)` for the full structure. |
-| `expansions` | Yes | String | Additional data to return on the created or updated calculated metric. Available expansions:\<br/>• `ownerFullName`: Includes the full name and login of the calculated metric owner, expanding the `owner` object beyond just the user ID.\<br/>• `modified`: Adds an ISO 8601 timestamp showing when the calculated metric was last modified.\<br/>• `definition`: Includes the full calculated metric definition as a JSON object, describing the formula structure and base metrics used.\<br/>• `componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.\<br/>• `approved`: Adds a boolean indicating whether the calculated metric has been approved or curated by an admin for organizational use.\<br/>• `tags`: Includes an array of tag objects associated with the calculated metric, each containing the tag ID, name, and other metadata for organizational categorization.\<br/>• `warning`: Includes any warning messages about the calculated metric, such as issues with the definition or compatibility problems.\<br/>• `compatibility`: Adds information about which products the calculated metric is compatible with.\<br/>• `hidden`: Adds a boolean indicating whether the calculated metric is hidden from the default UI view.\<br/>• `dataName`: Includes the name of the data view associated with the calculated metric. Useful for identifying the data source when working across multiple data views. |
+| `expansions` | Yes | String | Additional data to return on the created or updated calculated metric. Available expansions:\<ul>\<li>`ownerFullName`: Includes the full name and login of the calculated metric owner, expanding the `owner` object beyond just the user ID.\</li>\<li>`modified`: Adds an ISO 8601 timestamp showing when the calculated metric was last modified.\</li>\<li>`definition`: Includes the full calculated metric definition as a JSON object, describing the formula structure and base metrics used.\</li>\<li>`componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.\</li>\<li>`approved`: Adds a boolean indicating whether the calculated metric has been approved or curated by an admin for organizational use.\</li>\<li>`tags`: Includes an array of tag objects associated with the calculated metric, each containing the tag ID, name, and other metadata for organizational categorization.\</li>\<li>`warning`: Includes any warning messages about the calculated metric, such as issues with the definition or compatibility problems.\</li>\<li>`compatibility`: Adds information about which products the calculated metric is compatible with.\</li>\<li>`hidden`: Adds a boolean indicating whether the calculated metric is hidden from the default UI view.\</li>\<li>`dataName`: Includes the name of the data view associated with the calculated metric. Useful for identifying the data source when working across multiple data views.\</li>\</ul> |
 
 **Example prompts:**
 
@@ -521,18 +574,20 @@ Creates a new calculated metric or updates an existing one. If a `calculatedMetr
 * "Update calculated metric cm12345 with a new formula."
 * "Create a bounce rate calculated metric."
 
-<AccordionItem slots="heading, text, text, table, text, text"/>
+<AccordionItem slots="heading, text, text, text, table, text, text"/>
 
 ### Create Date Range (`createDateRange`)
 
 Creates a new reusable date range component that can be shared and used across projects.
+
+**Required permission:** [MCP Full Access](../guides/permissions.md#permission-items)
 
 **Parameters:**
 
 | Name | Required | Type | Description |
 |------|----------|------|-------------|
 | `dateRangeBody` | Yes | Object | The date range definition as a map. See the API documentation for the required structure. |
-| `expansions` | Yes | String | Additional data to return on the created date range. Available expansions:\<br/>• `definition`: Includes the full date range definition as a JSON object, describing the start and end dates or relative date formula.\<br/>• `ownerFullName`: Includes the full name and login of the date range owner, expanding the `owner` object beyond just the user ID.\<br/>• `modified`: Adds an ISO 8601 timestamp showing when the date range was last modified.\<br/>• `approved`: Adds a boolean indicating whether the date range has been approved or curated by an admin for organizational use.\<br/>• `tags`: Includes an array of tag objects associated with the date range, each containing the tag ID, name, and other metadata for organizational categorization. |
+| `expansions` | Yes | String | Additional data to return on the created date range. Available expansions:\<ul>\<li>`definition`: Includes the full date range definition as a JSON object, describing the start and end dates or relative date formula.\</li>\<li>`ownerFullName`: Includes the full name and login of the date range owner, expanding the `owner` object beyond just the user ID.\</li>\<li>`modified`: Adds an ISO 8601 timestamp showing when the date range was last modified.\</li>\<li>`approved`: Adds a boolean indicating whether the date range has been approved or curated by an admin for organizational use.\</li>\<li>`tags`: Includes an array of tag objects associated with the date range, each containing the tag ID, name, and other metadata for organizational categorization.\</li>\</ul> |
 
 **Example prompts:**
 
@@ -540,11 +595,13 @@ Creates a new reusable date range component that can be shared and used across p
 * "Build a date range component for the last 90 days."
 * "Create a custom date range from January 1 to March 31."
 
-<AccordionItem slots="heading, text, text, table, text, text"/>
+<AccordionItem slots="heading, text, text, text, table, text, text"/>
 
 ### Create or Update Project (`upsertProject`)
 
 Creates a new workspace project or updates an existing one. If a `projectId` is provided, updates the existing project; if omitted, creates a new one. Before calling this tool, call `describeCja(PROJECT_BASE)` to learn the required project structure. For specific visualization types, also call `describeCja` with the appropriate guide type (for example, `PROJECT_VIZ_COMBO`, `PROJECT_VIZ_FLOW`, `PROJECT_FREEFORM_TABLE`). The `projectBody` must include `dataId` set to the data view ID; omitting `dataId` commonly causes "referenced component was not found in this data view" errors. The response automatically includes a `workspaceLink` field with a direct URL to open the project in Analysis Workspace.
+
+**Required permission:** [MCP Full Access](../guides/permissions.md#permission-items)
 
 **Parameters:**
 
@@ -552,7 +609,7 @@ Creates a new workspace project or updates an existing one. If a `projectId` is 
 |------|----------|------|-------------|
 | `projectId` | No | String | The ID of the project to update. If not provided, creates a new project instead. |
 | `projectBody` | Yes | Object | The project payload including `definition`, `dataId` (must be set to the data view ID), `type` (must be `project`), and optionally `name` and `description`. Call `describeCja(PROJECT_BASE)` for the full structure. |
-| `expansions` | Yes | String | Additional data to return on the created or updated project. Available expansions:\<br/>• `dataId`: Includes the associated data view ID that the project is tied to.\<br/>• `dataName`: Includes the name of the data view associated with the project. Useful for identifying the data source when working across multiple data views.\<br/>• `ownerFullName`: Includes the full name and login of the project owner, expanding the `owner` object beyond just the user ID.\<br/>• `modified`: Adds an ISO 8601 timestamp showing when the project was last modified.\<br/>• `definition`: Includes the full project definition as a JSON object, describing the panels, visualizations, freeform tables, and other components that make up the workspace project.\<br/>• `componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.\<br/>• `approved`: Adds a boolean indicating whether the project has been approved or curated by an admin for organizational use.\<br/>• `tags`: Includes an array of tag objects associated with the project, each containing the tag ID, name, and other metadata for organizational categorization.\<br/>• `folder`: Includes the folder location where the project is stored in the workspace. |
+| `expansions` | Yes | String | Additional data to return on the created or updated project. Available expansions:\<ul>\<li>`dataId`: Includes the associated data view ID that the project is tied to.\</li>\<li>`dataName`: Includes the name of the data view associated with the project. Useful for identifying the data source when working across multiple data views.\</li>\<li>`ownerFullName`: Includes the full name and login of the project owner, expanding the `owner` object beyond just the user ID.\</li>\<li>`modified`: Adds an ISO 8601 timestamp showing when the project was last modified.\</li>\<li>`definition`: Includes the full project definition as a JSON object, describing the panels, visualizations, freeform tables, and other components that make up the workspace project.\</li>\<li>`componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.\</li>\<li>`approved`: Adds a boolean indicating whether the project has been approved or curated by an admin for organizational use.\</li>\<li>`tags`: Includes an array of tag objects associated with the project, each containing the tag ID, name, and other metadata for organizational categorization.\</li>\<li>`folder`: Includes the folder location where the project is stored in the workspace.\</li>\</ul> |
 
 **Example prompts:**
 
@@ -562,11 +619,13 @@ Creates a new workspace project or updates an existing one. If a `projectId` is 
 * "Create a workspace project with a flow visualization."
 * "Build a marketing dashboard project."
 
-<AccordionItem slots="heading, text, text, table, text, text"/>
+<AccordionItem slots="heading, text, text, text, table, text, text"/>
 
 ### Create or Update Audience (`upsertAudience`)
 
 Creates a new audience or updates an existing one. If an `audienceId` is provided, updates the existing audience; if omitted, creates a new one.
+
+**Required permission:** [MCP Full Access](../guides/permissions.md#permission-items)
 
 **Parameters:**
 
@@ -574,7 +633,7 @@ Creates a new audience or updates an existing one. If an `audienceId` is provide
 |------|----------|------|-------------|
 | `audienceId` | No | String | The ID of the audience to update. If not provided, creates a new audience instead. |
 | `audienceBody` | Yes | Object | The audience metadata and definition object. Includes fields such as `name`, `description`, and `definition`. |
-| `expansions` | Yes | String | Additional data to return on the created or updated audience. Available expansions:\<br/>• `ownerFullName`: Includes the full name and login of the audience owner, expanding the `owner` object beyond just the user ID.\<br/>• `modified`: Adds an ISO 8601 timestamp showing when the audience was last modified.\<br/>• `definition`: Includes the full audience definition as a JSON object, describing the segment logic and criteria that determine audience membership.\<br/>• `componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.\<br/>• `compatibility`: Adds information about which products the audience is compatible with.\<br/>• `dataId`: Includes the associated data view ID that the audience is tied to.\<br/>• `dataName`: Includes the name of the data view associated with the audience. Useful for identifying the data source when working across multiple data views.\<br/>• `approved`: Adds a boolean indicating whether the audience has been approved or curated by an admin for organizational use.\<br/>• `tags`: Includes an array of tag objects associated with the audience, each containing the tag ID, name, and other metadata for organizational categorization. |
+| `expansions` | Yes | String | Additional data to return on the created or updated audience. Available expansions:\<ul>\<li>`ownerFullName`: Includes the full name and login of the audience owner, expanding the `owner` object beyond just the user ID.\</li>\<li>`modified`: Adds an ISO 8601 timestamp showing when the audience was last modified.\</li>\<li>`definition`: Includes the full audience definition as a JSON object, describing the segment logic and criteria that determine audience membership.\</li>\<li>`componentType`: Adds a string field identifying the component type. Useful when working with mixed component lists.\</li>\<li>`compatibility`: Adds information about which products the audience is compatible with.\</li>\<li>`dataId`: Includes the associated data view ID that the audience is tied to.\</li>\<li>`dataName`: Includes the name of the data view associated with the audience. Useful for identifying the data source when working across multiple data views.\</li>\<li>`approved`: Adds a boolean indicating whether the audience has been approved or curated by an admin for organizational use.\</li>\<li>`tags`: Includes an array of tag objects associated with the audience, each containing the tag ID, name, and other metadata for organizational categorization.\</li>\</ul> |
 
 **Example prompts:**
 
