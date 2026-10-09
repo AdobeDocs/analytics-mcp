@@ -23,7 +23,7 @@ This issue can manifest itself in several ways, including:
 
 **Cause**: Your account does not belong to a product profile that includes the [MCP Read-only Access](../guides/permissions.md#permission-items) or [MCP Full Access](../guides/permissions.md#permission-items) permission item.
 
-**Fix**: Contact a system administrator or product administrator within your organization to add you to a product profile containing one of these permission items. The contact within your organization is typically the individual or team that granted you initial access to Adobe Analytics or Customer Journey Analytics. See [Request access](../guides/permissions.md#request-or-grant-access) for the details to include in your request.
+**Fix**: Contact a system administrator or product administrator within your organization to add you to a product profile containing one of these permission items. The contact within your organization is typically the individual or team that granted you initial access to Adobe Analytics or Customer Journey Analytics. See [Request access](../guides/permissions.md#request-access) for the details to include in your request.
 
 <AccordionItem slots="heading, text, text"/>
 

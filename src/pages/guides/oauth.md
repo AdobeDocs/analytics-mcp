@@ -8,7 +8,7 @@ Use an OAuth server-to-server access token to connect programmatically to the Ad
 
 ## Requirements
 
-Before connecting, you need an Adobe Developer Console project with [OAuth server-to-server credentials](https://developer.adobe.com/developer-console/docs/guides/authentication/ServerToServerAuthentication/) and an [IMS access token](https://developer.adobe.com/developer-console/docs/guides/authentication/ServerToServerAuthentication/implementation/) generated using the `client_credentials` grant type. Ensure that the technical account is assigned to a product profile containing the [MCP Read-only Access](permissions.md#permission-items) permission item, or the [MCP Full Access](permissions.md#permission-items) permission item if your integration creates or updates components. See [OAuth server-to-server credentials](permissions.md#request-or-grant-access) for details.
+Before connecting, you need an Adobe Developer Console project with [OAuth server-to-server credentials](https://developer.adobe.com/developer-console/docs/guides/authentication/ServerToServerAuthentication/) and an [IMS access token](https://developer.adobe.com/developer-console/docs/guides/authentication/ServerToServerAuthentication/implementation/) generated using the `client_credentials` grant type. Ensure that the technical account is assigned to a product profile containing the [MCP Read-only Access](permissions.md#permission-items) permission item, or the [MCP Full Access](permissions.md#permission-items) permission item if your integration creates or updates components. See [OAuth server-to-server credentials](permissions.md#grant-access) for details.
 
 Each request to the MCP server requires the following headers:
 
