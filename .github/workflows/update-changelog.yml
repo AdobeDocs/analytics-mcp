@@ -6,6 +6,8 @@ name: Update MCP Changelogs
 # new dated entry into each, and opens a single PR with both edits.
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "0 15 * * 1"
 
 permissions:
   contents: write
