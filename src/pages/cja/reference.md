@@ -7,7 +7,7 @@ description: A complete reference of all tools available in the Customer Journey
 
 The following tools are available when connected to the Customer Journey Analytics MCP server. Each tool can be invoked by an LLM client to interact with your Customer Journey Analytics data, components, and workspace projects.
 
-Each tool requires one of the following permission items:
+The following MCP access levels determine which tools you can use. See [Set up permissions](../guides/permissions.md) for details on granting access.
 
 * [MCP Read-only Access](../guides/permissions.md#permission-items): All tools except those that create or update components.
 * [MCP Full Access](../guides/permissions.md#permission-items): All tools, including those that create or update components.

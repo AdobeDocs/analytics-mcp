@@ -1,11 +1,11 @@
 ---
 title: Set up permissions
-description: Request or grant the permission items required to use the Adobe Analytics and Customer Journey Analytics MCP servers.
+description: Set up and manage access to the Adobe Analytics and Customer Journey Analytics MCP servers.
 ---
 
 # Set up permissions
 
-Access to the Adobe Analytics and Customer Journey Analytics MCP servers is controlled by permission items in [Adobe Admin Console](https://adminconsole.adobe.com) product profiles. Every user needs one of the two MCP permission items before they can use an MCP server. *This requirement applies to all users, including product administrators and system administrators.*
+Access to the Adobe Analytics and Customer Journey Analytics MCP servers is managed through product roles and permission items in [Adobe Admin Console](https://adminconsole.adobe.com).
 
 ## Permission items
 
@@ -16,13 +16,19 @@ Access to the Adobe Analytics and Customer Journey Analytics MCP servers is cont
 
 Permissions combine across product profiles, so a user who belongs to any product profile that includes **MCP Full Access** has full access.
 
-The MCP servers also enforce each user's existing Adobe Analytics and Customer Journey Analytics permissions. For example, a user with **MCP Full Access** can create segments only if their product profile also allows segment creation.
+The MCP servers also enforce each user's existing Adobe Analytics and Customer Journey Analytics permissions. For example, creating segments requires both full MCP access and permission to create segments in the product.
 
 See the [Adobe Analytics tool reference](../aa/reference.md) and the [Customer Journey Analytics tool reference](../cja/reference.md) for the permission that each tool requires.
 
+### Product administrators
+
+Adobe Analytics and Customer Journey Analytics product administrators automatically receive full MCP access for their respective products, even when neither MCP permission item is explicitly assigned in their product profiles. This access includes tools that create or update components, such as segments. Other users need **MCP Read-only Access** or **MCP Full Access** in a product profile.
+
+Assigning **MCP Read-only Access** or removing MCP permission items does not restrict a product administrator's MCP access.
+
 ## Request access
 
-If you don't have an MCP permission item, request one from your organization's administrators. If you're not sure whether you have one, [verify your access](#verify-access) first.
+If you don't have MCP access, request it from your organization's administrators. If you're not sure whether you have access, [verify your access](#verify-access) first.
 
 1. Determine which permission item you need: **MCP Read-only Access** to query data, or **MCP Full Access** to also create or update components.
 1. Contact a system administrator or product administrator within your organization. This contact is typically the individual or team that granted you access to Adobe Analytics or Customer Journey Analytics.
@@ -91,3 +97,11 @@ Technical accounts used for [OAuth server-to-server connections](oauth.md) also 
    * **Adobe Analytics**: "What report suites do I have access to?"
    * **Customer Journey Analytics**: "What data views do I have access to?"
 1. If the client returns an authorization or permission error, wait and reconnect the MCP connector, because permission changes might not take effect immediately. If the error persists, see [Troubleshooting](../support/troubleshooting.md#authentication-and-permissions).
+
+## Restrict write access
+
+To limit a user to read-only MCP access for a product:
+
+1. Ensure that the user is not assigned the product administrator role for that product. Remove that role if it is currently assigned.
+1. Add the user to a product profile containing **MCP Read-only Access**.
+1. Check all of the user's product profiles for that product and ensure that none grants **MCP Full Access**. Permissions combine across profiles; a read-only profile does not override full access from another profile.
