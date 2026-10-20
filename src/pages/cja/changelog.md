@@ -7,6 +7,13 @@ description: Updates and improvements to the Customer Journey Analytics MCP serv
 
 Recent updates, improvements, and new capabilities for the Customer Journey Analytics MCP server and its skills. For Adobe Analytics updates, see the [Adobe Analytics changelog](../aa/changelog.md).
 
+### October 19, 2026
+
+* Added `getCalculatedMetricFunctions` for discovering available calculated metric functions, with an optional `category` filter.
+* Added `validateCalculatedMetric` for validating a calculated metric definition before saving.
+* Added an optional `compressOutput` parameter to compression-enabled tools so callers can opt in or out of output compression per request.
+* Resolved an issue where updating a workspace project did not return the updated project definition.
+
 ### October 8, 2026
 
 * Renamed the **MCP Access** permission item to [MCP Full Access](../guides/permissions.md#permission-items).

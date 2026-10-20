@@ -7,6 +7,10 @@ description: Updates and improvements to the Adobe Analytics MCP server and skil
 
 Recent updates, improvements, and new capabilities for the Adobe Analytics MCP server and its skills. For Customer Journey Analytics updates, see the [Customer Journey Analytics changelog](../cja/changelog.md).
 
+### October 19, 2026
+
+* Added an optional `compressOutput` parameter to compression-enabled tools so callers can opt in or out of output compression per request.
+
 ### October 5, 2026
 
 * Renamed the **MCP Access** permission item to [MCP Full Access](../guides/permissions.md#permission-items).
