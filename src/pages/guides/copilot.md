@@ -6,7 +6,7 @@ description: Connect to Adobe Analytics and Customer Journey Analytics MCP serve
 
 You can request Adobe Analytics and Customer Journey Analytics data using Copilot Studio.
 
-1. Ensure that your account has the [MCP Read-only Access](permissions.md#permission-items) or [MCP Full Access](permissions.md#permission-items) permission item for the desired product.
+1. Verify that your account has MCP access for the desired product. See [Set up permissions](permissions.md).
 1. Authenticate with [Copilot Studio](https://copilotstudio.microsoft.com/).
 1. Select **Tools** in the left navigation.
 1. Select **New tool**.

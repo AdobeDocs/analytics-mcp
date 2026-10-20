@@ -9,9 +9,7 @@ Connect an Adobe Analytics or Customer Journey Analytics MCP server to a support
 
 <InlineAlert variant="info" slots="text"/>
 
-Before connecting, make sure that your account belongs to a product profile containing the [MCP Read-only Access](permissions.md#permission-items) or [MCP Full Access](permissions.md#permission-items) permission item. *This requirement applies to all users, including product administrators.* See [Set up permissions](permissions.md) for step-by-step instructions for users and administrators.
-
-Creating or updating components, such as segments, calculated metrics, date ranges, and projects, requires [MCP Full Access](permissions.md#permission-items). Your account must also have the Adobe Analytics or Customer Journey Analytics permissions required for the actions that you want to take. MCP servers enforce the same permissions as the UI.
+See [Set up permissions](permissions.md) to check your MCP access or request access from your organization.
 
 ## MCP server URLs
 

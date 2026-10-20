@@ -21,25 +21,25 @@ This issue can manifest itself in several ways, including:
 * 403 forbidden
 * `Omni.Tools.MCPAccess` permission error
 
-**Cause**: Your account does not belong to a product profile that includes the [MCP Read-only Access](../guides/permissions.md#permission-items) or [MCP Full Access](../guides/permissions.md#permission-items) permission item.
+**Possible cause**: Your account does not have MCP access for the selected product or organization.
 
-**Fix**: Contact a system administrator or product administrator within your organization to add you to a product profile containing one of these permission items. The contact within your organization is typically the individual or team that granted you initial access to Adobe Analytics or Customer Journey Analytics. See [Request access](../guides/permissions.md#request-access) for the details to include in your request.
+**Fix**: Confirm that the correct IMS org is active and follow [Verify access](../guides/permissions.md#verify-access) to reconnect and check access. If you need access, contact your organization's administrators. See [Request access](../guides/permissions.md#request-access) for the details to include in your request.
 
 <AccordionItem slots="heading, text, text"/>
 
 ### Creating or updating a component fails with a permission error
 
-**Cause**: Your account has [MCP Read-only Access](../guides/permissions.md#permission-items) instead of [MCP Full Access](../guides/permissions.md#permission-items), or your product profile does not allow creating that type of component in Adobe Analytics or Customer Journey Analytics.
+**Possible cause**: Your account has only read-only MCP access, or lacks permission to create that type of component in Adobe Analytics or Customer Journey Analytics.
 
-**Fix**: Ask a system administrator or product administrator to add you to a product profile that includes [MCP Full Access](../guides/permissions.md#permission-items) and the product permissions required to create the component. See [Set up permissions](../guides/permissions.md) for details.
+**Fix**: Ask your organization's administrators to verify that your account has full MCP access and the product permissions required to create the component. See [Set up permissions](../guides/permissions.md) for details.
 
 <AccordionItem slots="heading, text, text"/>
 
 ### Permission error after switching companies in Adobe Analytics
 
-**Cause**: Adobe Analytics permissions apply per login company. Your account has an MCP permission item in one company, but not in the company that the tool is using.
+**Possible cause**: Your account does not have MCP access in the login company that the tool is using.
 
-**Fix**: Ask a system administrator or product administrator to add you to a product profile in that company that includes [MCP Read-only Access](../guides/permissions.md#permission-items) or [MCP Full Access](../guides/permissions.md#permission-items). Alternatively, use `setSessionDefaults` to switch back to a company where you have access.
+**Fix**: Ask your organization's administrators to verify your access in that company. See [Set up permissions](../guides/permissions.md) for details. Alternatively, use `setSessionDefaults` to switch back to a company where you have access.
 
 <AccordionItem slots="heading, text, text"/>
 
