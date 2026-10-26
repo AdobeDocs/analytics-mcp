@@ -7,6 +7,11 @@ description: Updates and improvements to the Customer Journey Analytics MCP serv
 
 Recent updates, improvements, and new capabilities for the Customer Journey Analytics MCP server and its skills. For Adobe Analytics updates, see the [Adobe Analytics changelog](../aa/changelog.md).
 
+### October 26, 2026
+
+* Added optional `limit`, `page`, `startTime`, and `endTime` parameters to `listComponentUsage` for paginating results and scoping to a time window.
+* Clarified in the CJA reference guide that the data view context returns top-used components rather than the full catalog.
+
 ### October 19, 2026
 
 * Added `getCalculatedMetricFunctions` for discovering available calculated metric functions, with an optional `category` filter.
