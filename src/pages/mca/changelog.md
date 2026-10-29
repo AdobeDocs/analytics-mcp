@@ -7,6 +7,6 @@ description: Updates and improvements to the Adobe Marketing Campaign Analytics 
 
 Recent updates, improvements, and new capabilities for the Marketing Campaign Analytics (formerly known as Mix Modeler) MCP server and its skills.
 
-### October 1, 2026
+### October 29, 2026
 
-* 
+* Launched of MCP plugin with document on available [skills](./skills.md).
