@@ -9,4 +9,4 @@ Recent updates, improvements, and new capabilities for the Marketing Campaign An
 
 ### October 29, 2026
 
-* Launch of MCP plugin with document on available [skills](./skills.md).
+* Launch of MCP plugin with documentation on available [skills](./skills.md).
