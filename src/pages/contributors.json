@@ -1,15 +1,16 @@
 {
-  "total": 21,
+  "total": 25,
   "offset": 0,
-  "limit": 21,
+  "limit": 25,
   "data": [
     {
       "page": "/",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/2020923?v=4",
         "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/41382203?v=4"
       ],
-      "lastUpdated": "10/20/2026"
+      "lastUpdated": "10/29/2026"
     },
     {
       "page": "/aa/",
@@ -78,11 +79,12 @@
     {
       "page": "/config",
       "avatars": [
+        "https://avatars.githubusercontent.com/u/2020923?v=4",
         "https://avatars.githubusercontent.com/u/33764851?v=4",
         "https://avatars.githubusercontent.com/u/255243852?v=4",
         "https://avatars.githubusercontent.com/u/41382203?v=4"
       ],
-      "lastUpdated": "10/9/2026"
+      "lastUpdated": "10/29/2026"
     },
     {
       "page": "/guides/",
@@ -142,6 +144,34 @@
         "https://avatars.githubusercontent.com/u/33764851?v=4"
       ],
       "lastUpdated": "10/20/2026"
+    },
+    {
+      "page": "/mca/",
+      "avatars": [
+        "https://avatars.githubusercontent.com/u/2020923?v=4"
+      ],
+      "lastUpdated": "10/29/2026"
+    },
+    {
+      "page": "/mca/changelog",
+      "avatars": [
+        "https://avatars.githubusercontent.com/u/2020923?v=4"
+      ],
+      "lastUpdated": "10/29/2026"
+    },
+    {
+      "page": "/mca/reference",
+      "avatars": [
+        "https://avatars.githubusercontent.com/u/2020923?v=4"
+      ],
+      "lastUpdated": "10/8/2026"
+    },
+    {
+      "page": "/mca/skills",
+      "avatars": [
+        "https://avatars.githubusercontent.com/u/2020923?v=4"
+      ],
+      "lastUpdated": "10/8/2026"
     },
     {
       "page": "/support/",
