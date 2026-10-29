@@ -12,7 +12,7 @@ The connection steps differ by product. Use [Customer Journey Analytics](#custom
 
 Adobe publishes Customer Journey Analytics as a connector in the Claude connector directory, so you can add it directly without entering a server URL.
 
-1. Ensure that your account has the [necessary permissions](index.md) to access the Customer Journey Analytics MCP server.
+1. Verify that your account has MCP access for Customer Journey Analytics. See [Set up permissions](permissions.md).
 1. Log in to [Claude](https://claude.ai) using your credentials.
 1. In the left menu, select the **Customize** icon, then select **Connectors**.
 1. In the **Search** box, type `Customer Journey Analytics`.
@@ -31,7 +31,7 @@ The tool is ready for use. You can converse with Claude in context of your Custo
 
 Add the Adobe Analytics MCP server manually as a custom connector.
 
-1. Ensure that your account has the [necessary permissions](index.md) to access the Adobe Analytics MCP server.
+1. Verify that your account has MCP access for Adobe Analytics. See [Set up permissions](permissions.md).
 1. Log in to [Claude](https://claude.ai) using your credentials.
 1. In the left menu, select the **Customize** icon, then select **Connectors**.
 1. Select **Browse**, then **Add custom connector**.
