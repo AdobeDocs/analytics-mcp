@@ -9,7 +9,7 @@ This page summarizes the MMM (Marketing mix modeling) and MTA (Multi-touch attri
 
 ## Models (apps)
 
-<AccordionItem slots="heading, text, text, table, text, text"/>
+<AccordionItem slots="heading, text, text, table, text, text, table"/>
 
 ### List apps (`list_apps`)
 
@@ -38,7 +38,7 @@ Retrieve the detailed configuration of a marketing mix modeling (MMM) model.
 
 ## Model quality and diagnostics
 
-<AccordionItem slots="heading, text, text, table, text, text"/>
+<AccordionItem slots="heading, text, text, table, text, text, table, text, text, table, text, text, table"/>
 
 ### Get model quality (`get_model_quality`)
 
@@ -92,7 +92,7 @@ Query model training insights with flexible aggregations.
 
 ## Channel analysis
 
-<AccordionItem slots="heading, text, text, table, text, text"/>
+<AccordionItem slots="heading, text, text, table, text, text, table"/>
 
 ### Get channel synergy (`get_channel_synergy`)
 
@@ -122,7 +122,7 @@ Analyze marketing spend efficiency and ROI across channels.
 
 ## Multi-touch attribution
 
-<AccordionItem slots="heading, text, text, table, text, text"/>
+<AccordionItem slots="heading, text, text, table, text, text, table, text, text, table, text, text, table"/>
 
 ### Query MTA insights (`query_mta_insights`)
 
@@ -174,7 +174,7 @@ Query per-touchpoint MTA effectiveness data.
 
 ## Scenario planning
 
-<AccordionItem slots="heading, text, text, table, text, text"/>
+<AccordionItem slots="heading, text, text, table, text, text, table, text, text, table, text, text, table, text, text, table, text, text, table, text, text, table, text, text, table, text, text, table"/>
 
 ### List scenarios (`list_scenarios`)
 
