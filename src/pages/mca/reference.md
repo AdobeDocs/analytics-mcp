@@ -9,7 +9,7 @@ This page summarizes the MMM (Marketing mix modeling) and MTA (Multi-touch attri
 
 ## Models (apps)
 
-<AccordionItem slots="heading, text, text, table, text, text, table"/>
+<AccordionItem slots="heading, text, table"/>
 
 ### List apps (`list_apps`)
 
@@ -22,6 +22,8 @@ List all Marketing Campaign Analytics (apps) in the current sandbox.
 | When to use | As the first step to discover valid `app_id` values before calling any model-scoped action. Increase `offset` by `limit` to page through results beyond the default page. |
 | Returns | A JSON array of models with metadata such as `total_count`, `limit`, `offset`, and `has_more`. |
 | Pre-conditions | A valid authenticated session. |
+
+<AccordionItem slots="heading, text, table"/>
 
 ### Get app (`get_app`)
 
@@ -38,7 +40,7 @@ Retrieve the detailed configuration of a marketing mix modeling (MMM) model.
 
 ## Model quality and diagnostics
 
-<AccordionItem slots="heading, text, text, table, text, text, table, text, text, table, text, text, table"/>
+<AccordionItem slots="heading, text, table"/>
 
 ### Get model quality (`get_model_quality`)
 
@@ -53,6 +55,8 @@ Get marketing mix modeling (MMM) model quality metrics for one model, either for
 | Pre-conditions | The app must exist and the caller must be allowed to read it. |
 | Notes | The date-range variant does not return the training/prediction split. |
 
+<AccordionItem slots="heading, text, table"/>
+
 ### Get factor insights (`get_factor_insights`)
 
 Get factor contribution analysis for a model.
@@ -65,6 +69,8 @@ Get factor contribution analysis for a model.
 | Returns | Factor contribution results ranked by relative influence. |
 | Pre-conditions | The model must already exist and be available to the caller. |
 
+<AccordionItem slots="heading, text, table"/>
+
 ### Get scoring metrics (`get_scoring_metrics`)
 
 Monitor ongoing model health via drift analysis.
@@ -76,6 +82,8 @@ Monitor ongoing model health via drift analysis.
 | When to use | To decide whether a model needs retraining because of data drift or prediction drift. |
 | Returns | Drift and scoring health metrics, including the retrain recommendation flag. |
 | Pre-conditions | The model must exist and have scoring data available. |
+
+<AccordionItem slots="heading, text, table"/>
 
 ### Get training insights (`get_training_insights`)
 
@@ -92,7 +100,7 @@ Query model training insights with flexible aggregations.
 
 ## Channel analysis
 
-<AccordionItem slots="heading, text, text, table, text, text, table"/>
+<AccordionItem slots="heading, text, table"/>
 
 ### Get channel synergy (`get_channel_synergy`)
 
@@ -106,6 +114,8 @@ Analyze pairwise synergy between marketing channels.
 | Returns | Pairwise synergy results for the selected channels. |
 | Pre-conditions | The base model must exist and be suitable for synergy analysis. |
 | Notes | For a scenario's planned allocation, use `get_scenario_plan_synergy` instead. |
+
+<AccordionItem slots="heading, text, table"/>
 
 ### Get dynamic response curves (`get_dynamic_response_curves`)
 
@@ -122,7 +132,7 @@ Analyze marketing spend efficiency and ROI across channels.
 
 ## Multi-touch attribution
 
-<AccordionItem slots="heading, text, text, table, text, text, table, text, text, table, text, text, table"/>
+<AccordionItem slots="heading, text, table"/>
 
 ### Query MTA insights (`query_mta_insights`)
 
@@ -136,6 +146,8 @@ Query aggregate multi-touch attribution insights.
 | Returns | Aggregated MTA insights for the requested scope. |
 | Pre-conditions | Attribution data must be available for the requested scope. |
 
+<AccordionItem slots="heading, text, table"/>
+
 ### Get MTA touchpoint-position scoring (`get_mta_spc_scoring`)
 
 Query the MTA touchpoint-position breakdown.
@@ -148,6 +160,8 @@ Query the MTA touchpoint-position breakdown.
 | Returns | Position-based conversion breakdowns by touchpoint. |
 | Pre-conditions | The attribution dataset must contain conversion paths with touchpoint positions. |
 
+<AccordionItem slots="heading, text, table"/>
+
 ### Get MTA top paths (`get_mta_top_paths`)
 
 Query the top-performing multi-touch attribution paths.
@@ -159,6 +173,8 @@ Query the top-performing multi-touch attribution paths.
 | When to use | To understand the most common or effective customer journeys toward conversion. |
 | Returns | Ranked paths or grouped path rows, depending on whether `top_n` is provided. |
 | Pre-conditions | The attribution data must contain sequential touchpoint paths. |
+
+<AccordionItem slots="heading, text, table"/>
 
 ### Get MTA touchpoint effectiveness (`get_mta_touchpoint_effectiveness`)
 
@@ -174,7 +190,7 @@ Query per-touchpoint MTA effectiveness data.
 
 ## Scenario planning
 
-<AccordionItem slots="heading, text, text, table, text, text, table, text, text, table, text, text, table, text, text, table, text, text, table, text, text, table, text, text, table, text, text, table"/>
+<AccordionItem slots="heading, text, table"/>
 
 ### List scenarios (`list_scenarios`)
 
@@ -188,6 +204,8 @@ List all scenarios for the current tenant or organization sandbox.
 | Returns | A JSON array of scenario summaries plus metadata such as `total_count`, `limit`, `offset`, and `has_more`. |
 | Pre-conditions | A valid authenticated session. |
 
+<AccordionItem slots="heading, text, table"/>
+
 ### Compare scenarios (`compare_scenarios`)
 
 Compare two saved scenarios side by side.
@@ -199,6 +217,8 @@ Compare two saved scenarios side by side.
 | When to use | To evaluate trade-offs between two optimization or forecast plans, such as aggressive versus conservative options. |
 | Returns | A side-by-side comparison of the selected scenarios. |
 | Pre-conditions | Both scenarios must exist and be comparable. |
+
+<AccordionItem slots="heading, text, table"/>
 
 ### Query scenario (`query_scenario`)
 
@@ -212,6 +232,8 @@ Query the evaluated results of a single scenario.
 | Returns | Aggregated scenario results for the requested breakdowns. |
 | Pre-conditions | The scenario must already be evaluated. |
 
+<AccordionItem slots="heading, text, table"/>
+
 ### Get scenario plan synergy (`get_scenario_plan_synergy`)
 
 Retrieve channel synergy data computed for a scenario's plan.
@@ -223,6 +245,8 @@ Retrieve channel synergy data computed for a scenario's plan.
 | When to use | To understand cross-channel interactions within a planned scenario rather than the base model. |
 | Returns | Scenario-specific channel synergy output. |
 | Pre-conditions | The scenario must exist and have a plan to analyze. |
+
+<AccordionItem slots="heading, text, table"/>
 
 ### Get scenario plan response curve (`get_scenario_plan_response_curve`)
 
@@ -237,6 +261,7 @@ Retrieve the response curve for one touchpoint in a scenario.
 | Pre-conditions | The scenario must exist and include the selected touchpoint. |
 | Notes | For the base model's curves, use `get_dynamic_response_curves`. |
 
+<AccordionItem slots="heading, text, table"/>
 
 ### Get scenario evaluation details (`get_scenario_evaluation_details`)
 
@@ -250,6 +275,8 @@ Retrieve detailed evaluation output for a scenario.
 | Returns | Detailed evaluation output for the selected scenario. |
 | Pre-conditions | The scenario evaluation must be complete and ready. |
 
+<AccordionItem slots="heading, text, table"/>
+
 ### Create scenario (`create_scenario`)
 
 Create a new Marketing Campaign Analytics scenario plan for budget optimization or forecasting.
@@ -261,6 +288,8 @@ Create a new Marketing Campaign Analytics scenario plan for budget optimization 
 | When to use | To plan a new budget or forecast scenario after calling `get_app` to obtain valid channel names and conversion identifiers. |
 | Returns | A newly created scenario. |
 | Pre-conditions | The model context must be valid, and the scenario must be new because scenarios are immutable once created. |
+
+<AccordionItem slots="heading, text, table"/>
 
 ### Trigger scenario evaluation (`trigger_scenario_evaluation`)
 
@@ -275,6 +304,8 @@ Trigger optimization or forecast evaluation for a saved scenario plan.
 | Pre-conditions | The scenario must already exist, and the plan should be finalized. |
 | Notes | After triggering, poll `get_scenario_job_status` until the job is READY. |
 
+<AccordionItem slots="heading, text, table"/>
+
 ### Get scenario job status (`get_scenario_job_status`)
 
 Poll a scenario's evaluation job status.
@@ -286,6 +317,8 @@ Poll a scenario's evaluation job status.
 | When to use | After `trigger_scenario_evaluation` to know when results are ready, or before triggering to check whether an evaluation is already pending. |
 | Returns | Job status such as READY, FAILED, or PENDING, plus error details when failed. |
 | Pre-conditions | The scenario must exist. |
+
+<AccordionItem slots="heading, text, table"/>
 
 ### Delete scenario plan (`delete_scenario_plan`)
 
