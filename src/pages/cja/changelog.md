@@ -7,6 +7,15 @@ description: Updates and improvements to the Customer Journey Analytics MCP serv
 
 Recent updates, improvements, and new capabilities for the Customer Journey Analytics MCP server and its skills. For Adobe Analytics updates, see the [Adobe Analytics changelog](../aa/changelog.md).
 
+### November 2, 2026
+
+* Expanded semantic component search to include panels within workspace projects.
+* Added `filterByName` to `findSegments` and `findCalculatedMetrics` for name-based lookups.
+* Added `limit`, `page`, `startTime`, and `endTime` parameters to `listComponentUsage` for paginated and time-windowed queries.
+* Prevented workspace project updates from removing all panels.
+* Marked `setDefaultSessionDataViewId` as read-only so it is available to clients with MCP Read-only Access.
+* Improved reliability when the response cache is temporarily unavailable.
+
 ### October 19, 2026
 
 * Added `getCalculatedMetricFunctions` for discovering available calculated metric functions, with an optional `category` filter.
