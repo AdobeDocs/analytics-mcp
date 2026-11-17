@@ -7,6 +7,10 @@ description: Updates and improvements to the Customer Journey Analytics MCP serv
 
 Recent updates, improvements, and new capabilities for the Customer Journey Analytics MCP server and its skills. For Adobe Analytics updates, see the [Adobe Analytics changelog](../aa/changelog.md).
 
+### November 16, 2026
+
+* Added the `cja-dimension-analysis` and `cja-funnel-health-check` [skills](skills.md).
+
 ### November 2, 2026
 
 * Expanded semantic component search to include panels within workspace projects.
