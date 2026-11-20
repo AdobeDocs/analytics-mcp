@@ -50,11 +50,11 @@ Configure a `mcp.json` file in the Cursor IDE.
 
 ![Gemini icon](../assets/Google_Gemini_icon.svg)
 
-### Gemini
+### Gemini CLI
 
-CLI-only support; guide forthcoming.
+Add servers to the `settings.json` file in Gemini CLI.
 
-* [Coming soon](#)
+* [Setup guide](gemini.md)
 
 ![Copilot icon](../assets/CopilotStudio.png)
 

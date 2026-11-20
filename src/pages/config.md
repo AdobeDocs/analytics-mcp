@@ -16,6 +16,7 @@
     - [Connect to Claude](guides/claude.md)
     - [Connect to Copilot Studio](guides/copilot.md)
     - [Connect to Cursor](guides/cursor.md)
+    - [Connect to Gemini CLI](guides/gemini.md)
     - [Use OAuth to connect](guides/oauth.md)
   - [Adobe Analytics](aa/index.md)
     - [Tool reference](aa/reference.md)
